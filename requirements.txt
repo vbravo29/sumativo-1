@@ -1,0 +1,14 @@
+# Instalación para el equipo: ejecutar desde la raíz del repositorio
+# con el entorno virtual activado:
+# python -m pip install -r requirements.txt
+# Sin activar el entorno, en Windows PowerShell:
+# .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+# Preparación del entorno y descripción de paquetes: README.md.
+# Rangos iniciales; congelar versiones tras instalar y validar.
+numpy>=2.3.3,<3
+pandas>=2.3.3,<3
+matplotlib>=3.9.2,<4
+jupyterlab>=4.2,<5
+ipykernel>=7.0.1,<8
+nbformat>=5.10,<6
+nbconvert>=7.16,<8
