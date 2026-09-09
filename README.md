@@ -66,5 +66,3 @@ Pendientes: caso, dataset, definición del problema, desarrollo F1/F2 y validaci
 Registrar la procedencia del dataset en [data/README.md](data/README.md). Conservar los datos originales en `data/raw/` y guardar los derivados en `data/processed/` para mantener la trazabilidad.
 
 Las decisiones sobre limpieza, tipos de datos y transformaciones se documentarán junto al código correspondiente en los notebooks y se resumirán en el informe integrado. Este README concentra la configuración del proyecto, las dependencias y las instrucciones de ejecución.
-
-test
