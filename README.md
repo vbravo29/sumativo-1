@@ -1,68 +1,71 @@
-# sumativo-1
-Proyecto de la Sumativa 1 — Fases 1 y 2 (UNAB).
+# Análisis de licitaciones públicas del sector Salud
 
-**Estado:** estructura inicial. La definición del caso y la incorporación del dataset están pendientes.
+Proyecto grupal de la Sumativa 1 de Programación para la Ciencia de Datos. El trabajo cubre la definición del problema, la preparación de los datos y la validación inicial del análisis.
 
-## Estructura
-- `F1/F1_Definición.ipynb`: definición y comprobación inicial del entorno.
-- `F2/F2_Preprocesamiento.ipynb`: guía de obtención, exploración, limpieza y validación.
-- `src/`: funciones compartidas.
-- `data/raw/` y `data/processed/`: originales y derivados.
-- `docs/informe_f1_f2_grupo_5.docx`: versión de trabajo del informe integrado del grupo 5.
-- `materiales/`: referencias y planificación locales, excluidas de Git.
-- `evidencias/`: salidas de ejecución.
-- `requirements.txt`: dependencias iniciales.
+## Propósito del proyecto
 
-## Requisitos
-Python 3.14.7 y Git. Comprobar la versión con `py -3.14 --version`. JupyterLab se instala junto con las dependencias.
+El proyecto analiza las licitaciones públicas del sector Salud registradas en ChileCompra durante marzo de 2026. El objetivo es describir cómo se distribuyen las ofertas recibidas según el tipo de licitación, institución compradora, rubro, proveedor, monto y resultado de la oferta.
 
-## Dependencias
-| Paquete | Propósito |
+La pregunta general que guiará el trabajo es: ¿qué características presentan las ofertas de las licitaciones del sector Salud y cómo se relacionan con su resultado?
+
+## Qué representa la información
+
+ChileCompra es la plataforma mediante la cual organismos públicos publican necesidades de compra y reciben ofertas de proveedores. Una licitación puede incluir uno o más productos o servicios, y para cada ítem pueden participar varios proveedores.
+
+Cada fila del archivo corresponde a una **oferta asociada a un ítem de una licitación**. Por eso una misma licitación puede aparecer en varias filas: puede tener distintos ítems y varias ofertas para cada uno. No se debe interpretar cada fila como una licitación única.
+
+El archivo contiene, entre otros, estos grupos de información:
+
+- Datos de la licitación: identificador, nombre, tipo, estado, moneda y monto estimado.
+- Fechas del proceso: publicación, cierre, adjudicación y otras etapas administrativas.
+- Información del organismo comprador: institución, unidad de compra y sector.
+- Información del bien o servicio: rubro, producto, descripción, unidad de medida y cantidad.
+- Información de los proveedores y ofertas: proveedor, tamaño de empresa, monto ofertado, moneda y resultado (`Ganadora` o `Perdedora`).
+
+## Dataset
+
+El dataset principal es [`data/raw/licitaciones_salud_marzo_2026.csv`](data/raw/licitaciones_salud_marzo_2026.csv), obtenido desde [Datos Abiertos de ChileCompra](https://datos-abiertos.chilecompra.cl/descargas).
+
+| Característica | Información |
 | --- | --- |
-| numpy | Operaciones numéricas |
-| pandas | Lectura y transformación de datos |
-| matplotlib | Visualizaciones |
-| jupyterlab | Edición y ejecución de notebooks |
-| ipykernel | Kernel Python |
-| nbformat | Validación de notebooks |
-| nbconvert | Ejecución completa y exportación |
+| Cobertura | Sector Salud, reporte de licitaciones de marzo de 2026 |
+| Registros | 44.226 ofertas asociadas a licitaciones e ítems |
+| Variables | 74 columnas |
+| Formato | CSV con separador `;` y codificación `latin-1` |
+| Tamaño | 68,96 MB |
 
-Los rangos se declaran en `requirements.txt`. Después de instalar y validar, generar `requirements-lock.txt` para registrar versiones exactas. Todavía no hay un entorno del equipo validado.
+El detalle de procedencia, lectura y trazabilidad está en [data/README.md](data/README.md).
 
-Los mínimos de NumPy (2.3.3), pandas (2.3.3) e ipykernel (7.0.1) se eligieron por su soporte para Python 3.14: [NumPy](https://numpy.org/doc/2.3/release/2.3.3-notes.html), [pandas](https://pandas.pydata.org/pandas-docs/stable/whatsnew/v2.3.3.html) e [ipykernel](https://ipykernel.readthedocs.io/en/stable/changelog.html).
+## Estructura del repositorio
 
-## Instalación en Windows — PowerShell
+- `F1/`: notebook de definición del proyecto y configuración del entorno.
+- `F2/`: notebook de exploración, limpieza, transformación y validación de datos.
+- `data/raw/`: dataset original.
+- `data/processed/`: datos generados durante el preprocesamiento.
+- `docs/`: informe integrado en desarrollo.
+- `evidencias/`: resultados de ejecuciones verificadas.
+- `src/`: funciones reutilizables del proyecto.
+
+## Preparación del entorno
+
+El proyecto usa Python 3.14.7. Cuando `requirements.txt` esté disponible en la rama de trabajo, instalar las dependencias desde la raíz del repositorio con:
+
 ```powershell
-# Ejecutar desde la carpeta raíz del repositorio.
 py -3.14 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe -m jupyterlab
 ```
 
-Si solo existe `python`, verificar su versión y usar `python -m venv .venv`. Los comandos usan el ejecutable del entorno sin necesidad de activarlo.
+Los notebooks deben ejecutarse con el kernel asociado a `.venv`.
 
-Abrir F1 y luego F2 con el kernel del entorno y ejecutar todas las celdas. F2 indica los pendientes; su ejecución no verifica un pipeline real.
+## Criterios de trabajo con datos
 
-Para guardar copias ejecutadas y fijar las versiones después de validar:
-```powershell
-.\.venv\Scripts\python.exe -m jupyter nbconvert --to notebook --execute "F1/F1_Definición.ipynb" --output-dir evidencias
-.\.venv\Scripts\python.exe -m jupyter nbconvert --to notebook --execute "F2/F2_Preprocesamiento.ipynb" --output-dir evidencias
-.\.venv\Scripts\python.exe -m pip freeze | Out-File -Encoding utf8 requirements-lock.txt
-.\.venv\Scripts\python.exe --version
-```
+- El CSV original se conserva sin cambios.
+- Las conversiones, filtros y columnas excluidas se justifican en el notebook F2.
+- Las fechas se convertirán a un tipo temporal para analizar plazos y etapas del proceso.
+- Las columnas sin información o con alta proporción de valores faltantes se evaluarán antes de eliminarlas.
+- Los resultados derivados se guardarán en `data/processed/`.
 
-Registrar en este README el sistema operativo, la versión exacta de Python y el resultado de la validación una vez realizada. Los demás integrantes deben instalar el archivo lock en un entorno limpio y comprobar ejecución.
+## Estado actual
 
-## Git y datos
-Datos y materiales del curso están excluidos por defecto en `.gitignore`. Documentar cómo obtenerlos; decidir su inclusión según licencia, tamaño y restricciones del caso. Cada integrante debe usar su propia identidad Git y commits descriptivos. Revisar `git status` y `git diff` antes de subir.
-
-## Estado y entrega
-El informe del grupo 5 está disponible en [docs/informe_f1_f2_grupo_5.docx](docs/informe_f1_f2_grupo_5.docx). Es una versión inicial con la identificación de integrantes; el desarrollo de F1 y F2 está pendiente.
-
-Pendientes: caso, dataset, definición del problema, desarrollo F1/F2 y validación del entorno. La entrega final incluye un informe PDF integrado y evidencias de ejecución de ambas fases.
-
-Registrar la procedencia del dataset en [data/README.md](data/README.md). Conservar los datos originales en `data/raw/` y guardar los derivados en `data/processed/` para mantener la trazabilidad.
-
-Las decisiones sobre limpieza, tipos de datos y transformaciones se documentarán junto al código correspondiente en los notebooks y se resumirán en el informe integrado. Este README concentra la configuración del proyecto, las dependencias y las instrucciones de ejecución.
+El dataset fue validado y cumple los requisitos mínimos del curso: tiene suficientes filas y columnas, combina variables numéricas, categóricas y temporales, y no presenta filas duplicadas exactas. El siguiente paso es completar la definición del problema, los objetivos y las preguntas de análisis en F1.
