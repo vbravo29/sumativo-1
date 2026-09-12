@@ -4,9 +4,9 @@ Proyecto grupal de la Sumativa 1 de Programación para la Ciencia de Datos. El t
 
 ## Propósito del proyecto
 
-El proyecto analiza las licitaciones públicas del sector Salud registradas en ChileCompra durante marzo de 2026. El objetivo es describir cómo se distribuyen las ofertas recibidas según el tipo de licitación, institución compradora, rubro, proveedor, monto y resultado de la oferta.
+El proyecto analiza las ofertas del archivo de licitaciones públicas del sector Salud de marzo de 2026. El objetivo es describir las diferencias en la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor, mediante un flujo reproducible y con validación de la calidad de los datos.
 
-La pregunta general que guiará el trabajo es: ¿qué características presentan las ofertas de las licitaciones del sector Salud y cómo se relacionan con su resultado?
+La pregunta general es: ¿cómo varía la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor en el sector Salud durante marzo de 2026? El análisis es descriptivo y no establece causalidad. F1 define el cálculo y sus restricciones; los resultados aún no se han calculado.
 
 ## Qué representa la información
 
@@ -48,15 +48,27 @@ El detalle de procedencia, lectura y trazabilidad está en [data/README.md](data
 
 ## Preparación del entorno
 
-El proyecto usa Python 3.14.7. Cuando `requirements.txt` esté disponible en la rama de trabajo, instalar las dependencias desde la raíz del repositorio con:
+La verificación de F1 utiliza un entorno virtual con Python 3.12.14 en Windows. La referencia anterior a Python 3.14.7 no se ha validado en esta revisión. Para reproducir el entorno desde la raíz del repositorio, con Python 3.12 instalado:
 
 ```powershell
-py -3.14 -m venv .venv
+py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m jupyterlab
 ```
 
-Los notebooks deben ejecutarse con el kernel asociado a `.venv`.
+`requirements.txt` declara las dependencias principales de F1; pip instala sus dependencias internas automáticamente. Las versiones utilizadas se muestran en las salidas del notebook. Cada nueva instalación debe verificarse ejecutando F1 completo. Las librerías de visualización del futuro análisis se incorporarán cuando se implemente F2.
+
+### Ejecutar F1
+
+Abrir `F1/F1_Definición.ipynb` y seleccionar el kernel de `.venv`; usar **Restart Kernel and Run All Cells**. También se puede ejecutar desde la raíz:
+
+```powershell
+.\.venv\Scripts\python.exe F1\verificar_f1.py
+```
+
+El script crea un kernel nuevo del intérprete invocante, ejecuta todas las celdas y guarda sus salidas en el notebook. Solo si termina correctamente escribe `evidencias/F1_ejecucion.json`. La ejecución requiere el CSV original documentado y no modifica sus datos. El registro JSON identifica la ejecución y la huella del notebook; los resultados de las pruebas están en sus celdas.
+
+F2 sigue pendiente de implementación y no está cubierto por esta verificación.
 
 ## Criterios de trabajo con datos
 
@@ -68,4 +80,8 @@ Los notebooks deben ejecutarse con el kernel asociado a `.venv`.
 
 ## Estado actual
 
-El dataset fue validado y cumple los requisitos mínimos del curso: tiene suficientes filas y columnas, combina variables numéricas, categóricas y temporales, y no presenta filas duplicadas exactas. El siguiente paso es completar la definición del problema, los objetivos y las preguntas de análisis en F1.
+F1 contiene contexto, problema, preguntas, objetivos, alcance, supuestos, variables previstas, herramientas, lectura inicial y pruebas del código. La comprobación del archivo incluye SHA-256, dimensiones y presencia de columnas necesarias. No demuestra todavía que el dataset esté limpio.
+
+Las salidas guardadas del validador del curso indican que el dataset cumple los requisitos mínimos; también muestran columnas vacías que deben tratarse en F2. Quedan pendientes el mapa conceptual original y su contraste explícito, el diccionario de variables, dos fuentes docentes y una fuente académica reciente. F1 incluye dos referencias técnicas oficiales y la fuente del dataset. El informe integrado todavía debe desarrollarse y vincularse con estas evidencias.
+
+Los cambios se incorporarán al historial mediante commits descriptivos de los integrantes que los revisen. La referencia del commit definitivo se añadirá al preparar la entrega.

@@ -1,0 +1,9 @@
+# Instalar desde la raíz: .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+# Dependencias principales de F1. Las versiones ejecutadas se muestran en el notebook.
+numpy==2.3.5
+pandas==3.0.1
+jupyterlab>=4.4,<5
+ipykernel>=6.30,<8
+nbformat>=5.10,<6
+nbconvert>=7.16,<8
+nbclient>=0.10,<1

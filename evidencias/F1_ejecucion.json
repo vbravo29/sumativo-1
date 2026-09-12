@@ -1,0 +1,11 @@
+{
+  "fecha_utc": "2026-09-12T17:55:44.998539+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "notebook": "F1/F1_Definición.ipynb",
+  "notebook_sha256": "34bf73a228002b42f97c725baa9945a6f7d09f88e5ad6c0e3ba6a2ed37e67442",
+  "nota_revision_posterior": "Después de esta ejecución se actualizó únicamente la narrativa del notebook para retirar la referencia a requirements-lock.txt. La huella registrada corresponde a la versión ejecutada anterior a ese cambio documental; las celdas de código y sus salidas se conservaron.",
+  "kernel_nuevo": true,
+  "celdas_codigo_ejecutadas": 4,
+  "errores": 0,
+  "alcance": "F1: entorno, lectura inicial, integridad y cuatro pruebas de entrada; no valida F2"
+}
