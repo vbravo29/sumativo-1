@@ -1,68 +1,93 @@
-# sumativo-1
-Proyecto de la Sumativa 1 — Fases 1 y 2 (UNAB).
+# Análisis de licitaciones públicas del sector Salud
 
-**Estado:** estructura inicial. La definición del caso y la incorporación del dataset están pendientes.
+Proyecto grupal de la Sumativa 1 de Programación para la Ciencia de Datos. El trabajo cubre la definición del problema, la preparación de los datos y la validación inicial del análisis.
 
-## Estructura
-- `F1/F1_Definición.ipynb`: definición y comprobación inicial del entorno.
-- `F2/F2_Preprocesamiento.ipynb`: guía de obtención, exploración, limpieza y validación.
-- `src/`: funciones compartidas.
-- `data/raw/` y `data/processed/`: originales y derivados.
-- `docs/informe_f1_f2_grupo_5.docx`: versión de trabajo del informe integrado del grupo 5.
-- `materiales/`: referencias y planificación locales, excluidas de Git.
-- `evidencias/`: salidas de ejecución.
-- `requirements.txt`: dependencias iniciales.
+## Propósito del proyecto
 
-## Requisitos
-Python 3.14.7 y Git. Comprobar la versión con `py -3.14 --version`. JupyterLab se instala junto con las dependencias.
+El proyecto analiza las ofertas del archivo de licitaciones públicas del sector Salud de marzo de 2026. El objetivo es describir las diferencias en la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor, mediante un flujo reproducible y con validación de la calidad de los datos.
 
-## Dependencias
-| Paquete | Propósito |
+La pregunta general es: ¿cómo varía la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor en el sector Salud durante marzo de 2026? El análisis es descriptivo y no establece causalidad. F1 define el cálculo y sus restricciones; los resultados aún no se han calculado.
+
+## Qué representa la información
+
+ChileCompra es la plataforma mediante la cual organismos públicos publican necesidades de compra y reciben ofertas de proveedores. Una licitación puede incluir uno o más productos o servicios, y para cada ítem pueden participar varios proveedores.
+
+Cada fila del archivo corresponde a una **oferta asociada a un ítem de una licitación**. Por eso una misma licitación puede aparecer en varias filas: puede tener distintos ítems y varias ofertas para cada uno. No se debe interpretar cada fila como una licitación única.
+
+El archivo contiene, entre otros, estos grupos de información:
+
+- Datos de la licitación: identificador, nombre, tipo, estado, moneda y monto estimado.
+- Fechas del proceso: publicación, cierre, adjudicación y otras etapas administrativas.
+- Información del organismo comprador: institución, unidad de compra y sector.
+- Información del bien o servicio: rubro, producto, descripción, unidad de medida y cantidad.
+- Información de los proveedores y ofertas: proveedor, tamaño de empresa, monto ofertado, moneda y resultado (`Ganadora` o `Perdedora`).
+
+## Dataset
+
+El dataset principal es [`data/raw/licitaciones_salud_marzo_2026.csv`](data/raw/licitaciones_salud_marzo_2026.csv), obtenido desde [Datos Abiertos de ChileCompra](https://datos-abiertos.chilecompra.cl/descargas).
+
+| Característica | Información |
 | --- | --- |
-| numpy | Operaciones numéricas |
-| pandas | Lectura y transformación de datos |
-| matplotlib | Visualizaciones |
-| jupyterlab | Edición y ejecución de notebooks |
-| ipykernel | Kernel Python |
-| nbformat | Validación de notebooks |
-| nbconvert | Ejecución completa y exportación |
+| Cobertura | Sector Salud, reporte de licitaciones de marzo de 2026 |
+| Registros | 44.226 ofertas asociadas a licitaciones e ítems |
+| Variables | 74 columnas |
+| Formato | CSV con separador `;` y codificación `latin-1` |
+| Tamaño | 68,96 MB |
 
-Los rangos se declaran en `requirements.txt`. Después de instalar y validar, generar `requirements-lock.txt` para registrar versiones exactas. Todavía no hay un entorno del equipo validado.
+El detalle de procedencia, lectura y trazabilidad está en [data/README.md](data/README.md).
 
-Los mínimos de NumPy (2.3.3), pandas (2.3.3) e ipykernel (7.0.1) se eligieron por su soporte para Python 3.14: [NumPy](https://numpy.org/doc/2.3/release/2.3.3-notes.html), [pandas](https://pandas.pydata.org/pandas-docs/stable/whatsnew/v2.3.3.html) e [ipykernel](https://ipykernel.readthedocs.io/en/stable/changelog.html).
+## Estructura del repositorio
 
-## Instalación en Windows — PowerShell
+- `F1/`: notebook de definición del proyecto y configuración del entorno.
+- `F2/`: notebook de exploración, limpieza, transformación y validación de datos.
+- `data/raw/`: dataset original.
+- `data/processed/`: datos generados durante el preprocesamiento.
+- `docs/`: informe integrado en desarrollo.
+- `evidencias/`: resultados de ejecuciones verificadas.
+- `src/`: funciones reutilizables del proyecto.
+
+## Preparación del entorno
+
+La verificación de F1 utiliza un entorno virtual con Python 3.12.14 en Windows. La referencia anterior a Python 3.14.7 no se ha validado en esta revisión. Para reproducir el entorno desde la raíz del repositorio, con Python 3.12 instalado:
+
 ```powershell
-# Ejecutar desde la carpeta raíz del repositorio.
-py -3.14 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
+py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m pip check
 .\.venv\Scripts\python.exe -m jupyterlab
 ```
 
-Si solo existe `python`, verificar su versión y usar `python -m venv .venv`. Los comandos usan el ejecutable del entorno sin necesidad de activarlo.
+`requirements.txt` declara las dependencias principales de F1; pip instala sus dependencias internas automáticamente. Las versiones utilizadas se muestran en las salidas del notebook. Cada nueva instalación debe verificarse ejecutando F1 completo. Las librerías de visualización del futuro análisis se incorporarán cuando se implemente F2.
 
-Abrir F1 y luego F2 con el kernel del entorno y ejecutar todas las celdas. F2 indica los pendientes; su ejecución no verifica un pipeline real.
+### Ejecución de notebooks
 
-Para guardar copias ejecutadas y fijar las versiones después de validar:
+Para reproducir la ejecución completa de cada notebook y regenerar las evidencias técnicas en un kernel nuevo y aislado:
+
 ```powershell
-.\.venv\Scripts\python.exe -m jupyter nbconvert --to notebook --execute "F1/F1_Definición.ipynb" --output-dir evidencias
-.\.venv\Scripts\python.exe -m jupyter nbconvert --to notebook --execute "F2/F2_Preprocesamiento.ipynb" --output-dir evidencias
-.\.venv\Scripts\python.exe -m pip freeze | Out-File -Encoding utf8 requirements-lock.txt
-.\.venv\Scripts\python.exe --version
+# Ejecución verificada de Fase 1 (Definición y entorno)
+.\.venv\Scripts\python.exe F1\verificar_f1.py
+
+# Ejecución verificada de Fase 2 (Exploración, preprocesamiento y validación)
+.\.venv\Scripts\python.exe F2\verificar_f2.py
 ```
 
-Registrar en este README el sistema operativo, la versión exacta de Python y el resultado de la validación una vez realizada. Los demás integrantes deben instalar el archivo lock en un entorno limpio y comprobar ejecución.
+Cada script inicia un kernel nuevo del entorno virtual, ejecuta todas las celdas secuencialmente, preserva sus salidas en el notebook y emite un registro de trazabilidad en `evidencias/` (`F1_ejecucion.json` y `F2_ejecucion.json`).
 
-## Git y datos
-Datos y materiales del curso están excluidos por defecto en `.gitignore`. Documentar cómo obtenerlos; decidir su inclusión según licencia, tamaño y restricciones del caso. Cada integrante debe usar su propia identidad Git y commits descriptivos. Revisar `git status` y `git diff` antes de subir.
+## Criterios de trabajo y preprocesamiento (F2)
 
-## Estado y entrega
-El informe del grupo 5 está disponible en [docs/informe_f1_f2_grupo_5.docx](docs/informe_f1_f2_grupo_5.docx). Es una versión inicial con la identificación de integrantes; el desarrollo de F1 y F2 está pendiente.
+- El CSV original en `data/raw/` se conserva inmutable con verificación de hash SHA-256.
+- Se excluyeron las 3 columnas 100% vacías (`LicitacionBaseTipo`, `ContratoRenovable`, `UnidadTiempoRenovacion`).
+- Se neutralizaron las 7.613 fechas centinela del año 1900 en `FechaEstimadaEvaluacionOfertas` convirtiéndolas a `NaT`.
+- Las columnas temporales (`FechaPublicacion`, `FechaCierre`, `FechaAdjudicacion`) se convirtieron a `datetime64[ns]`.
+- Se preservó explícitamente la categoría `NoClasificado` en `TamanoProveedor` (3.410 ofertas) sin imputaciones artificiales.
+- Se calcularon variables derivadas: `oferta_ganadora`, `licitacion_adjudicada` y `plazo_cierre_dias` (promedio 14,38 días).
+- El dataset procesado resultante (44.226 filas x 74 columnas) se almacena en `data/processed/licitaciones_salud_marzo_2026_procesado.csv`.
 
-Pendientes: caso, dataset, definición del problema, desarrollo F1/F2 y validación del entorno. La entrega final incluye un informe PDF integrado y evidencias de ejecución de ambas fases.
+## Estado del proyecto (Fases 1 y 2 Integradas)
 
-Registrar la procedencia del dataset en [data/README.md](data/README.md). Conservar los datos originales en `data/raw/` y guardar los derivados en `data/processed/` para mantener la trazabilidad.
+El avance consolida los entregables exigidos para la **Sumativa 1**:
+- **Fase 1 (Implementada):** Contexto, problema, preguntas de investigación, objetivos F1–F4, alcance, supuestos, contrato de lectura y pruebas unitarias.
+- **Fase 2 (Implementada):** Diagnóstico EDA, pipeline modular en `src/proyecto.py`, limpieza justificada, suite de validación (casos normales, límites y excepciones) y exportación trazable.
+- **Informe Técnico Formal:** Documento integrado en `docs/informe_f1_f2_grupo_5.docx` y compilado a PDF con índice de contenidos actualizado, tablas estadísticas y referencias bibliográficas en formato APA 7.ª edición.
+- **Mapa Conceptual Técnico:** [docs/mapa_conceptual_f1_f2.drawio](docs/mapa_conceptual_f1_f2.drawio) actualizado, reflejando F1 y F2 implementadas y F3–F4 proyectadas.
+- **Diccionario de Datos:** [data/DICCIONARIO_VARIABLES.md](data/DICCIONARIO_VARIABLES.md) con las 74 variables agrupadas temáticamente y con observaciones técnicas.
 
-Las decisiones sobre limpieza, tipos de datos y transformaciones se documentarán junto al código correspondiente en los notebooks y se resumirán en el informe integrado. Este README concentra la configuración del proyecto, las dependencias y las instrucciones de ejecución.

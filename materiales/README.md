@@ -3,14 +3,11 @@
 Documentos de referencia locales, excluidos de Git excepto este inventario.
 
 ## Disponible
-- La versión de trabajo del informe se encuentra en `../docs/informe_f1_f2_grupo_5.docx` y se incluye en el repositorio. La plantilla de origen contiene apartados F1; queda pendiente completar el alcance F1/F2.
+- El informe consolidado de la Sumativa 1 (Fases 1 y 2 integradas) se encuentra en `../docs/informe_f1_f2_grupo_5.docx` y compilado formalmente a PDF en `../docs/informe_f1_f2_grupo_5.pdf`.
+- Dataset oficial de ChileCompra en `../data/raw/` y dataset procesado validado en `../data/processed/`.
+- Cuadernos ejecutados y verificados: `../F1/F1_Definición.ipynb` y `../F2/F2_Preprocesamiento.ipynb`.
+- Mapa conceptual técnico actualizado en `../docs/mapa_conceptual_f1_f2.drawio`.
+- Diccionario de variables completo en `../data/DICCIONARIO_VARIABLES.md`.
 
-## Pendiente
-- Caso asignado y diccionario de variables.
-- Rúbrica detallada.
-- Mapa conceptual técnico.
-- Recursos docentes para bibliografía.
-
-Guardar el dataset original en `../data/raw/` y el informe en desarrollo en `../docs/`. Cada integrante debe obtener los materiales del curso desde Canvas.
-
-La planificación local se conserva en `CHECKLIST.md` e `INFORME.md`; estos archivos no se publican.
+## Estado del avance
+Las Fases 1 y 2 se encuentran completamente implementadas, ejecutadas y documentadas con evidencias verificables en `../evidencias/`.
