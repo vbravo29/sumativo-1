@@ -82,6 +82,13 @@ F2 sigue pendiente de implementación y no está cubierto por esta verificación
 
 F1 contiene contexto, problema, preguntas, objetivos, alcance, supuestos, variables previstas, herramientas, lectura inicial y pruebas del código. La comprobación del archivo incluye SHA-256, dimensiones y presencia de columnas necesarias. No demuestra todavía que el dataset esté limpio.
 
-Las salidas guardadas del validador del curso indican que el dataset cumple los requisitos mínimos; también muestran columnas vacías que deben tratarse en F2. Quedan pendientes el mapa conceptual original y su contraste explícito, el diccionario de variables, dos fuentes docentes y una fuente académica reciente. F1 incluye dos referencias técnicas oficiales y la fuente del dataset. El informe integrado todavía debe desarrollarse y vincularse con estas evidencias.
+Las salidas guardadas del validador del curso indican que el dataset cumple los requisitos mínimos; también muestran columnas vacías que deben tratarse en F2. El [mapa conceptual](docs/mapa_conceptual_f1_f2.drawio) y el [diccionario de las 74 variables](data/DICCIONARIO_VARIABLES.md) están vinculados en F1. Quedan pendientes su revisión por el equipo, el contraste de las definiciones del reporte con ChileCompra, dos fuentes docentes y una fuente académica reciente. F1 incluye dos referencias técnicas oficiales y la fuente del dataset. El informe integrado todavía debe desarrollarse y vincularse con estas evidencias.
 
 Los cambios se incorporarán al historial mediante commits descriptivos de los integrantes que los revisen. La referencia del commit definitivo se añadirá al preparar la entrega.
+
+## Documentación de F1
+
+- [Mapa conceptual editable en draw.io](docs/mapa_conceptual_f1_f2.drawio): representa F1 implementado, F2 pendiente y F3–F4 proyectadas. La sección 9 de F1 vincula sus nodos con archivos y evidencias.
+- [Diccionario de variables](data/DICCIONARIO_VARIABLES.md): cubre las 74 columnas y separa observaciones del CSV de definiciones propuestas.
+
+El reporte de marzo contiene publicaciones desde enero de 2026; todos los cierres observados corresponden a marzo. El criterio oficial de selección mensual queda por confirmar. El mapa se elaboró a partir del avance actual y está pendiente de revisión del equipo.

@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" version="24.7.17">
+  <diagram id="mapa-proyecto" name="Proyecto y fases">
+    <mxGraphModel dx="1600" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="LICITACIONES PÚBLICAS DEL SECTOR SALUD&#10;Mapa conceptual técnico • Grupo 5 • MCDIA500&#10;Avance F1 y planificación F2–F4" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#16324F;strokeColor=#16324F;fontColor=#FFFFFF;fontFamily=Arial;fontSize=22;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="350" y="30" width="900" height="100" />
+        </mxCell>
+        <mxCell id="pregunta" value="PROBLEMA Y OBJETIVO&#10;¿Cómo varía la proporción de ofertas ganadoras según tipo de licitación y tamaño del proveedor?&#10;Objetivo: describir esas diferencias mediante un flujo reproducible." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=19;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="350" y="180" width="900" height="120" />
+        </mxCell>
+        <mxCell id="titulo-pregunta" value="se orienta a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="titulo" target="pregunta">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="datos" value="DATOS Y ALCANCE&#10;Reporte de marzo de 2026&#10;Fuente: ChileCompra" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=18;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="370" width="320" height="95" />
+        </mxCell>
+        <mxCell id="f1" value="F1 • IMPLEMENTADO&#10;Definición y entorno&#10;Objetivo 1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=18;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="370" width="320" height="95" />
+        </mxCell>
+        <mxCell id="f2" value="F2 • PENDIENTE&#10;Preparación y calidad de datos&#10;Objetivo 2" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=18;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="840" y="370" width="320" height="95" />
+        </mxCell>
+        <mxCell id="f34" value="F3–F4 • PROYECCIÓN&#10;Análisis y comunicación&#10;Objetivos 3 y 4" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#EDF2FA;strokeColor=#6E83A6;fontColor=#263D60;fontFamily=Arial;fontSize=18;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1240" y="370" width="320" height="95" />
+        </mxCell>
+        <mxCell id="pregunta-datos" value="se delimita por" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pregunta" target="datos">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="pregunta-f1" value="se inicia con" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pregunta" target="f1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="pregunta-f2" value="se prepara mediante" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pregunta" target="f2">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="pregunta-f34" value="se desarrolla hacia" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pregunta" target="f34">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="unidad" value="UNIDAD DE ANÁLISIS&#10;Oferta asociada a un ítem de licitación.&#10;44.226 filas y 74 columnas.&#10;NroLicitacion puede repetirse." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="520" width="320" height="140" />
+        </mxCell>
+        <mxCell id="datos-unidad" value="se interpreta como" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="datos" target="unidad">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="variables" value="VARIABLES PRINCIPALES&#10;TipoLicitacion • TamanoProveedor&#10;ResultadoOferta&#10;Sector y FechaPublicacion delimitan la cobertura." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="710" width="320" height="140" />
+        </mxCell>
+        <mxCell id="unidad-variables" value="se describe con" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="unidad" target="variables">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="metrica" value="MÉTRICA PLANIFICADA&#10;Ganadoras / ofertas con resultado válido por grupo.&#10;Informar denominadores y faltantes. Sin resultados válidos: proporción no definida." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="900" width="320" height="140" />
+        </mxCell>
+        <mxCell id="variables-metrica" value="permiten definir" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="variables" target="metrica">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="limites" value="LÍMITES DE INTERPRETACIÓN&#10;Análisis descriptivo, sin causalidad.&#10;No generalizar a otros meses.&#10;No sumar montos de monedas distintas." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="1090" width="320" height="140" />
+        </mxCell>
+        <mxCell id="metrica-limites" value="se interpreta bajo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="metrica" target="limites">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="entorno" value="ENTORNO REPRODUCIBLE&#10;Python 3.12.14 verificado • .venv&#10;NumPy • pandas • Jupyter&#10;requirements.txt y versiones registradas en F1." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="520" width="320" height="140" />
+        </mxCell>
+        <mxCell id="f1-entorno" value="se ejecuta con" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f1" target="entorno">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="funciones" value="CÓDIGO MODULAR&#10;src/proyecto.py&#10;Consulta versiones, calcula SHA-256 y lee el CSV con esquema mínimo.&#10;Original conservado sin cambios." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="710" width="320" height="140" />
+        </mxCell>
+        <mxCell id="entorno-funciones" value="organiza operaciones en" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="entorno" target="funciones">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="pruebas" value="VERIFICACIÓN&#10;Lectura normal, archivo ausente, columna ausente y archivo sin registros.&#10;4 pruebas superadas; ejecución de F1 sin errores." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="900" width="320" height="140" />
+        </mxCell>
+        <mxCell id="funciones-pruebas" value="se comprueba mediante" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="funciones" target="pruebas">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="evidencia" value="EVIDENCIAS Y TRAZABILIDAD&#10;F1_Definición.ipynb • salidas&#10;F1/verificar_f1.py • evidencias/&#10;README • historial Git del equipo&#10;Actualizar evidencia al cambiar F1." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="1090" width="320" height="140" />
+        </mxCell>
+        <mxCell id="pruebas-evidencia" value="queda documentado en" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pruebas" target="evidencia">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="perfil" value="EXPLORACIÓN Y DICCIONARIO&#10;Revisar roles, tipos, nulos, duplicados, fechas y categorías.&#10;Contrastar cobertura y clave de observación." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="840" y="520" width="320" height="140" />
+        </mxCell>
+        <mxCell id="f2-perfil" value="comienza con" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f2" target="perfil">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="limpieza" value="LIMPIEZA Y TRANSFORMACIÓN&#10;Justificar NA y columnas vacías.&#10;Convertir fechas y tipos; revisar etiquetas y monedas.&#10;No eliminar filas sin criterio." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="840" y="710" width="320" height="140" />
+        </mxCell>
+        <mxCell id="perfil-limpieza" value="fundamenta" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="perfil" target="limpieza">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="validacion" value="VALIDACIÓN DEL DATASET&#10;Comprobar integridad, rangos y coherencia; registrar filas antes y después y casos límite." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="840" y="900" width="320" height="140" />
+        </mxCell>
+        <mxCell id="limpieza-validacion" value="se controla mediante" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="limpieza" target="validacion">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="salida" value="PRODUCTOS DE F2&#10;F2_Preprocesamiento.ipynb&#10;Funciones reutilizables y evidencias&#10;data/processed/&#10;Dataset apto para análisis posterior." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="840" y="1090" width="320" height="140" />
+        </mxCell>
+        <mxCell id="validacion-salida" value="producirá" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="validacion" target="salida">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="analisis" value="F3 • ANÁLISIS DESCRIPTIVO&#10;Distribuciones y proporciones por tipo de licitación y tamaño del proveedor.&#10;Comparaciones con tamaño de grupo." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#EDF2FA;strokeColor=#6E83A6;fontColor=#263D60;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1240" y="520" width="320" height="140" />
+        </mxCell>
+        <mxCell id="f34-analisis" value="proyecta" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f34" target="analisis">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="visual" value="VISUALIZACIÓN&#10;Tablas y gráficos legibles&#10;Comunicar patrones observados y limitaciones de los datos." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#EDF2FA;strokeColor=#6E83A6;fontColor=#263D60;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1240" y="710" width="320" height="140" />
+        </mxCell>
+        <mxCell id="analisis-visual" value="se comunica mediante" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="analisis" target="visual">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="informe" value="F4 • INTEGRACIÓN&#10;Informe, conclusiones y referencias&#10;Coherencia entre pregunta, resultados, notebooks y repositorio." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#EDF2FA;strokeColor=#6E83A6;fontColor=#263D60;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1240" y="900" width="320" height="140" />
+        </mxCell>
+        <mxCell id="visual-informe" value="se integra en" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="visual" target="informe">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="cierre" value="ENTREGA Y REVISIÓN&#10;Ajustar F3–F4 a sus pautas.&#10;Para cerrar F1: revisar mapa y diccionario, confirmar definiciones y completar fuentes." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#EDF2FA;strokeColor=#6E83A6;fontColor=#263D60;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1240" y="1090" width="320" height="140" />
+        </mxCell>
+        <mxCell id="informe-cierre" value="requiere" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="informe" target="cierre">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="nota" value="ESTADO DEL AVANCE&#10;Verde: implementado y verificado en F1. Ámbar: F2 pendiente. Azul: fases posteriores proyectadas.&#10;Mapa elaborado a partir del avance actual; no acredita una planificación anterior. Revisar en equipo y vincular con notebook e informe.&#10;Fuente de datos: datos-abiertos.chilecompra.cl/descargas • Alcance y decisiones: F1/F1_Definición.ipynb" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=14;spacing=14;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="1290" width="1520" height="85" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
