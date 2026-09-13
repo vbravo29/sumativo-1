@@ -25,4 +25,19 @@ El archivo se incluye en el repositorio para que el equipo pueda ejecutar los no
 
 El diccionario incluye el resultado de la validación parcial con el portal oficial y la API. Distingue conceptos respaldados, correspondencias propuestas y controles del archivo. Siguen sin confirmarse las reglas y año de tamaño de proveedor, los impuestos de los montos y la codificación de las fechas de evaluación de 1900. El parámetro latin-1 se conserva porque esta copia no es UTF-8 válida, aunque el portal anuncia UTF-8 de forma general.
 
-El [diccionario de trabajo](DICCIONARIO_VARIABLES.md) cubre las 74 columnas. Incluye tipos observados, roles propuestos, faltantes y controles previstos. Las definiciones se basan en encabezados y valores y requieren contraste con la documentación del reporte masivo. No se han limpiado ni transformado datos.
+El [diccionario de trabajo](DICCIONARIO_VARIABLES.md) cubre las 74 columnas. Incluye tipos observados, roles propuestos, faltantes y controles previstos. Las definiciones se basan en encabezados y valores y orientaron las reglas de preprocesamiento aplicadas en la Fase 2.
+
+## Dataset procesado (Fase 2)
+
+- **Archivo derivado:** `processed/licitaciones_salud_marzo_2026_procesado.csv`
+- **Generación:** Producido por la función `limpiar_datos_f2()` de `src/proyecto.py` e implementado en `F2/F2_Preprocesamiento.ipynb`.
+- **Dimensiones:** 44.226 filas y 74 columnas (exclusión de 3 columnas vacías y adición de 3 variables derivadas).
+- **Transformaciones aplicadas:**
+  - Exclusión de `LicitacionBaseTipo`, `ContratoRenovable` y `UnidadTiempoRenovacion` (100% nulas).
+  - Fechas centinela en año 1900 neutralizadas a `NaT` en `FechaEstimadaEvaluacionOfertas`.
+  - Columnas temporales convertidas a formato `datetime64[ns]`.
+  - Normalización de cadenas de texto y preservación de la categoría `NoClasificado` en `TamanoProveedor`.
+  - Variables derivadas: `oferta_ganadora` (bool), `licitacion_adjudicada` (bool) y `plazo_cierre_dias` (float).
+- **Tamaño:** 68,16 MB.
+- **SHA-256:** `7e835d6725d8c4f9aa64ad97a294dc38fcc341e71373f544c7f6b8ba2ff31dc5`.
+

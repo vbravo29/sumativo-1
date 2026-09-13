@@ -5,7 +5,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="titulo" value="LICITACIONES PÚBLICAS DEL SECTOR SALUD&#10;Mapa conceptual técnico • Grupo 5 • MCDIA500&#10;Avance F1 y planificación F2–F4" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#16324F;strokeColor=#16324F;fontColor=#FFFFFF;fontFamily=Arial;fontSize=22;spacing=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="titulo" value="LICITACIONES PÚBLICAS DEL SECTOR SALUD&#10;Mapa conceptual técnico • Grupo 5 • MCDIA500&#10;Avance integrado F1–F2 implementado • Planificación F3–F4" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#16324F;strokeColor=#16324F;fontColor=#FFFFFF;fontFamily=Arial;fontSize=22;spacing=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="350" y="30" width="900" height="100" />
         </mxCell>
         <mxCell id="pregunta" value="PROBLEMA Y OBJETIVO&#10;¿Cómo varía la proporción de ofertas ganadoras según tipo de licitación y tamaño del proveedor?&#10;Objetivo: describir esas diferencias mediante un flujo reproducible." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=19;spacing=14;arcSize=12;" vertex="1" parent="1">
@@ -20,7 +20,7 @@
         <mxCell id="f1" value="F1 • IMPLEMENTADO&#10;Definición y entorno&#10;Objetivo 1" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=18;spacing=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="440" y="370" width="320" height="95" />
         </mxCell>
-        <mxCell id="f2" value="F2 • PENDIENTE&#10;Preparación y calidad de datos&#10;Objetivo 2" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=18;spacing=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="f2" value="F2 • IMPLEMENTADO&#10;Preparación y calidad de datos&#10;Objetivo 2" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=18;spacing=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="840" y="370" width="320" height="95" />
         </mxCell>
         <mxCell id="f34" value="F3–F4 • PROYECCIÓN&#10;Análisis y comunicación&#10;Objetivos 3 y 4" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#EDF2FA;strokeColor=#6E83A6;fontColor=#263D60;fontFamily=Arial;fontSize=18;spacing=14;arcSize=12;" vertex="1" parent="1">
@@ -86,28 +86,28 @@
         <mxCell id="pruebas-evidencia" value="queda documentado en" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pruebas" target="evidencia">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="perfil" value="EXPLORACIÓN Y DICCIONARIO&#10;Revisar roles, tipos, nulos, duplicados, fechas y categorías.&#10;Contrastar cobertura y clave de observación." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="perfil" value="EXPLORACIÓN Y DICCIONARIO&#10;Revisar roles, tipos, nulos, duplicados, fechas y categorías.&#10;Contrastar cobertura y clave de observación." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="840" y="520" width="320" height="140" />
         </mxCell>
         <mxCell id="f2-perfil" value="comienza con" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="f2" target="perfil">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="limpieza" value="LIMPIEZA Y TRANSFORMACIÓN&#10;Justificar NA y columnas vacías.&#10;Convertir fechas y tipos; revisar etiquetas y monedas.&#10;No eliminar filas sin criterio." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="limpieza" value="LIMPIEZA Y TRANSFORMACIÓN&#10;Justificar NA y columnas vacías.&#10;Convertir fechas y tipos; revisar etiquetas y monedas.&#10;No eliminar filas sin criterio." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="840" y="710" width="320" height="140" />
         </mxCell>
         <mxCell id="perfil-limpieza" value="fundamenta" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="perfil" target="limpieza">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="validacion" value="VALIDACIÓN DEL DATASET&#10;Comprobar integridad, rangos y coherencia; registrar filas antes y después y casos límite." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="validacion" value="VALIDACIÓN DEL DATASET&#10;Comprobar integridad, rangos y coherencia; registrar filas antes y después y casos límite." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="840" y="900" width="320" height="140" />
         </mxCell>
         <mxCell id="limpieza-validacion" value="se controla mediante" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="limpieza" target="validacion">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="salida" value="PRODUCTOS DE F2&#10;F2_Preprocesamiento.ipynb&#10;Funciones reutilizables y evidencias&#10;data/processed/&#10;Dataset apto para análisis posterior." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#FFF4DD;strokeColor=#BA811E;fontColor=#654714;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="salida" value="PRODUCTOS DE F2&#10;F2_Preprocesamiento.ipynb ejecutado&#10;Funciones modulares en src/&#10;data/processed/ (44.226 filas)&#10;evidencias/F2_ejecucion.json" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#E8F5EF;strokeColor=#27815C;fontColor=#173E2B;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="840" y="1090" width="320" height="140" />
         </mxCell>
-        <mxCell id="validacion-salida" value="producirá" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="validacion" target="salida">
+        <mxCell id="validacion-salida" value="produce" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="validacion" target="salida">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
         <mxCell id="analisis" value="F3 • ANÁLISIS DESCRIPTIVO&#10;Distribuciones y proporciones por tipo de licitación y tamaño del proveedor.&#10;Comparaciones con tamaño de grupo." style="rounded=1;whiteSpace=wrap;html=0;fillColor=#EDF2FA;strokeColor=#6E83A6;fontColor=#263D60;fontFamily=Arial;fontSize=16;spacing=14;arcSize=12;" vertex="1" parent="1">
@@ -134,7 +134,7 @@
         <mxCell id="informe-cierre" value="requiere" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;endArrow=block;endFill=1;strokeColor=#758397;fontColor=#3E5066;fontFamily=Arial;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="informe" target="cierre">
           <mxGeometry as="geometry" relative="1" />
         </mxCell>
-        <mxCell id="nota" value="ESTADO DEL AVANCE&#10;Verde: implementado y verificado en F1. Ámbar: F2 pendiente. Azul: fases posteriores proyectadas.&#10;Mapa elaborado a partir del avance actual; no acredita una planificación anterior. Revisar en equipo y vincular con notebook e informe.&#10;Fuente de datos: datos-abiertos.chilecompra.cl/descargas • Alcance y decisiones: F1/F1_Definición.ipynb" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=14;spacing=14;arcSize=12;" vertex="1" parent="1">
+        <mxCell id="nota" value="ESTADO DEL AVANCE&#10;Verde: implementado y verificado en F1 y F2. Azul: fases posteriores proyectadas (F3 y F4).&#10;Mapa elaborado a partir del avance actual; no acredita una planificación anterior. Revisar en equipo y vincular con notebook e informe.&#10;Fuente de datos: datos-abiertos.chilecompra.cl/descargas • Alcance y decisiones: F1/F1_Definición.ipynb" style="rounded=1;whiteSpace=wrap;html=0;fillColor=#F5F7FA;strokeColor=#A3AFBD;fontColor=#263647;fontFamily=Arial;fontSize=14;spacing=14;arcSize=12;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="40" y="1290" width="1520" height="85" />
         </mxCell>
       </root>

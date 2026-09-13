@@ -58,37 +58,36 @@ py -3.12 -m venv .venv
 
 `requirements.txt` declara las dependencias principales de F1; pip instala sus dependencias internas automáticamente. Las versiones utilizadas se muestran en las salidas del notebook. Cada nueva instalación debe verificarse ejecutando F1 completo. Las librerías de visualización del futuro análisis se incorporarán cuando se implemente F2.
 
-### Ejecutar F1
+### Ejecución de notebooks
 
-Abrir `F1/F1_Definición.ipynb` y seleccionar el kernel de `.venv`; usar **Restart Kernel and Run All Cells**. También se puede ejecutar desde la raíz:
+Para reproducir la ejecución completa de cada notebook y regenerar las evidencias técnicas en un kernel nuevo y aislado:
 
 ```powershell
+# Ejecución verificada de Fase 1 (Definición y entorno)
 .\.venv\Scripts\python.exe F1\verificar_f1.py
+
+# Ejecución verificada de Fase 2 (Exploración, preprocesamiento y validación)
+.\.venv\Scripts\python.exe F2\verificar_f2.py
 ```
 
-El script crea un kernel nuevo del intérprete invocante, ejecuta todas las celdas y guarda sus salidas en el notebook. Solo si termina correctamente escribe `evidencias/F1_ejecucion.json`. La ejecución requiere el CSV original documentado y no modifica sus datos. El registro JSON identifica la ejecución y la huella del notebook; los resultados de las pruebas están en sus celdas.
+Cada script inicia un kernel nuevo del entorno virtual, ejecuta todas las celdas secuencialmente, preserva sus salidas en el notebook y emite un registro de trazabilidad en `evidencias/` (`F1_ejecucion.json` y `F2_ejecucion.json`).
 
-F2 sigue pendiente de implementación y no está cubierto por esta verificación.
+## Criterios de trabajo y preprocesamiento (F2)
 
-## Criterios de trabajo con datos
+- El CSV original en `data/raw/` se conserva inmutable con verificación de hash SHA-256.
+- Se excluyeron las 3 columnas 100% vacías (`LicitacionBaseTipo`, `ContratoRenovable`, `UnidadTiempoRenovacion`).
+- Se neutralizaron las 7.613 fechas centinela del año 1900 en `FechaEstimadaEvaluacionOfertas` convirtiéndolas a `NaT`.
+- Las columnas temporales (`FechaPublicacion`, `FechaCierre`, `FechaAdjudicacion`) se convirtieron a `datetime64[ns]`.
+- Se preservó explícitamente la categoría `NoClasificado` en `TamanoProveedor` (3.410 ofertas) sin imputaciones artificiales.
+- Se calcularon variables derivadas: `oferta_ganadora`, `licitacion_adjudicada` y `plazo_cierre_dias` (promedio 14,38 días).
+- El dataset procesado resultante (44.226 filas x 74 columnas) se almacena en `data/processed/licitaciones_salud_marzo_2026_procesado.csv`.
 
-- El CSV original se conserva sin cambios.
-- Las conversiones, filtros y columnas excluidas se justifican en el notebook F2.
-- Las fechas se convertirán a un tipo temporal para analizar plazos y etapas del proceso.
-- Las columnas sin información o con alta proporción de valores faltantes se evaluarán antes de eliminarlas.
-- Los resultados derivados se guardarán en `data/processed/`.
+## Estado del proyecto (Fases 1 y 2 Integradas)
 
-## Estado actual
+El avance consolida los entregables exigidos para la **Sumativa 1**:
+- **Fase 1 (Implementada):** Contexto, problema, preguntas de investigación, objetivos F1–F4, alcance, supuestos, contrato de lectura y pruebas unitarias.
+- **Fase 2 (Implementada):** Diagnóstico EDA, pipeline modular en `src/proyecto.py`, limpieza justificada, suite de validación (casos normales, límites y excepciones) y exportación trazable.
+- **Informe Técnico Formal:** Documento integrado en `docs/informe_f1_f2_grupo_5.docx` y compilado a PDF con índice de contenidos actualizado, tablas estadísticas y referencias bibliográficas en formato APA 7.ª edición.
+- **Mapa Conceptual Técnico:** [docs/mapa_conceptual_f1_f2.drawio](docs/mapa_conceptual_f1_f2.drawio) actualizado, reflejando F1 y F2 implementadas y F3–F4 proyectadas.
+- **Diccionario de Datos:** [data/DICCIONARIO_VARIABLES.md](data/DICCIONARIO_VARIABLES.md) con las 74 variables agrupadas temáticamente y con observaciones técnicas.
 
-F1 contiene contexto, problema, preguntas, objetivos, alcance, supuestos, variables previstas, herramientas, lectura inicial y pruebas del código. La comprobación del archivo incluye SHA-256, dimensiones y presencia de columnas necesarias. No demuestra todavía que el dataset esté limpio.
-
-Las salidas guardadas del validador del curso indican que el dataset cumple los requisitos mínimos; también muestran columnas vacías que deben tratarse en F2. El [mapa conceptual](docs/mapa_conceptual_f1_f2.drawio) y el [diccionario de las 74 variables](data/DICCIONARIO_VARIABLES.md) están vinculados en F1. Quedan pendientes su revisión por el equipo, el contraste de las definiciones del reporte con ChileCompra, dos fuentes docentes y una fuente académica reciente. F1 incluye dos referencias técnicas oficiales y la fuente del dataset. El informe integrado todavía debe desarrollarse y vincularse con estas evidencias.
-
-Los cambios se incorporarán al historial mediante commits descriptivos de los integrantes que los revisen. La referencia del commit definitivo se añadirá al preparar la entrega.
-
-## Documentación de F1
-
-- [Mapa conceptual editable en draw.io](docs/mapa_conceptual_f1_f2.drawio): representa F1 implementado, F2 pendiente y F3–F4 proyectadas. La sección 9 de F1 vincula sus nodos con archivos y evidencias.
-- [Diccionario de variables](data/DICCIONARIO_VARIABLES.md): cubre las 74 columnas y separa observaciones del CSV de definiciones propuestas.
-
-El reporte de marzo contiene publicaciones desde enero de 2026; todos los cierres observados corresponden a marzo. El criterio oficial de selección mensual queda por confirmar. El mapa se elaboró a partir del avance actual y está pendiente de revisión del equipo.
