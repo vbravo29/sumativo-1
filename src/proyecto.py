@@ -62,13 +62,88 @@ def resumen_exploracion(df):
     }
 
 
+def excluir_columnas_vacias(df, columnas):
+    """Devuelve una copia sin las columnas indicadas que estén completamente vacías."""
+    return df.drop(columns=[c for c in columnas if c in df and df[c].isna().all()]).copy()
+
+
+def normalizar_categorias(df, columnas):
+    """Recorta espacios en las columnas presentes y conserva los valores faltantes."""
+    salida = df.copy()
+    for col in columnas:
+        if col in salida:
+            salida[col] = salida[col].astype("string").str.strip()
+    return salida
+
+
+def convertir_fechas(df, columnas, anios_excluidos=None):
+    """Convierte fechas presentes; permite excluir años por columna de forma explícita.
+
+    anios_excluidos es un diccionario columna -> lista de años. Una fecha no
+    interpretable detiene la conversión; los NA originales se conservan.
+    """
+    salida = df.copy()
+    for col in columnas:
+        if col not in salida:
+            continue
+        original = salida[col]
+        convertida = pd.to_datetime(original, errors="coerce", format="mixed")
+        invalidas = original.notna() & convertida.isna()
+        if invalidas.any():
+            raise ValueError(f"{col}: {int(invalidas.sum())} fechas no interpretables; revisar el origen.")
+        excluidos = (anios_excluidos or {}).get(col, [])
+        salida[col] = convertida.mask(convertida.dt.year.isin(excluidos)).astype("datetime64[ns]")
+    return salida
+
+
+def generar_variables_derivadas(df):
+    """Añade indicadores de resultado/estado y, si hay fechas, el plazo en días."""
+    salida = df.copy()
+    salida["oferta_ganadora"] = salida["ResultadoOferta"].eq("Ganadora")
+    salida["licitacion_adjudicada"] = salida["EstadoLicitacion"].eq("Adjudicada")
+    if "FechaPublicacion" in salida and "FechaCierre" in salida:
+        salida["plazo_cierre_dias"] = (
+            salida["FechaCierre"] - salida["FechaPublicacion"]
+        ).dt.total_seconds() / 86400
+    return salida
+
+
+def tablas_frecuencia(df, columnas):
+    """Devuelve una tabla de frecuencias por variable, incluyendo los faltantes."""
+    return {col: df[col].value_counts(dropna=False).to_frame("Frecuencia") for col in columnas}
+
+
+def tabla_proporciones(df, grupo, estado="Adjudicada"):
+    """Cuenta resultados válidos por grupo en un estado, con denominadores y total.
+
+    Grupos sin resultados válidos conservan total cero y porcentajes no definidos.
+    Los resultados desconocidos/faltantes se informan por separado.
+    """
+    datos = df.loc[df["EstadoLicitacion"].eq(estado)]
+    if datos[grupo].isna().any():
+        raise ValueError(f"{grupo}: resolver faltantes antes de agrupar.")
+    categorias = pd.Index(sorted(datos[grupo].unique()), name=grupo)
+    if "All" in categorias:
+        raise ValueError("La categoría All está reservada para el total.")
+    tabla = pd.DataFrame(index=categorias)
+    for valor in ["Ganadora", "Perdedora"]:
+        tabla[valor] = datos.loc[datos.ResultadoOferta.eq(valor)].groupby(grupo).size().reindex(categorias, fill_value=0)
+    tabla["Sin resultado válido"] = datos.loc[~datos.ResultadoOferta.isin(["Ganadora", "Perdedora"])].groupby(grupo).size().reindex(categorias, fill_value=0)
+    tabla["All"] = tabla["Ganadora"] + tabla["Perdedora"]
+    tabla.loc["All"] = tabla.sum()
+    denominador = tabla["All"].replace(0, np.nan)
+    for valor in ["Ganadora", "Perdedora"]:
+        tabla[f"% {valor}"] = (tabla[valor] / denominador * 100).round(2)
+    return tabla
+
+
 def limpiar_datos_f2(df, excluir_vacias=True, normalizar_texto=True):
     """
     Ejecuta el pipeline de preprocesamiento y transformación de datos para F2.
     
     Operaciones:
     1. Exclusión justificada de columnas 100% vacías.
-    2. Corrección de fechas centinela (año 1900) a NaT.
+    2. Corrección de fechas anómalas (año 1900) a NaT.
     3. Conversión de fechas textuales a tipo datetime.
     4. Normalización de cadenas de texto (strip de espacios).
     5. Preservación explícita de TamanoProveedor ('NoClasificado').
@@ -86,49 +161,25 @@ def limpiar_datos_f2(df, excluir_vacias=True, normalizar_texto=True):
     if faltantes:
         raise KeyError(f"Faltan columnas clave para el preprocesamiento: {faltantes}")
     
+    # Cada etapa puede reutilizarse por separado; aquí se define su orden.
     df_limpio = df.copy()
-    
-    # 1. Exclusión de columnas 100% vacías
-    cols_vacias = ["LicitacionBaseTipo", "ContratoRenovable", "UnidadTiempoRenovacion"]
     if excluir_vacias:
-        df_limpio = df_limpio.drop(columns=[c for c in cols_vacias if c in df_limpio.columns])
-    
-    # 2. Corrección de fechas centinela en FechaEstimadaEvaluacionOfertas
-    if "FechaEstimadaEvaluacionOfertas" in df_limpio.columns:
-        mascara_1900 = df_limpio["FechaEstimadaEvaluacionOfertas"].astype(str).str.startswith("1900")
-        df_limpio.loc[mascara_1900, "FechaEstimadaEvaluacionOfertas"] = np.nan
-    
-    # 3. Conversión de columnas temporales a datetime
-    columnas_fecha = [
+        df_limpio = excluir_columnas_vacias(
+            df_limpio, ["LicitacionBaseTipo", "ContratoRenovable", "UnidadTiempoRenovacion"])
+    df_limpio = convertir_fechas(df_limpio, [
         "FechaPublicacion", "FechaInicioPreguntas", "FechaFinalPreguntas",
         "FechaPublicacionRespuestas", "FechaActoAperturaTecnica",
         "FechaActoAperturaEconomica", "FechaCierre", "FechaAdjudicacion",
-        "FechaActaAprobacion"
-    ]
-    for col in columnas_fecha:
-        if col in df_limpio.columns:
-            df_limpio[col] = pd.to_datetime(df_limpio[col], errors="coerce")
-    
-    # 4. Normalización de texto en variables categóricas
+        "FechaActaAprobacion", "FechaEstimadaEvaluacionOfertas"
+    ], anios_excluidos={"FechaEstimadaEvaluacionOfertas": [1900]})
     if normalizar_texto:
-        columnas_cat = ["TipoLicitacion", "TamanoProveedor", "ResultadoOferta",
-                        "EstadoLicitacion", "EstadoOferta", "Sector", "MonedaOferta"]
-        for col in columnas_cat:
-            if col in df_limpio.columns and df_limpio[col].dtype == object:
-                df_limpio[col] = df_limpio[col].astype(str).str.strip()
-    
-    # 5. Generación de variables derivadas
-    df_limpio["oferta_ganadora"] = df_limpio["ResultadoOferta"] == "Ganadora"
-    df_limpio["licitacion_adjudicada"] = df_limpio["EstadoLicitacion"] == "Adjudicada"
-    
-    if "FechaPublicacion" in df_limpio.columns and "FechaCierre" in df_limpio.columns:
-        plazo_seg = (df_limpio["FechaCierre"] - df_limpio["FechaPublicacion"]).dt.total_seconds()
-        df_limpio["plazo_cierre_dias"] = plazo_seg / 86400.0
-    
-    return df_limpio
+        df_limpio = normalizar_categorias(df_limpio, [
+            "TipoLicitacion", "TamanoProveedor", "ResultadoOferta",
+            "EstadoLicitacion", "EstadoOferta", "Sector", "MonedaOferta"])
+    return generar_variables_derivadas(df_limpio)
 
 
-def validar_dataset_procesado(df):
+def validar_dataset_procesado(df, filas_esperadas):
     """
     Comprueba integralmente la consistencia del dataset procesado (F2).
     Lanza AssertionError si alguna regla de calidad no se cumple.
@@ -138,24 +189,25 @@ def validar_dataset_procesado(df):
     
     # 1. No deben existir las columnas 100% vacías descartadas
     cols_descartadas = {"LicitacionBaseTipo", "ContratoRenovable", "UnidadTiempoRenovacion"}
-    presentes = cols_descartadas.intersection(set(df.columns))
+    presentes = {c for c in cols_descartadas.intersection(df.columns) if df[c].isna().all()}
     assert not presentes, f"Validación fallida: columnas vacías aún presentes: {presentes}"
     
     # 2. Integridad de filas
-    assert len(df) > 0, "Validación fallida: no contiene filas."
+    assert len(df) == filas_esperadas, "Validación fallida: cambió el número de filas."
     
     # 3. Variables obligatorias sin nulos
-    cols_sin_nulos = ["TipoLicitacion", "TamanoProveedor", "ResultadoOferta", "EstadoLicitacion"]
+    cols_sin_nulos = ["NroLicitacion", "TipoLicitacion", "TamanoProveedor", "ResultadoOferta", "EstadoLicitacion"]
     for col in cols_sin_nulos:
         assert col in df.columns, f"Validación fallida: falta columna obligatoria '{col}'."
         nulos = df[col].isna().sum()
         assert nulos == 0, f"Validación fallida: '{col}' contiene {nulos} valores nulos."
+        assert df[col].astype("string").str.strip().ne("").all(), f"{col}: etiqueta vacía."
     
     # 4. Valores válidos en ResultadoOferta
     valores_res = set(df["ResultadoOferta"].unique())
     assert valores_res.issubset({"Ganadora", "Perdedora"}), f"Valores inesperados en ResultadoOferta: {valores_res}"
     
-    # 5. Fechas sin valores centinela 1900
+    # 5. Fechas sin fechas anómalas de 1900
     if "FechaEstimadaEvaluacionOfertas" in df.columns:
         n_1900 = df["FechaEstimadaEvaluacionOfertas"].astype(str).str.startswith("1900").sum()
         assert n_1900 == 0, f"Validación fallida: aún quedan {n_1900} fechas de 1900."
@@ -163,6 +215,18 @@ def validar_dataset_procesado(df):
     # 6. Columnas derivadas generadas correctamente
     assert "oferta_ganadora" in df.columns, "Falta columna derivada 'oferta_ganadora'."
     assert "licitacion_adjudicada" in df.columns, "Falta columna derivada 'licitacion_adjudicada'."
+    for derivada, fuente, valor in [("oferta_ganadora", "ResultadoOferta", "Ganadora"),
+                                    ("licitacion_adjudicada", "EstadoLicitacion", "Adjudicada")]:
+        assert pd.api.types.is_bool_dtype(df[derivada]), f"{derivada}: tipo no booleano."
+        assert df[derivada].notna().all() and df[derivada].eq(df[fuente].eq(valor)).all(), f"{derivada}: valores incoherentes."
+    for col in ["FechaPublicacion", "FechaCierre"]:
+        assert col in df and pd.api.types.is_datetime64_any_dtype(df[col]), f"{col}: fecha requerida."
+        assert df[col].notna().all(), f"{col}: fechas faltantes; revisar antes de calcular plazos."
+    assert "plazo_cierre_dias" in df, "Falta plazo_cierre_dias."
+    esperado = (df["FechaCierre"] - df["FechaPublicacion"]).dt.total_seconds() / 86400
+    assert pd.api.types.is_numeric_dtype(df["plazo_cierre_dias"]), "Plazo no numérico."
+    assert np.allclose(df["plazo_cierre_dias"], esperado, rtol=0, atol=1e-9), "Plazo incoherente con fechas."
+    assert esperado.ge(0).all(), "Plazo negativo: revisar registros sin eliminarlos automáticamente."
     
     return {
         "filas_validadas": len(df),
@@ -170,6 +234,31 @@ def validar_dataset_procesado(df):
         "reglas_superadas": 6,
         "estado": "OK"
     }
+
+
+def codificar_nominales(df, columnas=("TipoLicitacion", "TamanoProveedor")):
+    """Añade indicadores enteros 0/1 sin eliminar ni ordenar las categorías originales.
+
+    Las categorías se obtienen del archivo explorado, no de datos de entrenamiento.
+    Si se incorpora un modelo, su codificador deberá ajustarse solo al entrenamiento.
+    Los faltantes requieren tratamiento explícito previo, no se codifican como ceros.
+    """
+    if df.empty:
+        raise ValueError("No se puede codificar un dataset vacío.")
+    if not columnas or len(set(columnas)) != len(columnas):
+        raise ValueError("Indicar columnas distintas para codificar.")
+    faltantes = set(columnas) - set(df.columns)
+    if faltantes:
+        raise KeyError(f"Faltan columnas para codificar: {sorted(faltantes)}")
+    if df[list(columnas)].isna().any().any():
+        raise ValueError("Resolver los faltantes antes de codificar las categorías.")
+    bloques = []
+    for col in columnas:
+        bloque = pd.get_dummies(df[col], prefix=f"oh_{col}", prefix_sep="__", dtype="int8")
+        if set(bloque.columns).intersection(df.columns):
+            raise ValueError(f"Ya existen indicadores para {col}.")
+        bloques.append(bloque)
+    return pd.concat([df.copy(), *bloques], axis=1)
 
 
 def exportar_datos_procesados(df, ruta_salida, sep=";", encoding="latin-1"):
@@ -187,3 +276,23 @@ def exportar_datos_procesados(df, ruta_salida, sep=";", encoding="latin-1"):
         "tamanio_mb": round(tamanio_mb, 2),
         "sha256": huella
     }
+
+
+def validar_codificacion(original, codificado, columnas):
+    """Comprueba filas, categorías originales e indicadores enteros one-hot."""
+    indicadores = [c for c in codificado if c not in original.columns]
+    pd.testing.assert_frame_equal(codificado[original.columns], original)
+    assert codificado.index.equals(original.index)
+    for col in columnas:
+        bloque = [c for c in indicadores if c.startswith(f"oh_{col}__")]
+        assert len(bloque) == original[col].nunique()
+        assert codificado[bloque].isin([0, 1]).all().all()
+        assert all(pd.api.types.is_integer_dtype(codificado[c]) for c in bloque)
+        assert codificado[bloque].sum(axis=1).eq(1).all()
+        for categoria in original[col].unique():
+            esperado = original[col].eq(categoria).to_numpy(dtype=bool)
+            observado = codificado[f"oh_{col}__{categoria}"].to_numpy(dtype=bool)
+            assert np.array_equal(observado, esperado)
+    esperadas = {f"oh_{col}__{valor}" for col in columnas for valor in original[col].unique()}
+    assert set(indicadores) == esperadas, "Esquema de indicadores inesperado."
+    return {"estado": "OK", "indicadores": len(indicadores), "filas": len(codificado)}

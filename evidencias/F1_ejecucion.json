@@ -1,10 +1,10 @@
 {
-  "fecha_utc": "2026-09-13T03:09:42.714364+00:00",
+  "fecha_utc": "2026-09-14T01:13:44.716878+00:00",
   "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
   "notebook": "F1/F1_Definición.ipynb",
-  "notebook_sha256": "ba06957bf296756f06b437e8516ce44b40843a7eb204f3500a22a9a732cfbf96",
+  "notebook_sha256": "5fec85f5dc7ae86dececb6d9aa4cce67be549a329405835f52fd2a10562a05d3",
   "kernel_nuevo": true,
   "celdas_codigo_ejecutadas": 4,
   "errores": 0,
-  "alcance": "F1: entorno, lectura inicial, integridad y cuatro pruebas de entrada; no valida F2"
+  "alcance": "F1: entorno, lectura inicial e integridad; cuatro pruebas de entrada"
 }

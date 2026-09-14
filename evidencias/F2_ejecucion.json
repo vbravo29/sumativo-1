@@ -1,10 +1,10 @@
 {
-  "fecha_utc": "2026-09-13T03:09:57.353055+00:00",
+  "fecha_utc": "2026-09-14T01:13:53.027730+00:00",
   "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
   "notebook": "F2/F2_Preprocesamiento.ipynb",
-  "notebook_sha256": "6cade67b43e6f0712a82478fd0d503d5d6fa05a4acb3a893bb4be7b034469c24",
+  "notebook_sha256": "73440bf592447a6bdf8f1ab1689b5eec241607ec4aaf2a74b70afa27fac8ca6d",
   "kernel_nuevo": true,
-  "celdas_codigo_ejecutadas": 9,
+  "celdas_codigo_ejecutadas": 10,
   "errores": 0,
-  "alcance": "F2: exploracion, limpieza de NA y centinelas 1900, transformacion datetime, variables derivadas, validacion tecnica y exportacion trazable"
+  "alcance": "F2: exploración, limpieza modular, proporciones, codificación one-hot, validación y exportación"
 }

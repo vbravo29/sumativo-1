@@ -34,10 +34,16 @@ El [diccionario de trabajo](DICCIONARIO_VARIABLES.md) cubre las 74 columnas. Inc
 - **Dimensiones:** 44.226 filas y 74 columnas (exclusión de 3 columnas vacías y adición de 3 variables derivadas).
 - **Transformaciones aplicadas:**
   - Exclusión de `LicitacionBaseTipo`, `ContratoRenovable` y `UnidadTiempoRenovacion` (100% nulas).
-  - Fechas centinela en año 1900 neutralizadas a `NaT` en `FechaEstimadaEvaluacionOfertas`.
+  - Fechas anómalas en año 1900 neutralizadas a `NaT` en `FechaEstimadaEvaluacionOfertas`.
   - Columnas temporales convertidas a formato `datetime64[ns]`.
   - Normalización de cadenas de texto y preservación de la categoría `NoClasificado` en `TamanoProveedor`.
   - Variables derivadas: `oferta_ganadora` (bool), `licitacion_adjudicada` (bool) y `plazo_cierre_dias` (float).
 - **Tamaño:** 68,16 MB.
 - **SHA-256:** `7e835d6725d8c4f9aa64ad97a294dc38fcc341e71373f544c7f6b8ba2ff31dc5`.
 
+
+## Codificación de variables nominales
+
+F2 añade una versión con one-hot encoding de `TipoLicitacion` y `TamanoProveedor`, conservando las categorías originales y `NoClasificado`. Cada indicador es un entero 0/1; las categorías no reciben un orden artificial. `src/proyecto.py` contiene `codificar_nominales` y el notebook muestra ejemplos y pruebas de correspondencia, conservación de filas y lectura del archivo exportado.
+
+El archivo adicional es `data/processed/licitaciones_salud_marzo_2026_codificado.csv` (ruta desde la raíz). El CSV procesado de 74 columnas sigue siendo la base de las proporciones. La codificación es una preparación exploratoria; un futuro modelo requerirá ajustar su codificador solo con datos de entrenamiento y definir las categorías desconocidas.
