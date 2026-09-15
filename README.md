@@ -88,7 +88,7 @@ El avance consolida los entregables exigidos para la **Sumativa 1**:
 - **Fase 1 (Implementada):** Contexto, problema, preguntas de investigación, objetivos F1–F4, alcance, supuestos, contrato de lectura y pruebas unitarias.
 - **Fase 2 (Implementada):** Diagnóstico EDA, pipeline modular en `src/proyecto.py`, limpieza justificada, suite de validación (casos normales, límites y excepciones) y exportación trazable.
 - **Informe Técnico Formal:** Documento integrado en `docs/informe_f1_f2_grupo_5.docx` con índice de contenidos actualizado; la exportación definitiva queda pendiente del cierre de las citas docentes, tablas estadísticas y referencias bibliográficas en formato APA 7.ª edición.
-- **Mapa Conceptual Técnico:** [docs/mapa_conceptual_f1_f2.drawio](docs/mapa_conceptual_f1_f2.drawio) actualizado, reflejando F1 y F2 implementadas y F3–F4 proyectadas.
+- **Mapa conceptual F1:** [PDF de entrega](docs/mcdi500_s1_grupo5.pdf) y [editable en draw.io](docs/mcdi500_s1_grupo5.drawio). Incluye portada y mapa en dos páginas carta; organiza el entorno, la documentación y la colaboración de F1, con continuidad hacia F2–F4.
 - **Diccionario de Datos:** [data/DICCIONARIO_VARIABLES.md](data/DICCIONARIO_VARIABLES.md) con las 74 variables agrupadas temáticamente y con observaciones técnicas.
 
 
