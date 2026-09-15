@@ -1,27 +1,26 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
+<mxfile host="app.diagrams.net" pages="2">
   <diagram name="Portada" id="Portada">
-    <mxGraphModel page="1" pageScale="1" pageWidth="792" pageHeight="612" grid="0">
+    <mxGraphModel dx="1664" dy="874" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="792" pageHeight="612" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="institucion" value="&lt;b&gt;UNIVERSIDAD ANDRÉS BELLO&lt;/b&gt;&lt;br/&gt;Magíster en Ciencia de Datos e Inteligencia Artificial" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="28" width="708" height="55" as="geometry" />
+        <mxCell id="institucion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" value="&lt;b&gt;UNIVERSIDAD ANDRÉS BELLO&lt;/b&gt;&lt;br/&gt;Magíster en Ciencia de Datos e Inteligencia Artificial" vertex="1">
+          <mxGeometry height="55" width="708" x="42" y="28" as="geometry" />
         </mxCell>
-        <mxCell id="titulo" value="&lt;b&gt;Mapa conceptual del flujo reproducible inicial&lt;/b&gt;&lt;br/&gt;Ofertas en licitaciones públicas del sector Salud" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=23;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="108" width="708" height="88" as="geometry" />
+        <mxCell id="titulo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=23;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" value="&lt;b&gt;Mapa conceptual del flujo reproducible inicial&lt;/b&gt;&lt;br/&gt;Ofertas en licitaciones públicas del sector Salud" vertex="1">
+          <mxGeometry height="88" width="708" x="42" y="108" as="geometry" />
         </mxCell>
-        <mxCell id="curso" value="MCDIA500 · Programación para la Ciencia de Datos&lt;br/&gt;Evaluación Formativa 1 · Definición y orientación de la situación" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="207" width="708" height="54" as="geometry" />
+        <mxCell id="curso" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" value="MCDIA500 · Programación para la Ciencia de Datos&lt;br/&gt;Evaluación Formativa 1 · Definición y orientación de la situación" vertex="1">
+          <mxGeometry height="54" width="708" x="42" y="207" as="geometry" />
         </mxCell>
-        <mxCell id="grupo" value="&lt;b&gt;Grupo 5&lt;/b&gt;&lt;br/&gt;Víctor Bravo Barrera&lt;br/&gt;Nayadeth Garrido Ibáñez&lt;br/&gt;Mauricio Cid" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="277" width="335" height="108" as="geometry" />
+        <mxCell id="grupo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" value="&lt;b&gt;Grupo 5&lt;/b&gt;&lt;br/&gt;Víctor Bravo Barrera&lt;br/&gt;Nayadeth Garrido Ibáñez&lt;br/&gt;Alexander Sepulveda" vertex="1">
+          <mxGeometry height="108" width="335" x="42" y="277" as="geometry" />
         </mxCell>
-        <mxCell id="contexto" value="&lt;b&gt;Alcance del mapa&lt;/b&gt;&lt;br/&gt;Organiza las decisiones de F1 y su continuidad hacia F2–F4. Versión actualizada al 15 de septiembre de 2026; no acredita una planificación anterior." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#F1F5F7;strokeColor=#F1F5F7;" vertex="1" parent="1">
-          <mxGeometry x="400" y="277" width="350" height="108" as="geometry" />
+        <mxCell id="contexto" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#F1F5F7;strokeColor=#F1F5F7;" value="&lt;b&gt;Alcance del mapa&lt;/b&gt;&lt;br/&gt;Organiza las decisiones de F1 y su continuidad hacia F2–F4. Versión actualizada al 15 de septiembre de 2026; no acredita una planificación anterior." vertex="1">
+          <mxGeometry height="108" width="350" x="400" y="277" as="geometry" />
         </mxCell>
-        <mxCell id="refs" value="&lt;b&gt;Referencias&lt;/b&gt;&lt;br/&gt;GitHub. (s. f.). &lt;i&gt;Pull requests&lt;/i&gt;. https://docs.github.com/en/pull-requests/reference/pull-requests&lt;br/&gt;&lt;br/&gt;Project Jupyter. (s. f.). &lt;i&gt;Project Jupyter documentation&lt;/i&gt;. https://docs.jupyter.org/en/latest/&lt;br/&gt;&lt;br/&gt;Estas fuentes orientan la revisión colaborativa de cambios y la integración de código, explicación y resultados en notebooks." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="405" width="708" height="160" as="geometry" />
+        <mxCell id="refs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" value="&lt;b&gt;Referencias&lt;/b&gt;&lt;br&gt;GitHub. (s. f.). &lt;i&gt;Pull requests&lt;/i&gt;. https://github.com/vbravo29/sumativo-1&lt;br&gt;&lt;br&gt;Project Jupyter. (s. f.). &lt;i&gt;Project Jupyter documentation&lt;/i&gt;. https://docs.jupyter.org/en/latest/&lt;br&gt;&lt;br&gt;Estas fuentes orientan la revisión colaborativa de cambios y la integración de código, explicación y resultados en notebooks." vertex="1">
+          <mxGeometry height="160" width="708" x="42" y="405" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
