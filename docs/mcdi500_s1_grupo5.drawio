@@ -1,92 +1,193 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
+<mxfile host="app.diagrams.net" pages="2">
   <diagram name="Portada" id="Portada">
     <mxGraphModel page="1" pageScale="1" pageWidth="792" pageHeight="612" grid="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="institucion" value="&lt;b&gt;UNIVERSIDAD ANDRÉS BELLO&lt;/b&gt;&lt;br/&gt;Magíster en Ciencia de Datos e Inteligencia Artificial" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="28" width="708" height="55" as="geometry" />
+        <mxCell id="institucion" value="&lt;b&gt;UNIVERSIDAD ANDRÉS BELLO&lt;/b&gt;&lt;br/&gt;Magíster en Ciencia de Datos e Inteligencia Artificial" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="24" y="18" width="744" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="titulo" value="&lt;b&gt;Mapa conceptual del flujo reproducible inicial&lt;/b&gt;&lt;br/&gt;Ofertas en licitaciones públicas del sector Salud" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=23;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="108" width="708" height="88" as="geometry" />
+        <mxCell id="titulo" value="&lt;b&gt;Mapa conceptual del flujo de trabajo reproducible&lt;/b&gt;&lt;br/&gt;Ofertas en licitaciones públicas del sector Salud · Reporte de marzo de 2026" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=21;fontColor=#183044;align=left;verticalAlign=top;spacing=8;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="24" y="62" width="744" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="curso" value="MCDIA500 · Programación para la Ciencia de Datos&lt;br/&gt;Evaluación Formativa 1 · Definición y orientación de la situación" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="207" width="708" height="54" as="geometry" />
+        <mxCell id="curso" value="MCDIA500 · Programación para la Ciencia de Datos&lt;br/&gt;Evaluación Formativa 1 · Fase 1: Definición y orientación de la situación" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="24" y="128" width="744" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="grupo" value="&lt;b&gt;Grupo 5&lt;/b&gt;&lt;br/&gt;Víctor Bravo Barrera&lt;br/&gt;Nayadeth Garrido Ibáñez&lt;br/&gt;Mauricio Cid" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="277" width="335" height="108" as="geometry" />
+        <mxCell id="grupo" value="&lt;b&gt;Grupo 5&lt;/b&gt;&lt;br/&gt;Víctor Bravo Barrera&lt;br/&gt;Nayadeth Garrido Ibáñez&lt;br/&gt;Mauricio Cid&lt;br/&gt;Docente: Omar Salinas Silva" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#DCE4EA;strokeColor=#5B7183;" vertex="1" parent="1">
+          <mxGeometry x="24" y="180" width="364" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="contexto" value="&lt;b&gt;Nuestro proyecto&lt;/b&gt;&lt;br/&gt;Analizamos las ofertas del sector Salud y organizamos el trabajo con Python, Jupyter y GitHub.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://github.com/vbravo29/sumativo-1&quot; color=&quot;#183044&quot;&gt;github.com/vbravo29/sumativo-1&lt;/a&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#F1F5F7;strokeColor=#F1F5F7;" vertex="1" parent="1">
-          <mxGeometry x="400" y="277" width="350" height="108" as="geometry" />
+        <mxCell id="proyecto" value="&lt;b&gt;Nuestro proyecto&lt;/b&gt;&lt;br/&gt;Analizamos las ofertas del sector Salud con Python, Jupyter y Git/GitHub, dentro de un flujo reproducible.&lt;br/&gt;github.com/vbravo29/sumativo-1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#DCE4EA;strokeColor=#5B7183;" vertex="1" parent="1">
+          <mxGeometry x="404" y="180" width="364" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="refs" value="&lt;b&gt;Referencias&lt;/b&gt;&lt;br/&gt;GitHub. (s. f.). &lt;i&gt;Pull requests&lt;/i&gt;. https://docs.github.com/en/pull-requests/reference/pull-requests&lt;br/&gt;&lt;br/&gt;Project Jupyter. (s. f.). &lt;i&gt;Project Jupyter documentation&lt;/i&gt;. https://docs.jupyter.org/en/latest/&lt;br/&gt;&lt;br/&gt;Estas fuentes orientan la revisión colaborativa de cambios y la integración de código, explicación y resultados en notebooks." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="42" y="405" width="708" height="160" as="geometry" />
+        <mxCell id="glos_t" value="&lt;b&gt;Glosario visual&lt;/b&gt;" style="text;html=1;fontFamily=Arial;fontSize=12;fontColor=#183044;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="24" y="276" width="744" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g1s" value="" style="rounded=1;html=1;arcSize=20;fillColor=#DCE4EA;strokeColor=#5B7183;" vertex="1" parent="1">
+          <mxGeometry x="24" y="302" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g1l" value="Contexto: problema y datos" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="62" y="302" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g2s" value="" style="rounded=1;html=1;arcSize=20;fillColor=#D6EBE2;strokeColor=#2E7D5B;" vertex="1" parent="1">
+          <mxGeometry x="24" y="332" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g2l" value="Herramienta del ecosistema científico" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="62" y="332" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g3s" value="" style="rounded=1;html=1;arcSize=20;fillColor=#D5E3F7;strokeColor=#2B5FA8;" vertex="1" parent="1">
+          <mxGeometry x="24" y="362" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g3l" value="Artefacto materializado en el repositorio" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="62" y="362" width="210" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g4s" value="" style="shape=step;perimeter=stepPerimeter;html=1;fixedSize=1;size=7;fillColor=#FBEBD0;strokeColor=#B0791A;" vertex="1" parent="1">
+          <mxGeometry x="282" y="302" width="34" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g4l" value="Etapa del flujo de trabajo reproducible" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="324" y="302" width="210" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g5s" value="◆" style="rounded=1;html=1;arcSize=20;fillColor=#FDF3C7;strokeColor=#8A7008;fontFamily=Arial;fontSize=10;fontColor=#8A7008;" vertex="1" parent="1">
+          <mxGeometry x="282" y="332" width="34" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g5l" value="Decisión preliminar del equipo (marcada con ◆)" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="324" y="332" width="230" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g6s" value="" style="rounded=1;html=1;arcSize=20;fillColor=#E4DCF0;strokeColor=#5B4A8A;" vertex="1" parent="1">
+          <mxGeometry x="282" y="362" width="34" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g6l" value="Proyección hacia las Fases 2, 3 y 4" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="324" y="362" width="210" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g7e" style="html=1;endArrow=block;endFill=1;strokeColor=#5B7183;strokeWidth=1.4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="562" y="312" as="sourcePoint" />
+            <mxPoint x="600" y="312" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g7l" value="Relación implementada en la Fase 1" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="608" y="302" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g8e" style="html=1;endArrow=block;endFill=1;dashed=1;strokeColor=#5B4A8A;strokeWidth=1.4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="562" y="342" as="sourcePoint" />
+            <mxPoint x="600" y="342" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g8l" value="Proyección a fases posteriores" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="608" y="332" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g9s" value="requiere" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=center;verticalAlign=middle;labelBackgroundColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="556" y="362" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g9l" value="Conector lógico: forma la proposición" style="text;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="608" y="362" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="refs_t" value="&lt;b&gt;Referencias (APA 7.ª edición)&lt;/b&gt;" style="text;html=1;fontFamily=Arial;fontSize=12;fontColor=#183044;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="24" y="398" width="744" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="refs" value="GitHub. (s. f.). &lt;i&gt;Pull requests&lt;/i&gt;. https://docs.github.com/en/pull-requests&lt;br/&gt;Project Jupyter. (s. f.). &lt;i&gt;Project Jupyter documentation&lt;/i&gt;. https://docs.jupyter.org/en/latest/&lt;br/&gt;&lt;br/&gt;Estas fuentes orientan la revisión colaborativa de cambios y la integración de código, explicación y resultados dentro del notebook reproducible." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=6;fillColor=none;strokeColor=#A6B5C0;" vertex="1" parent="1">
+          <mxGeometry x="24" y="420" width="744" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="lectura" value="&lt;b&gt;Cómo leer el mapa&lt;/b&gt;&lt;br/&gt;La página siguiente se lee de arriba abajo: del problema y los datos a las herramientas del ecosistema científico, de estas a su materialización en el repositorio, y de ahí al flujo de trabajo que se repite antes de cada entrega. Cada flecha lleva un conector lógico que forma una proposición." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=6;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="24" y="506" width="744" height="44" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="Mapa F1" id="Mapa_F1">
-    <mxGraphModel page="1" pageScale="1" pageWidth="792" pageHeight="612" grid="0">
+  <diagram name="Mapa F1" id="MapaF1">
+    <mxGraphModel dx="1363" dy="752" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="792" pageHeight="612" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="encabezado" value="&lt;b&gt;F1 · Definición y orientación de la situación&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="24" y="12" width="744" height="38" as="geometry" />
+        <mxCell id="encabezado" parent="1" style="text;html=1;fontFamily=Arial;fontSize=15;fontColor=#183044;align=left;verticalAlign=middle;" value="&lt;b&gt;F1 · Definición y orientación de la situación&lt;/b&gt; — Flujo de trabajo reproducible del Grupo 5" vertex="1">
+          <mxGeometry height="26" width="744" x="24" y="8" as="geometry" />
         </mxCell>
-        <mxCell id="problema" value="&lt;b&gt;Problema y datos&lt;/b&gt; · ¿Cómo varía la proporción de ofertas ganadoras por tipo de licitación y tamaño del proveedor?&lt;br/&gt;Reporte ChileCompra, Salud, marzo de 2026: 44.226 registros. Unidad de trabajo: oferta por ítem. Enfoque descriptivo, sin causalidad; conservar el original." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#EEF2F5;strokeColor=#A6B5C0;" vertex="1" parent="1">
-          <mxGeometry x="24" y="57" width="744" height="78" as="geometry" />
+        <mxCell id="problema" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#DCE4EA;strokeColor=#5B7183;" value="&lt;b&gt;Problema y datos&lt;/b&gt;&lt;br/&gt;¿Cómo varía la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor?&lt;br/&gt;ChileCompra · Salud · marzo 2026 · 44.226 ofertas · 74 variables · Unidad: oferta por ítem · Enfoque descriptivo" vertex="1">
+          <mxGeometry height="54" width="744" x="24" y="42" as="geometry" />
         </mxCell>
-        <mxCell id="entorno" value="&lt;b&gt;Entorno reproducible&lt;/b&gt;&lt;br/&gt;Python 3.12 + .venv: aislar el entorno.&lt;br/&gt;requirements.txt: dependencias.&lt;br/&gt;pandas: leer y preparar datos.&lt;br/&gt;NumPy: operaciones numéricas." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#E8F3F0;strokeColor=#77A899;" vertex="1" parent="1">
-          <mxGeometry x="24" y="174" width="232" height="123" as="geometry" />
+        <mxCell id="entorno" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#D6EBE2;strokeColor=#2E7D5B;" value="&lt;b&gt;Entorno reproducible&lt;/b&gt;&lt;br/&gt;Python 3.12 + .venv aísla el entorno&lt;br/&gt;requirements.txt fija dependencias&lt;br/&gt;pandas y NumPy preparan los datos&lt;br/&gt;Reinstalable desde cero en otro PC" vertex="1">
+          <mxGeometry height="86" width="236" x="24" y="141" as="geometry" />
         </mxCell>
-        <mxCell id="notebook" value="&lt;b&gt;Jupyter Notebook&lt;/b&gt;&lt;br/&gt;F1_Definición.ipynb: objetivos.&lt;br/&gt;Código en funciones de src/.&lt;br/&gt;Celdas narrativas explican cada paso.&lt;br/&gt;Registrar versiones y salidas." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#E8F3F0;strokeColor=#77A899;" vertex="1" parent="1">
-          <mxGeometry x="280" y="174" width="232" height="123" as="geometry" />
+        <mxCell id="notebook" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#D6EBE2;strokeColor=#2E7D5B;" value="&lt;b&gt;Jupyter Notebook&lt;/b&gt;&lt;br/&gt;Integra análisis, código y narrativa&lt;br/&gt;El código llama funciones de src/&lt;br/&gt;Markdown explica cada paso&lt;br/&gt;Las salidas se guardan con el código" vertex="1">
+          <mxGeometry height="86" width="236" x="278" y="141" as="geometry" />
         </mxCell>
-        <mxCell id="git" value="&lt;b&gt;Git y GitHub&lt;/b&gt;&lt;br/&gt;Git registra cambios y autores.&lt;br/&gt;&lt;b&gt;desarrollo:&lt;/b&gt; reúne los avances del equipo.&lt;br/&gt;&lt;b&gt;main:&lt;/b&gt; contendrá la versión final.&lt;br/&gt;Flujo: rama individual → desarrollo → main." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#E8F3F0;strokeColor=#77A899;" vertex="1" parent="1">
-          <mxGeometry x="536" y="174" width="232" height="123" as="geometry" />
+        <mxCell id="git" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#D6EBE2;strokeColor=#2E7D5B;" value="&lt;b&gt;Git y GitHub&lt;/b&gt;&lt;br/&gt;Registra qué cambió, cuándo y quién&lt;br/&gt;El historial evidencia el avance&lt;br/&gt;Los pull requests coordinan al equipo&lt;br/&gt;Permite volver a un estado anterior" vertex="1">
+          <mxGeometry height="86" width="236" x="532" y="141" as="geometry" />
         </mxCell>
-        <mxCell id="p_entorno" value="requiere" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.15591397849462366;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="problema" target="entorno">
+        <mxCell id="repo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#D5E3F7;strokeColor=#2B5FA8;" value="&lt;b&gt;Estructura del repositorio&lt;/b&gt;&lt;br/&gt;F1/ y F2/ — notebooks por fase&lt;br/&gt;src/ — funciones reutilizables&lt;br/&gt;data/ — raw/ → processed/&lt;br/&gt;docs/ y evidencias/ — respaldo&lt;br/&gt;README.md · requirements.txt · .gitignore" vertex="1">
+          <mxGeometry height="111" width="236" x="24" y="266" as="geometry" />
+        </mxCell>
+        <mxCell id="uUaDOjPw68t68n3GbV1V-1" edge="1" parent="1" source="docs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="notebook" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p_notebook" value="se documenta en" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="problema" target="notebook">
+        <mxCell id="docs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#D5E3F7;strokeColor=#2B5FA8;" value="&lt;b&gt;Documentación científica&lt;/b&gt;&lt;br&gt;Código → salidas → interpretación&lt;div&gt;Proceso de Limpieza de datos.&lt;br&gt;Markdown registra las decisiones&lt;br&gt;Referencias técnicas en APA 7&lt;br&gt;Resultados: tablas e informe&lt;br&gt;Se reejecuta de inicio a fin&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="111" width="236" x="278" y="266" as="geometry" />
+        </mxCell>
+        <mxCell id="version" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#D5E3F7;strokeColor=#2B5FA8;" value="&lt;b&gt;Versionamiento y colaboración&lt;/b&gt;&lt;br/&gt;Un commit por tarea terminada&lt;br/&gt;Mensaje en imperativo con prefijo&lt;br/&gt;Rama propia → desarrollo → main (PR)&lt;br/&gt;main protegida; no se elimina&lt;br/&gt;No se versiona .venv ni derivados" vertex="1">
+          <mxGeometry height="111" width="236" x="532" y="266" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=14;fontFamily=Arial;fontSize=10;fontColor=#1A2733;fillColor=#FBEBD0;strokeColor=#B0791A;" value="Obtener y verificar" vertex="1">
+          <mxGeometry height="38" width="124" x="24" y="431" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=14;fontFamily=Arial;fontSize=10;fontColor=#1A2733;fillColor=#FBEBD0;strokeColor=#B0791A;" value="Explorar (EDA)" vertex="1">
+          <mxGeometry height="38" width="124" x="148" y="431" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=14;fontFamily=Arial;fontSize=10;fontColor=#1A2733;fillColor=#FBEBD0;strokeColor=#B0791A;" value="Limpiar y transformar" vertex="1">
+          <mxGeometry height="38" width="124" x="272" y="431" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=14;fontFamily=Arial;fontSize=10;fontColor=#1A2733;fillColor=#FBEBD0;strokeColor=#B0791A;" value="Validar" vertex="1">
+          <mxGeometry height="38" width="124" x="396" y="431" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=14;fontFamily=Arial;fontSize=10;fontColor=#1A2733;fillColor=#FBEBD0;strokeColor=#B0791A;" value="Documentar" vertex="1">
+          <mxGeometry height="38" width="124" x="520" y="431" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" parent="1" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=14;fontFamily=Arial;fontSize=10;fontColor=#1A2733;fillColor=#FBEBD0;strokeColor=#B0791A;" value="Versionar e integrar" vertex="1">
+          <mxGeometry height="38" width="124" x="644" y="431" as="geometry" />
+        </mxCell>
+        <mxCell id="continuidad" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=top;spacing=8;arcSize=8;fillColor=#E4DCF0;strokeColor=#5B4A8A;" value="&lt;b&gt;Continuidad del proyecto&lt;/b&gt; · F1: definición del problema y entorno reproducible documentado · F2: preparación, transformación y validación del dataset&lt;br/&gt;F3: análisis y visualización de resultados · F4: integración de conclusiones, limitaciones y comunicación final" vertex="1">
+          <mxGeometry height="54" width="744" x="24" y="498" as="geometry" />
+        </mxCell>
+        <mxCell id="nota" parent="1" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=10;fontColor=#1A2733;align=left;verticalAlign=top;" value="&lt;b&gt;Reflexión del equipo&lt;/b&gt; · Cada integrante desarrolla en su rama, documenta sus decisiones en el notebook y las integra por pull request; la coherencia entre mapa, repositorio e informe guía cada entrega." vertex="1">
+          <mxGeometry height="38" width="744" x="24" y="563" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="problema" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5B7183;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.18;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="entorno" value="requiere">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p_git" value="se coordina con" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.8440860215053764;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="problema" target="git">
+        <mxCell id="e2" edge="1" parent="1" source="problema" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5B7183;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="notebook" value="se documenta en">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="repo" value="&lt;b&gt;Estructura y trazabilidad&lt;/b&gt;&lt;br/&gt;F1/ y F2/: notebooks por fase.&lt;br/&gt;src/: funciones reutilizables.&lt;br/&gt;data/raw/ → data/processed/.&lt;br/&gt;docs/ y evidencias/: respaldo.&lt;br/&gt;README: instalación y ejecución.&lt;br/&gt;.gitignore: excluir .venv y temporales." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#E8F3F0;strokeColor=#77A899;" vertex="1" parent="1">
-          <mxGeometry x="24" y="337" width="232" height="142" as="geometry" />
-        </mxCell>
-        <mxCell id="docs" value="&lt;b&gt;Documentación científica&lt;/b&gt;&lt;br/&gt;Código → salidas → interpretación.&lt;br/&gt;Markdown: decisiones y limitaciones.&lt;br/&gt;Citar fuentes técnicas consultadas.&lt;br/&gt;Reejecutar de inicio a fin y registrar pruebas y huella del CSV.&lt;br/&gt;(Project Jupyter, s. f.)." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#E8F3F0;strokeColor=#77A899;" vertex="1" parent="1">
-          <mxGeometry x="280" y="337" width="232" height="142" as="geometry" />
-        </mxCell>
-        <mxCell id="colabora" value="&lt;b&gt;Trabajo en equipo y protección&lt;/b&gt;&lt;br/&gt;Cada integrante usa su propia rama para evitar conflictos.&lt;br/&gt;Coordinamos cada integración.&lt;br/&gt;main: protegida; cambios solo por PR.&lt;br/&gt;Las políticas impiden eliminar desarrollo y main.&lt;br/&gt;Commits pequeños y descriptivos según la tarea realizada." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#E8F3F0;strokeColor=#77A899;" vertex="1" parent="1">
-          <mxGeometry x="536" y="337" width="232" height="142" as="geometry" />
-        </mxCell>
-        <mxCell id="entorno_repo" value="se organiza en" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="entorno" target="repo">
+        <mxCell id="e3" edge="1" parent="1" source="problema" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5B7183;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.82;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="git" value="depende de">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="notebook_docs" value="integra" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="notebook" target="docs">
+        <mxCell id="e4" edge="1" parent="1" source="entorno" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2E7D5B;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="repo" value="se organiza en">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="git_colabora" value="se aplica mediante" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="git" target="colabora">
+        <mxCell id="e5" edge="1" parent="1" source="notebook" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2E7D5B;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="docs" value="genera">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="continuidad" value="&lt;b&gt;Continuidad del proyecto&lt;/b&gt; · F1 entrega definición y entorno documentado. F2 prepara y valida datos; F3 analiza y visualiza; F4 integra conclusiones y limitaciones." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=#EAF0FA;strokeColor=#92A5C4;" vertex="1" parent="1">
-          <mxGeometry x="24" y="512" width="744" height="49" as="geometry" />
-        </mxCell>
-        <mxCell id="repo_fin" value="sustenta" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.15591397849462366;entryY=0;" edge="1" parent="1" source="repo" target="continuidad">
+        <mxCell id="e6" edge="1" parent="1" source="git" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2E7D5B;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="version" value="se aplica mediante">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="docs_fin" value="sustenta" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="docs" target="continuidad">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e7" edge="1" parent="1" source="repo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2B5FA8;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="394.44" y="426.28" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="colabora_fin" value="sustenta" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#526E7C;fontFamily=Arial;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.8440860215053764;entryY=0;" edge="1" parent="1" source="colabora" target="continuidad">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="e8" edge="1" parent="1" source="version" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2B5FA8;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="393.66" y="425.75" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="leyenda" value="&lt;b&gt;Leyenda:&lt;/b&gt; gris = contexto; verde = organización de F1; azul = continuidad. Flechas = relaciones; leer de arriba abajo." style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=11;fontColor=#183044;align=left;verticalAlign=top;spacing=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="24" y="568" width="744" height="32" as="geometry" />
+        <mxCell id="e9" edge="1" parent="1" source="docs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#2B5FA8;strokeWidth=1.4;fontFamily=Arial;fontSize=10;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" value="conduce a">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="393.66" y="426.28" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;endFill=1;strokeColor=#5B4A8A;strokeWidth=1.4;fontFamily=Arial;fontSize=9;fontColor=#1A2733;labelBackgroundColor=#FFFFFF;entryX=0.495;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;" target="continuidad" value="logrando">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="392.21" y="469.56" as="sourcePoint" />
+            <mxPoint x="634.0799999999997" y="487" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
