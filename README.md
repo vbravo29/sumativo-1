@@ -44,7 +44,7 @@ El detalle de procedencia, lectura y trazabilidad está en [data/README.md](data
 - `F2/`: notebook de exploración, limpieza, transformación y validación de datos.
 - `data/raw/`: dataset original.
 - `data/processed/`: datos generados durante el preprocesamiento.
-- `docs/`: informe final, mapa conceptual y archivo editable del mapa.
+- `docs/`: informe final, mapa conceptual, archivo editable del mapa y registro de decisiones técnicas.
 - `evidencias/`: resultados de ejecuciones verificadas.
 - `src/`: funciones reutilizables del proyecto.
 
@@ -92,6 +92,7 @@ La entrega reúne los siguientes productos:
 - **Informe técnico:** [documento editable](docs/informe_f1_f2_grupo_5.docx) y [PDF de entrega](docs/f1_s01_grupo5.pdf), con índice, tablas de resultados y referencias en formato APA 7.ª edición.
 - **Mapa conceptual F1:** [PDF de entrega](docs/mcdi500_s1_grupo5.pdf) y [editable en draw.io](docs/mcdi500_s1_grupo5.drawio). Incluye portada y mapa en dos páginas carta; organiza el entorno, la documentación y la colaboración de F1, con continuidad hacia F2–F4.
 - **Diccionario de Datos:** [data/DICCIONARIO_VARIABLES.md](data/DICCIONARIO_VARIABLES.md) con las 74 variables agrupadas temáticamente y con observaciones técnicas.
+- **Decisiones técnicas:** [docs/DECISIONES_TECNICAS.md](docs/DECISIONES_TECNICAS.md), con las alternativas evaluadas y descartadas en F1 y F2.
 
 Las instrucciones de la Evaluación Formativa 1 y la pauta de la Evaluación Sumativa 1 se citan como fuentes docentes en el informe. La limpieza y sus pruebas comprueban el procesamiento realizado; no constituyen una validación estadística ni normativa. Los plazos se resumen por registro de oferta.
 
