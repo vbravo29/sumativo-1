@@ -1,8 +1,8 @@
 {
-  "fecha_utc": "2026-09-16T00:07:28.219786+00:00",
+  "fecha_utc": "2026-09-16T02:08:37.353289+00:00",
   "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
   "notebook": "F1/F1_Definición.ipynb",
-  "notebook_sha256": "45ec5423a4b6ec646e5742b77db99f2d11090015e97f463281884e17b18ae16e",
+  "notebook_sha256": "1a48ea27caa8d219a6d61cfdc403d08afab5839c7d23d34bb8aa87793b896116",
   "kernel_nuevo": true,
   "celdas_codigo_ejecutadas": 4,
   "errores": 0,

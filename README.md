@@ -2,6 +2,8 @@
 
 Proyecto grupal de la Sumativa 1 de Programación para la Ciencia de Datos. El trabajo cubre la definición del problema, la preparación de los datos y la validación inicial del análisis.
 
+**Repositorio:** [github.com/vbravo29/sumativo-1](https://github.com/vbravo29/sumativo-1)
+
 ## Propósito del proyecto
 
 El proyecto analiza las ofertas del archivo de licitaciones públicas del sector Salud de marzo de 2026. El objetivo es describir las diferencias en la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor, mediante un flujo reproducible y con validación de la calidad de los datos.
@@ -42,13 +44,13 @@ El detalle de procedencia, lectura y trazabilidad está en [data/README.md](data
 - `F2/`: notebook de exploración, limpieza, transformación y validación de datos.
 - `data/raw/`: dataset original.
 - `data/processed/`: datos generados durante el preprocesamiento.
-- `docs/`: informe integrado en desarrollo.
+- `docs/`: informe final, mapa conceptual y archivo editable del mapa.
 - `evidencias/`: resultados de ejecuciones verificadas.
 - `src/`: funciones reutilizables del proyecto.
 
 ## Preparación del entorno
 
-La verificación de F1 utiliza un entorno virtual con Python 3.12.14 en Windows. La referencia anterior a Python 3.14.7 no se ha validado en esta revisión. Para reproducir el entorno desde la raíz del repositorio, con Python 3.12 instalado:
+El trabajo se verificó en Windows con Python 3.12.14. Para reproducir el entorno desde la raíz del repositorio, con Python 3.12 instalado:
 
 ```powershell
 py -3.12 -m venv .venv
@@ -82,18 +84,16 @@ Cada script inicia un kernel nuevo del entorno virtual, ejecuta todas las celdas
 - Se calcularon variables derivadas: `oferta_ganadora`, `licitacion_adjudicada` y `plazo_cierre_dias` (promedio 14,38 días).
 - El dataset procesado resultante (44.226 filas x 74 columnas) se almacena en `data/processed/licitaciones_salud_marzo_2026_procesado.csv`.
 
-## Estado del proyecto (Fases 1 y 2 Integradas)
+## Productos de la entrega
 
-El avance consolida los entregables exigidos para la **Sumativa 1**:
-- **Fase 1 (Implementada):** Contexto, problema, preguntas de investigación, objetivos F1–F4, alcance, supuestos, contrato de lectura y pruebas unitarias.
-- **Fase 2 (Implementada):** Diagnóstico EDA, pipeline modular en `src/proyecto.py`, limpieza justificada, suite de validación (casos normales, límites y excepciones) y exportación trazable.
-- **Informe Técnico Formal:** Documento integrado en `docs/informe_f1_f2_grupo_5.docx` con índice de contenidos, tablas estadísticas y referencias bibliográficas en formato APA 7.ª edición; queda pendiente la exportación definitiva a PDF.
+La entrega reúne los siguientes productos:
+- **Fase 1:** Contexto, problema, preguntas de investigación, objetivos F1–F4, alcance, supuestos, contrato de lectura y pruebas unitarias.
+- **Fase 2:** Diagnóstico exploratorio, pipeline modular en `src/proyecto.py`, limpieza justificada, validación con casos normales, límites y excepciones, y exportación trazable.
+- **Informe técnico:** [documento editable](docs/informe_f1_f2_grupo_5.docx) y [PDF de entrega](docs/f1_s01_grupo5.pdf), con índice, tablas de resultados y referencias en formato APA 7.ª edición.
 - **Mapa conceptual F1:** [PDF de entrega](docs/mcdi500_s1_grupo5.pdf) y [editable en draw.io](docs/mcdi500_s1_grupo5.drawio). Incluye portada y mapa en dos páginas carta; organiza el entorno, la documentación y la colaboración de F1, con continuidad hacia F2–F4.
 - **Diccionario de Datos:** [data/DICCIONARIO_VARIABLES.md](data/DICCIONARIO_VARIABLES.md) con las 74 variables agrupadas temáticamente y con observaciones técnicas.
 
-
-## Estado documental
-Se incorporaron como fuentes docentes las instrucciones de la Evaluación Formativa 1 y la pauta de la Evaluación Sumativa 1. La limpieza y sus pruebas no sustituyen una validación estadística ni normativa. Los plazos se resumen por registro de oferta.
+Las instrucciones de la Evaluación Formativa 1 y la pauta de la Evaluación Sumativa 1 se citan como fuentes docentes en el informe. La limpieza y sus pruebas comprueban el procesamiento realizado; no constituyen una validación estadística ni normativa. Los plazos se resumen por registro de oferta.
 
 ## Codificación de variables nominales
 

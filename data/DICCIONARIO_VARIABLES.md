@@ -6,7 +6,7 @@ La pregunta del proyecto se centra en **TipoLicitacion**, **TamanoProveedor** y 
 
 ## Criterios de lectura
 
-Cada fila se interpreta como una oferta asociada a un ítem. Una licitación puede aparecer varias veces, por lo que `NroLicitacion` no identifica una fila única. La clave de cada observación aún debe revisarse.
+Cada fila se interpreta como una oferta asociada a un ítem. Una licitación puede aparecer varias veces, por lo que `NroLicitacion` no identifica una fila única. El análisis trabaja a nivel de fila y no utiliza ese campo como clave única.
 
 Las descripciones se basan en los nombres de las columnas, sus valores y la documentación de ChileCompra. El diccionario de la API ayuda a explicar varios conceptos, pero no describe exactamente este reporte. Las dudas concretas se indican al final; las descripciones restantes son interpretaciones de trabajo, no una transcripción de un diccionario oficial.
 
@@ -44,7 +44,7 @@ Las columnas mantienen el orden del CSV y se agrupan por tema. Las fechas todav�
 | `FechaCierre` | Cierre de recepción de ofertas registrado | `str` | temporal | 0 | 0,00 | 548 |
 | `FechaAdjudicacion` | Fecha de adjudicación registrada | `str` | temporal | 48 | 0,11 | 1.862 |
 | `FechaEntregaEnSoporteFisico` | Fecha asociada a entrega de antecedentes físicos | `str` | temporal | 42.193 | 95,40 | 18 |
-| `FechaEstimadaEvaluacionOfertas` | Campo asociado al tiempo o fecha estimada de evaluación; significado por confirmar | `str` | temporal por confirmar | 36.613 | 82,79 | 17 |
+| `FechaEstimadaEvaluacionOfertas` | Campo asociado al tiempo o fecha estimada de evaluación; la fuente consultada no precisa su significado | `str` | temporal propuesta | 36.613 | 82,79 | 17 |
 
 ### Evaluación, adjudicación y condiciones
 
@@ -53,15 +53,15 @@ Las columnas mantienen el orden del CSV y se agrupan por tema. Las fechas todav�
 | `UnidadTiempoEvaluacion` | Unidad de tiempo asociada a la evaluación | `str` | nominal | 290 | 0,66 | 3 |
 | `EstadoLicitacion` | Estado administrativo del proceso | `str` | nominal | 0 | 0,00 | 4 |
 | `ContemplaObrasPublicas` | Indicador de obras públicas en la licitación | `str` | binaria | 4.527 | 10,24 | 2 |
-| `LicitacionInformada` | Indicador denominado licitación informada; alcance por confirmar | `str` | binaria | 0 | 0,00 | 1 |
-| `LicitacionBaseTipo` | Campo asociado a bases tipo; significado exacto por confirmar | `float64` | por confirmar | 44.226 | 100,00 | 0 |
+| `LicitacionInformada` | Indicador denominado licitación informada; la fuente consultada no precisa su alcance | `str` | binaria | 0 | 0,00 | 1 |
+| `LicitacionBaseTipo` | Campo asociado a bases tipo; sin valores para determinar su significado exacto | `float64` | no evaluable | 44.226 | 100,00 | 0 |
 | `TipoAdjudicacion` | Modalidad de adjudicación registrada | `str` | nominal | 0 | 0,00 | 1 |
 | `TipoAprobacionAdjudicacion` | Tipo de documento o mecanismo de aprobación | `str` | nominal | 0 | 0,00 | 4 |
 | `NumeroActaAprobacion` | Identificador del acta o documento de aprobación | `str` | identificador | 0 | 0,00 | 1.567 |
 | `FechaActaAprobacion` | Fecha del documento de aprobación | `str` | temporal | 0 | 0,00 | 121 |
 | `TipoConvocatoria` | Convocatoria abierta o cerrada | `str` | nominal | 0 | 0,00 | 2 |
 | `NroEtapasLicitacion` | Número de etapas expresado en etiquetas | `str` | discreta | 0 | 0,00 | 2 |
-| `SubContratacion` | Indicador de permiso de subcontratación, según el concepto documentado en la API; correspondencia del CSV por confirmar | `str` | binaria | 0 | 0,00 | 2 |
+| `SubContratacion` | Indicador de permiso de subcontratación según la API; la equivalencia exacta con el CSV no está documentada | `str` | binaria | 0 | 0,00 | 2 |
 | `ProhibicionSubContratacion` | Texto de condiciones o restricciones de subcontratación | `str` | texto | 33.844 | 76,53 | 278 |
 | `TomaRazonContraloria` | Indicador asociado a toma de razón | `str` | binaria | 1.892 | 4,28 | 2 |
 | `PublicidadOfertasTecnicas` | Indicador de publicidad de las ofertas técnicas | `str` | binaria | 1.892 | 4,28 | 2 |
@@ -74,15 +74,15 @@ Las columnas mantienen el orden del CSV y se agrupan por tema. Las fechas todav�
 | --- | --- | --- | --- | ---: | ---: | ---: |
 | `TiempoDuracionContrato` | Valor de duración del contrato asociado a su unidad | `int64` | discreta | 0 | 0,00 | 40 |
 | `UnidadTiempoDuracionContrato` | Unidad de la duración contractual | `str` | nominal | 2.757 | 6,23 | 4 |
-| `ContratoRenovable` | Campo sobre renovación contractual; sin valores para contrastar | `float64` | binaria por confirmar | 44.226 | 100,00 | 0 |
+| `ContratoRenovable` | Campo sobre renovación contractual; sin valores para contrastar | `float64` | no evaluable | 44.226 | 100,00 | 0 |
 | `ValorTiempoRenovacion` | Valor asociado al plazo de renovación | `int64` | discreta | 0 | 0,00 | 1 |
-| `UnidadTiempoRenovacion` | Unidad del plazo de renovación; sin valores para contrastar | `float64` | nominal por confirmar | 44.226 | 100,00 | 0 |
+| `UnidadTiempoRenovacion` | Unidad del plazo de renovación; sin valores para contrastar | `float64` | no evaluable | 44.226 | 100,00 | 0 |
 | `FechaEstimadaFirmaContrato` | Fecha estimada de firma del contrato | `str` | temporal | 41.857 | 94,64 | 60 |
 | `TipoEjecucion` | Modalidad temporal de ejecución contractual | `str` | nominal | 2.757 | 6,23 | 2 |
 | `PlazoPagoContrato` | Categoría del plazo de pago contractual | `str` | nominal | 2.757 | 6,23 | 3 |
 | `TipoPago` | Medio o combinación de medios de pago | `str` | nominal | 4.527 | 10,24 | 3 |
 | `ObservacionContrato` | Observaciones textuales del contrato | `str` | texto | 35.685 | 80,69 | 194 |
-| `ExtensionPlazo` | Indicador de extensión del cierre de recepción de ofertas, según el concepto de la API; correspondencia del CSV por confirmar | `str` | binaria | 1.892 | 4,28 | 2 |
+| `ExtensionPlazo` | Indicador de extensión del cierre de ofertas según la API; la equivalencia exacta con el CSV no está documentada | `str` | binaria | 1.892 | 4,28 | 2 |
 
 ### Organismo comprador
 
@@ -90,7 +90,7 @@ Las columnas mantienen el orden del CSV y se agrupan por tema. Las fechas todav�
 | --- | --- | --- | --- | ---: | ---: | ---: |
 | `UnidadCompra` | Nombre de la unidad compradora | `str` | nominal | 0 | 0,00 | 215 |
 | `UnidadCompraRUT` | RUT registrado para la unidad compradora | `str` | identificador | 0 | 0,00 | 204 |
-| `entCode` | Código de entidad; equivalencia exacta por confirmar | `int64` | identificador | 0 | 0,00 | 189 |
+| `entCode` | Código de entidad; el nivel organizacional exacto no está documentado en la fuente consultada | `int64` | identificador | 0 | 0,00 | 189 |
 | `Institucion` | Nombre de la institución compradora | `str` | nominal | 0 | 0,00 | 187 |
 | `Sector` | Sector institucional registrado | `str` | nominal | 0 | 0,00 | 1 |
 
@@ -121,15 +121,15 @@ Las columnas mantienen el orden del CSV y se agrupan por tema. Las fechas todav�
 | `EstadoOferta` | Estado de aceptación o rechazo de la oferta | `str` | nominal | 0 | 0,00 | 2 |
 | `CantidadOferta` | Cantidad registrada en la oferta | `float64` | cuantitativa | 0 | 0,00 | 988 |
 | `MonedaOferta` | Moneda asociada a los montos de oferta | `str` | nominal | 0 | 0,00 | 4 |
-| `MontoNetoOferta` | Monto denominado neto en la oferta; base de cálculo por confirmar | `float64` | continua | 0 | 0,00 | 13.228 |
-| `MontoTotalOferta` | Monto denominado total en la oferta; composición por confirmar | `float64` | continua | 0 | 0,00 | 20.277 |
+| `MontoNetoOferta` | Monto denominado neto en la oferta; la fuente no detalla su base de cálculo | `float64` | continua | 0 | 0,00 | 13.228 |
+| `MontoTotalOferta` | Monto denominado total en la oferta; la fuente no detalla su composición tributaria | `float64` | continua | 0 | 0,00 | 20.277 |
 | `ResultadoOferta` | Etiqueta de resultado ganadora o perdedora | `str` | binaria | 0 | 0,00 | 2 |
 
 ## Observaciones para preparar los datos
 
 ### Cobertura del reporte
 
-Aunque el archivo corresponde al reporte de marzo de 2026, las fechas de publicación van del **15 de enero al 25 de marzo**. Las fechas de cierre sí están entre el **2 y el 31 de marzo**. Por eso se habla de reporte de marzo y no de licitaciones publicadas exclusivamente durante ese mes. Falta confirmar el criterio de selección mensual utilizado por ChileCompra.
+Aunque el archivo corresponde al reporte de marzo de 2026, las fechas de publicación van del **15 de enero al 25 de marzo**. Las fechas de cierre sí están entre el **2 y el 31 de marzo**. Por eso se habla de reporte de marzo y no de licitaciones publicadas exclusivamente durante ese mes. Las fuentes consultadas no explican el criterio exacto de selección mensual utilizado por ChileCompra.
 
 `Sector` solo contiene el valor `SALUD`. También hay columnas constantes, como `LicitacionInformada`, `TipoAdjudicacion` y `ValorTiempoRenovacion`; conviene evaluar su utilidad antes del análisis. `LicitacionBaseTipo`, `ContratoRenovable` y `UnidadTiempoRenovacion` están completamente vacías. Si se excluyen en F2, se registrará el motivo.
 
@@ -157,11 +157,11 @@ Los montos deben leerse junto a su moneda. El presupuesto de una licitación pue
 
 Los **7.613 valores presentes** en `FechaEstimadaEvaluacionOfertas` pertenecen al año **1900**; los otros 36.613 están vacíos. No se encontró una explicación de esa codificación. Hasta aclararla, el campo no se usará como fecha real ni se convertirá en duración. Las otras fechas se revisarán por formato y coherencia cronológica antes de calcular plazos.
 
-La documentación de la API relaciona `TiempoDuracionContrato` con su unidad, describe `SubContratacion` como permiso para subcontratar y vincula `ExtensionPlazo` con la extensión del cierre de ofertas. Estas referencias orientan la lectura, aunque falta confirmar su equivalencia exacta con el reporte. No se usará `ExtensionPlazo` como una prórroga general del contrato ni se asumirán reglas legales vigentes a partir de la documentación histórica. `Contrato` tiene tres categorías y no debe convertirse directamente en un campo de sí/no; `NroEtapasLicitacion` contiene Una etapa y Dos etapas y puede convertirse con una correspondencia explícita.
+La documentación de la API relaciona `TiempoDuracionContrato` con su unidad, describe `SubContratacion` como permiso para subcontratar y vincula `ExtensionPlazo` con la extensión del cierre de ofertas. Estas referencias orientan la lectura, pero no demuestran una equivalencia exacta con el reporte descargado. No se usará `ExtensionPlazo` como una prórroga general del contrato ni se asumirán reglas legales vigentes a partir de la documentación histórica. `Contrato` tiene tres categorías y no debe convertirse directamente en un campo de sí/no; `NroEtapasLicitacion` contiene Una etapa y Dos etapas y puede convertirse con una correspondencia explícita.
 
 ### Identificadores y textos
 
-Los RUT, números de acta y códigos de entidad o producto permiten identificar y relacionar registros. Se conservarán como identificadores, aunque pandas haya leído algunos como enteros. En particular, falta confirmar a qué nivel de la organización corresponde `entCode`. `CodigoProductoONU` no se utilizará como una medida numérica.
+Los RUT, números de acta y códigos de entidad o producto permiten identificar y relacionar registros. Se conservarán como identificadores, aunque pandas haya leído algunos como enteros. La fuente consultada no indica a qué nivel de la organización corresponde `entCode`. `CodigoProductoONU` no se utilizará como una medida numérica.
 
 Los nombres y las descripciones se conservarán para interpretar los registros. En F2 se revisarán diferencias de escritura, categorías y valores vacíos, sin reemplazarlos automáticamente. Los cambios que se apliquen quedarán documentados en el notebook.
 
@@ -169,7 +169,7 @@ Los nombres y las descripciones se conservarán para interpretar los registros. 
 
 El portal oficial confirma que el reporte de licitaciones incorpora ofertas y muestra campos como `NroLicitacion`, `MontoTotalOferta` y `ResultadoOferta`. La sección de definiciones explica los estados del proceso. El diccionario de la API respalda el significado general de fechas de publicación y adjudicación, unidades de tiempo y algunas condiciones contractuales; no resuelve todas las columnas del archivo descargado.
 
-Quedan por confirmar el criterio y año de clasificación del proveedor, el tratamiento de impuestos en los montos, las fechas de evaluación de 1900, la selección mensual y la construcción de `ResultadoOferta`. La consulta puede dirigirse al correo de datos abiertos publicado en el portal: datosabiertos@chilecompra.cl.
+Las fuentes consultadas no precisan el criterio y año de clasificación del proveedor, el tratamiento de impuestos en los montos, el significado de las fechas de evaluación de 1900, la selección mensual ni la construcción de `ResultadoOferta`. Por esta razón, el análisis no formula supuestos sobre esos aspectos. El portal publica el correo datosabiertos@chilecompra.cl para consultas sobre los datos abiertos.
 
 - ChileCompra. (s. f.). *Descargas*. https://datos-abiertos.chilecompra.cl/descargas
 - ChileCompra. (s. f.). *Definiciones*. https://datos-abiertos.chilecompra.cl/datos-abiertos/definiciones
