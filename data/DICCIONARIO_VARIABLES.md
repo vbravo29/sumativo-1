@@ -176,7 +176,7 @@ Quedan por confirmar el criterio y año de clasificación del proveedor, el trat
 - ChileCompra. (s. f.). *Diccionario de datos: Licitaciones* (pp. 4–5). https://www.chilecompra.cl/wp-content/uploads/2026/03/Documentacion-API-Mercado-Publico-Licitaciones.pdf
 - Servicio de Impuestos Internos. (s. f.). *Estadísticas de empresa*. https://www.sii.cl/sobre_el_sii/estadisticas_de_empresas.html
 
-Estas referencias apoyan la lectura de los datos. Las fuentes docentes y la referencia académica del informe se incorporarán por separado.
+Estas referencias apoyan la lectura de los datos. Las fuentes docentes y la referencia académica se incorporan en el informe integrado.
 
 ## Archivo utilizado
 
