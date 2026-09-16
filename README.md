@@ -120,3 +120,9 @@ Las celdas configuran entradas, llaman funciones y muestran resultados. Las oper
 | Exportación | `exportar_datos_procesados` |
 
 `src/ejecucion.py` contiene `ejecutar_notebook`, compartida por los verificadores F1 y F2. Las funciones de transformación devuelven copias; las de lectura/exportación tienen rutas explícitas. Las pruebas permanecen visibles en los notebooks. No se encapsulan instrucciones aisladas de presentación ni la configuración mínima necesaria para importar el módulo.
+
+## Organización de ramas
+
+Cada integrante trabaja en una rama propia para evitar interferir con los cambios de los demás. Coordinamos la integración de esos avances en `desarrollo`, que reúne el proceso de trabajo del equipo. La rama `main` contendrá la versión final integrada del proyecto.
+
+`main` está protegida y solo recibe cambios mediante pull requests (PR). Tanto `desarrollo` como `main` tienen políticas que impiden su eliminación. El flujo del equipo es: rama individual → `desarrollo` → `main`.
