@@ -2,11 +2,13 @@
 
 Proyecto grupal de la Sumativa 1 de Programación para la Ciencia de Datos. El trabajo cubre la definición del problema, la preparación de los datos y la validación inicial del análisis.
 
+**Repositorio:** [github.com/vbravo29/sumativo-1](https://github.com/vbravo29/sumativo-1)
+
 ## Propósito del proyecto
 
 El proyecto analiza las ofertas del archivo de licitaciones públicas del sector Salud de marzo de 2026. El objetivo es describir las diferencias en la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor, mediante un flujo reproducible y con validación de la calidad de los datos.
 
-La pregunta general es: ¿cómo varía la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor en el sector Salud durante marzo de 2026? El análisis es descriptivo y no establece causalidad. F1 define el cálculo y sus restricciones; los resultados aún no se han calculado.
+La pregunta general es: ¿cómo varía la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor en el sector Salud durante marzo de 2026? El análisis es descriptivo y no establece causalidad. F1 define el cálculo y sus restricciones; F2 incluye resultados descriptivos preliminares, restringidos a procesos adjudicados.
 
 ## Qué representa la información
 
@@ -42,13 +44,13 @@ El detalle de procedencia, lectura y trazabilidad está en [data/README.md](data
 - `F2/`: notebook de exploración, limpieza, transformación y validación de datos.
 - `data/raw/`: dataset original.
 - `data/processed/`: datos generados durante el preprocesamiento.
-- `docs/`: informe integrado en desarrollo.
+- `docs/`: informe final, mapa conceptual y archivo editable del mapa.
 - `evidencias/`: resultados de ejecuciones verificadas.
 - `src/`: funciones reutilizables del proyecto.
 
 ## Preparación del entorno
 
-La verificación de F1 utiliza un entorno virtual con Python 3.12.14 en Windows. La referencia anterior a Python 3.14.7 no se ha validado en esta revisión. Para reproducir el entorno desde la raíz del repositorio, con Python 3.12 instalado:
+El trabajo se verificó en Windows con Python 3.12.14. Para reproducir el entorno desde la raíz del repositorio, con Python 3.12 instalado:
 
 ```powershell
 py -3.12 -m venv .venv
@@ -56,7 +58,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m jupyterlab
 ```
 
-`requirements.txt` declara las dependencias principales de F1; pip instala sus dependencias internas automáticamente. Las versiones utilizadas se muestran en las salidas del notebook. Cada nueva instalación debe verificarse ejecutando F1 completo. Las librerías de visualización del futuro análisis se incorporarán cuando se implemente F2.
+`requirements.txt` declara las dependencias principales de F1 y F2; pip instala sus dependencias internas automáticamente. Las versiones utilizadas se muestran en las salidas del notebook. Cada nueva instalación debe verificarse ejecutando F1 completo. Los gráficos adicionales quedan previstos para F3.
 
 ### Ejecución de notebooks
 
@@ -76,18 +78,51 @@ Cada script inicia un kernel nuevo del entorno virtual, ejecuta todas las celdas
 
 - El CSV original en `data/raw/` se conserva inmutable con verificación de hash SHA-256.
 - Se excluyeron las 3 columnas 100% vacías (`LicitacionBaseTipo`, `ContratoRenovable`, `UnidadTiempoRenovacion`).
-- Se neutralizaron las 7.613 fechas centinela del año 1900 en `FechaEstimadaEvaluacionOfertas` convirtiéndolas a `NaT`.
+- Se neutralizaron las 7.613 fechas anómalas del año 1900 en `FechaEstimadaEvaluacionOfertas` convirtiéndolas a `NaT`.
 - Las columnas temporales (`FechaPublicacion`, `FechaCierre`, `FechaAdjudicacion`) se convirtieron a `datetime64[ns]`.
 - Se preservó explícitamente la categoría `NoClasificado` en `TamanoProveedor` (3.410 ofertas) sin imputaciones artificiales.
 - Se calcularon variables derivadas: `oferta_ganadora`, `licitacion_adjudicada` y `plazo_cierre_dias` (promedio 14,38 días).
 - El dataset procesado resultante (44.226 filas x 74 columnas) se almacena en `data/processed/licitaciones_salud_marzo_2026_procesado.csv`.
 
-## Estado del proyecto (Fases 1 y 2 Integradas)
+## Productos de la entrega
 
-El avance consolida los entregables exigidos para la **Sumativa 1**:
-- **Fase 1 (Implementada):** Contexto, problema, preguntas de investigación, objetivos F1–F4, alcance, supuestos, contrato de lectura y pruebas unitarias.
-- **Fase 2 (Implementada):** Diagnóstico EDA, pipeline modular en `src/proyecto.py`, limpieza justificada, suite de validación (casos normales, límites y excepciones) y exportación trazable.
-- **Informe Técnico Formal:** Documento integrado en `docs/informe_f1_f2_grupo_5.docx` y compilado a PDF con índice de contenidos actualizado, tablas estadísticas y referencias bibliográficas en formato APA 7.ª edición.
-- **Mapa Conceptual Técnico:** [docs/mapa_conceptual_f1_f2.drawio](docs/mapa_conceptual_f1_f2.drawio) actualizado, reflejando F1 y F2 implementadas y F3–F4 proyectadas.
+La entrega reúne los siguientes productos:
+- **Fase 1:** Contexto, problema, preguntas de investigación, objetivos F1–F4, alcance, supuestos, contrato de lectura y pruebas unitarias.
+- **Fase 2:** Diagnóstico exploratorio, pipeline modular en `src/proyecto.py`, limpieza justificada, validación con casos normales, límites y excepciones, y exportación trazable.
+- **Informe técnico:** [documento editable](docs/informe_f1_f2_grupo_5.docx) y [PDF de entrega](docs/f1_s01_grupo5.pdf), con índice, tablas de resultados y referencias en formato APA 7.ª edición.
+- **Mapa conceptual F1:** [PDF de entrega](docs/mcdi500_s1_grupo5.pdf) y [editable en draw.io](docs/mcdi500_s1_grupo5.drawio). Incluye portada y mapa en dos páginas carta; organiza el entorno, la documentación y la colaboración de F1, con continuidad hacia F2–F4.
 - **Diccionario de Datos:** [data/DICCIONARIO_VARIABLES.md](data/DICCIONARIO_VARIABLES.md) con las 74 variables agrupadas temáticamente y con observaciones técnicas.
 
+Las instrucciones de la Evaluación Formativa 1 y la pauta de la Evaluación Sumativa 1 se citan como fuentes docentes en el informe. La limpieza y sus pruebas comprueban el procesamiento realizado; no constituyen una validación estadística ni normativa. Los plazos se resumen por registro de oferta.
+
+## Codificación de variables nominales
+
+F2 añade una versión con one-hot encoding de `TipoLicitacion` y `TamanoProveedor`, conservando las categorías originales y `NoClasificado`. Cada indicador es un entero 0/1; las categorías no reciben un orden artificial. `src/proyecto.py` contiene `codificar_nominales` y el notebook muestra ejemplos y pruebas de correspondencia, conservación de filas y lectura del archivo exportado.
+
+El archivo adicional es `data/processed/licitaciones_salud_marzo_2026_codificado.csv` (ruta desde la raíz). El CSV procesado de 74 columnas sigue siendo la base de las proporciones. La codificación es una preparación exploratoria; un futuro modelo requerirá ajustar su codificador solo con datos de entrenamiento y definir las categorías desconocidas.
+
+## Funciones y responsabilidades
+
+Las celdas configuran entradas, llaman funciones y muestran resultados. Las operaciones repetibles se concentran en `src/proyecto.py`:
+
+| Componente | Función |
+| --- | --- |
+| Lectura y trazabilidad | `leer_datos_f1`, `sha256_archivo`, `versiones_entorno` |
+| Diagnóstico y frecuencias | `resumen_exploracion`, `tablas_frecuencia` |
+| Exclusión de columnas vacías | `excluir_columnas_vacias` |
+| Fechas y años excluidos por columna | `convertir_fechas` |
+| Normalización de categorías | `normalizar_categorias` |
+| Indicadores y plazos | `generar_variables_derivadas` |
+| Coordinación de limpieza | `limpiar_datos_f2` |
+| Comprobación del resultado | `validar_dataset_procesado` |
+| Proporciones por cualquier variable de agrupación | `tabla_proporciones` |
+| Codificación y comprobación one-hot | `codificar_nominales`, `validar_codificacion` |
+| Exportación | `exportar_datos_procesados` |
+
+`src/ejecucion.py` contiene `ejecutar_notebook`, compartida por los verificadores F1 y F2. Las funciones de transformación devuelven copias; las de lectura/exportación tienen rutas explícitas. Las pruebas permanecen visibles en los notebooks. No se encapsulan instrucciones aisladas de presentación ni la configuración mínima necesaria para importar el módulo.
+
+## Organización de ramas
+
+Cada integrante trabaja en una rama propia para evitar interferir con los cambios de los demás. Coordinamos la integración de esos avances en `desarrollo`, que reúne el proceso de trabajo del equipo. La rama `main` contendrá la versión final integrada del proyecto.
+
+`main` está protegida y solo recibe cambios mediante pull requests (PR). Tanto `desarrollo` como `main` tienen políticas que impiden su eliminación. El flujo del equipo es: rama individual → `desarrollo` → `main`.
