@@ -1,5 +1,5 @@
 # Instalar desde la raíz: .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-# Dependencias necesarias para ejecutar F1, F2 y sus verificadores.
+# Dependencias necesarias para ejecutar F1, F2, F3 y sus verificadores.
 numpy==2.3.5
 pandas==3.0.1
 jupyterlab>=4.4,<5
