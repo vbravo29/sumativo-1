@@ -31,3 +31,11 @@ Las pruebas cubren lectura normal, esquema incompleto, inmutabilidad de la entra
 estado del limpiador, compatibilidad de los adaptadores, extensión polimórfica del
 validador y detección de un plazo incoherente.
 
+
+## Organización por archivos
+
+Las clases de lectura y el contrato están en `src/datos.py`; el limpiador y su adaptador, en `src/pipeline.py`; las reglas y el validador, en `src/validacion.py`. Las transformaciones auxiliares residen en `src/preprocesamiento.py`. `src/proyecto.py` conserva el acceso compatible a todas las clases y funciones.
+
+El 24 de septiembre se verificó la separación: seis pruebas POO aprobadas, ejecución completa de F1 y F2 en kernels nuevos y coincidencia SHA-256 de los dos CSV generados en una carpeta temporal con los existentes. Los notebooks y sus evidencias JSON anteriores no se reescribieron.
+
+Este incremento todavía no incluye un notebook F3, benchmarks de tiempo y memoria ni una implementación recursiva. En la revisión se detectó además que `ValidadorDatasetProcesado([])` utiliza las reglas predeterminadas en vez de rechazar la lista vacía; se conserva el comportamiento del aporte original y queda pendiente su corrección con una prueba específica.

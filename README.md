@@ -126,6 +126,22 @@ Las celdas configuran entradas, llaman componentes reutilizables y muestran resu
 
 `src/ejecucion.py` contiene `ejecutar_notebook`, compartida por los verificadores F1 y F2. Las transformaciones devuelven copias; las operaciones de lectura y exportación reciben rutas explícitas. Las pruebas de compatibilidad y extensibilidad del nuevo núcleo se encuentran en `F3/test_nucleo_poo.py`.
 
+## Distribución del código por módulos
+
+El núcleo POO y las funciones existentes se distribuyen por responsabilidad:
+
+| Módulo | Responsabilidad |
+| --- | --- |
+| `src/datos.py` | `ContratoEsquema`, `LectorDatos`, `LectorCSV`, lectura compatible, exportación y SHA-256 |
+| `src/preprocesamiento.py` | Transformaciones de columnas, fechas, categorías, indicadores y codificación |
+| `src/pipeline.py` | `LimpiadorLicitaciones` y el adaptador `limpiar_datos_f2` |
+| `src/validacion.py` | `ReglaValidacion`, seis reglas concretas, `ValidadorDatasetProcesado` y validaciones compatibles |
+| `src/analisis.py` | Diagnóstico, frecuencias y proporciones |
+| `src/entorno.py` | Versiones de dependencias |
+| `src/ejecucion.py` | Ejecución reproducible de notebooks |
+
+`src/proyecto.py` reexporta las 15 funciones y 12 clases para conservar los imports de F1, F2 y las pruebas F3. `pipeline.py` depende de las transformaciones de `preprocesamiento.py`; los módulos de implementación no dependen de `proyecto.py`. La separación conserva los métodos y el comportamiento del aporte POO.
+
 ## Organización de ramas
 
 Cada integrante trabaja en una rama propia para evitar interferir con los cambios de los demás. Coordinamos la integración de esos avances en `desarrollo`, que reúne el proceso de trabajo del equipo. La rama `main` contendrá la versión final integrada del proyecto.

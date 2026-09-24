@@ -3,7 +3,7 @@
 **Curso:** MCDIA500 — Programación para la Ciencia de Datos
 **Proyecto:** Análisis de ofertas en licitaciones públicas del sector Salud (marzo de 2026)
 **Grupo:** 5 — Víctor Bravo Barrera, Nayadeth Garrido Ibáñez, Mauricio Cid
-**Fases cubiertas:** F1, F2 y primer incremento de F3 · **Última actualización:** 22 de septiembre de 2026
+**Fases cubiertas:** F1, F2 y primer incremento de F3 · **Última actualización:** 24 de septiembre de 2026
 
 ## Propósito
 
@@ -65,10 +65,30 @@ descartaron**. Una decisión sin alternativa registrada es indistinguible de una
 
 | ID | Decisión adoptada | Alternativas descartadas | Motivo del descarte |
 | --- | --- | --- | --- |
-| D-24 (F2, superada en F3) | 16 funciones en `src/proyecto.py` que devuelven copias; los notebooks configuran, invocan y presentan | Clase con estado · mantener el código en los notebooks · `inplace=True` | En F2 las funciones eran suficientes porque el objetivo principal era limpiar y validar los datos. Esta decisión se mantiene como parte de la historia del proyecto, pero en F3 el profesor solicitó avanzar hacia una organización basada en clases |
+| D-24 (F2, superada en F3) | 15 funciones en `src/proyecto.py` que devuelven copias; los notebooks configuran, invocan y presentan | Clase con estado · mantener el código en los notebooks · `inplace=True` | En F2 las funciones eran suficientes porque el objetivo principal era limpiar y validar los datos. Esta decisión se mantiene como parte de la historia del proyecto, pero en F3 el profesor solicitó avanzar hacia una organización basada en clases |
 | D-25 | Incorporar `ContratoEsquema`, lectores polimórficos, un limpiador con estado encapsulado y un validador compuesto por reglas, conservando las funciones de F1/F2 como adaptadores | Reescribir los notebooks anteriores · crear una clase monolítica para todo el pipeline · eliminar inmediatamente las funciones públicas | Reescribir lo ya entregado podía introducir errores y hacer que F1 y F2 dejaran de funcionar. Mantener las funciones anteriores permite avanzar gradualmente, mientras que separar las tareas en distintas clases hace más claro qué parte lee, cuál limpia y cuál revisa los datos |
+
+| D-26 | Distribuir las 15 funciones y 12 clases del aporte POO en seis módulos por responsabilidad | Restaurar la separación anterior sobrescribiendo el aporte POO · conservar todo en un archivo · crear un archivo por función | La integración conserva el trabajo de F3 y facilita mantenimiento y reparto de tareas sin fragmentar operaciones relacionadas |
+| D-27 | Mantener `src/proyecto.py` como acceso compatible mediante imports explícitos y `__all__` | Cambiar simultáneamente todos los notebooks y pruebas · duplicar implementaciones | F1, F2 y las pruebas de F3 conservan sus imports; cada función y clase tiene una única implementación |
+
+### Integración de POO y separación — 24 de septiembre de 2026
+
+Se conservó el aporte POO del commit `8087c45` y se aplicó la separación sobre esa versión. Las clases de lectura y el contrato están en `datos.py`; las transformaciones auxiliares, en `preprocesamiento.py`; `LimpiadorLicitaciones` y su adaptador, en `pipeline.py`; las reglas y el validador, en `validacion.py`; los resúmenes analíticos, en `analisis.py`; y las versiones del entorno, en `entorno.py`. `ejecucion.py` conserva su implementación existente.
+
+La comparación mediante AST confirmó que las 27 definiciones mantienen firmas, decoradores, cuerpos y métodos respecto del aporte remoto. No se sustituyeron las clases por las funciones anteriores del respaldo local.
+
+Verificación realizada:
+
+- Las seis pruebas de `F3/test_nucleo_poo.py` finalizaron correctamente.
+- F1 ejecutó cuatro celdas de código y F2 diez, en kernels nuevos y sin errores.
+- La exportación se dirigió a una carpeta temporal en la copia en memoria del notebook para evitar sobrescribir los CSV existentes. Ambos archivos generados coincidieron mediante SHA-256 con los originales procesados.
+- No se guardaron cambios en los notebooks ni en los JSON de evidencias anteriores.
+
+La revisión detectó un caso pendiente del aporte POO: `ValidadorDatasetProcesado([])` activa las seis reglas predeterminadas por el uso de `reglas or reglas_predeterminadas`, aunque existe una comprobación destinada a rechazar una colección vacía. La separación conserva ese comportamiento; su corrección requiere distinguir `None` de una colección vacía y añadir una prueba específica. La existencia de clases y pruebas no reemplaza los entregables aún pendientes de F3: notebook, análisis de eficiencia, recursividad e informe actualizado.
+
 
 ---
 
 Repositorio: <https://github.com/vbravo29/sumativo-1> · Las decisiones aquí registradas se
-implementan en `src/proyecto.py` y se documentan en el informe técnico, sección IV.B.
+implementan en los módulos de `src/`, con acceso compatible desde `src/proyecto.py`.
+El informe de F1/F2 describe la arquitectura anterior; esta sección registra su evolución en F3.
