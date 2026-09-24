@@ -1,4 +1,11 @@
-"""Módulo de utilidades del proyecto: entorno, trazabilidad y pipeline de datos F1/F2."""
+"""Utilidades de F1/F2 y núcleo orientado a objetos incorporado en F3.
+
+Las funciones públicas de las fases anteriores se conservan como adaptadores para no
+romper los notebooks existentes. La lectura, la limpieza y la validación delegan ahora
+en objetos con una responsabilidad claramente delimitada.
+"""
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
 from importlib.metadata import version
 from pathlib import Path
 import hashlib
@@ -22,18 +29,67 @@ def sha256_archivo(ruta):
     return resumen.hexdigest()
 
 
+@dataclass(frozen=True)
+class ContratoEsquema:
+    """Contrato inmutable que define el esquema mínimo de una fuente de datos."""
+
+    columnas_requeridas: tuple[str, ...]
+
+    def __post_init__(self):
+        if not self.columnas_requeridas:
+            raise ValueError("El contrato debe declarar al menos una columna requerida.")
+        if len(set(self.columnas_requeridas)) != len(self.columnas_requeridas):
+            raise ValueError("El contrato no admite columnas requeridas duplicadas.")
+
+    def validar(self, datos):
+        """Valida presencia de columnas y existencia de registros."""
+        faltantes = sorted(set(self.columnas_requeridas) - set(datos.columns))
+        if faltantes:
+            raise ValueError(f"Faltan columnas requeridas: {', '.join(faltantes)}")
+        if datos.empty:
+            raise ValueError("El dataset no contiene registros.")
+
+
+class LectorDatos(ABC):
+    """Interfaz polimórfica para lectores sujetos a un contrato de esquema."""
+
+    def __init__(self, contrato):
+        if not isinstance(contrato, ContratoEsquema):
+            raise TypeError("contrato debe ser una instancia de ContratoEsquema.")
+        self._contrato = contrato
+
+    @property
+    def contrato(self):
+        return self._contrato
+
+    @abstractmethod
+    def leer(self, ruta):
+        """Lee y valida una fuente de datos."""
+
+
+class LectorCSV(LectorDatos):
+    """Lector concreto de CSV con configuración encapsulada."""
+
+    def __init__(self, contrato, sep=";", encoding="latin-1"):
+        super().__init__(contrato)
+        self._sep = sep
+        self._encoding = encoding
+
+    def leer(self, ruta):
+        ruta = Path(ruta)
+        if not ruta.is_file():
+            raise FileNotFoundError(f"No existe un archivo de datos en: {ruta}")
+        datos = pd.read_csv(
+            ruta, sep=self._sep, encoding=self._encoding, low_memory=False
+        )
+        self.contrato.validar(datos)
+        return datos
+
+
 def leer_datos_f1(ruta, columnas_requeridas, sep=";", encoding="latin-1"):
-    """Lee el CSV sin limpiarlo y comprueba su esquema mínimo."""
-    ruta = Path(ruta)
-    if not ruta.is_file():
-        raise FileNotFoundError(f"No existe un archivo de datos en: {ruta}")
-    datos = pd.read_csv(ruta, sep=sep, encoding=encoding, low_memory=False)
-    faltantes = sorted(set(columnas_requeridas) - set(datos.columns))
-    if faltantes:
-        raise ValueError(f"Faltan columnas requeridas: {', '.join(faltantes)}")
-    if datos.empty:
-        raise ValueError("El dataset no contiene registros.")
-    return datos
+    """Adaptador compatible con F1 que usa :class:`LectorCSV`."""
+    contrato = ContratoEsquema(tuple(columnas_requeridas))
+    return LectorCSV(contrato, sep=sep, encoding=encoding).leer(ruta)
 
 
 def resumen_exploracion(df):
@@ -108,6 +164,77 @@ def generar_variables_derivadas(df):
     return salida
 
 
+class LimpiadorLicitaciones:
+    """Coordina el pipeline F2 y conserva el estado de su última ejecución.
+
+    El DataFrame de entrada nunca se modifica. El estado expuesto es una copia para
+    impedir que código externo altere accidentalmente la trazabilidad del objeto.
+    """
+
+    COLUMNAS_CLAVE = (
+        "NroLicitacion", "TipoLicitacion", "TamanoProveedor",
+        "ResultadoOferta", "EstadoLicitacion",
+    )
+    COLUMNAS_VACIAS = (
+        "LicitacionBaseTipo", "ContratoRenovable", "UnidadTiempoRenovacion",
+    )
+    COLUMNAS_FECHA = (
+        "FechaPublicacion", "FechaInicioPreguntas", "FechaFinalPreguntas",
+        "FechaPublicacionRespuestas", "FechaActoAperturaTecnica",
+        "FechaActoAperturaEconomica", "FechaCierre", "FechaAdjudicacion",
+        "FechaActaAprobacion", "FechaEstimadaEvaluacionOfertas",
+    )
+    COLUMNAS_TEXTO = (
+        "TipoLicitacion", "TamanoProveedor", "ResultadoOferta",
+        "EstadoLicitacion", "EstadoOferta", "Sector", "MonedaOferta",
+    )
+
+    def __init__(self, excluir_vacias=True, normalizar_texto=True):
+        self._excluir_vacias = bool(excluir_vacias)
+        self._normalizar_texto = bool(normalizar_texto)
+        self._ultima_ejecucion = None
+
+    @property
+    def ultima_ejecucion(self):
+        """Resumen defensivo de la ejecución más reciente, o ``None``."""
+        return None if self._ultima_ejecucion is None else self._ultima_ejecucion.copy()
+
+    def limpiar(self, df):
+        """Aplica las transformaciones de F2 en un orden explícito y trazable."""
+        if df.empty:
+            raise ValueError("No es posible preprocesar un DataFrame vacío.")
+        faltantes = [c for c in self.COLUMNAS_CLAVE if c not in df.columns]
+        if faltantes:
+            raise KeyError(
+                f"Faltan columnas clave para el preprocesamiento: {faltantes}"
+            )
+
+        salida = df.copy()
+        columnas_excluidas = []
+        if self._excluir_vacias:
+            columnas_excluidas = [
+                c for c in self.COLUMNAS_VACIAS
+                if c in salida and salida[c].isna().all()
+            ]
+            salida = excluir_columnas_vacias(salida, self.COLUMNAS_VACIAS)
+        salida = convertir_fechas(
+            salida,
+            self.COLUMNAS_FECHA,
+            anios_excluidos={"FechaEstimadaEvaluacionOfertas": [1900]},
+        )
+        if self._normalizar_texto:
+            salida = normalizar_categorias(salida, self.COLUMNAS_TEXTO)
+        salida = generar_variables_derivadas(salida)
+        self._ultima_ejecucion = {
+            "filas_entrada": len(df),
+            "filas_salida": len(salida),
+            "columnas_entrada": len(df.columns),
+            "columnas_salida": len(salida.columns),
+            "columnas_excluidas": tuple(columnas_excluidas),
+        }
+        return salida
+
+
 def tablas_frecuencia(df, columnas):
     """Devuelve una tabla de frecuencias por variable, incluyendo los faltantes."""
     return {col: df[col].value_counts(dropna=False).to_frame("Frecuencia") for col in columnas}
@@ -152,88 +279,183 @@ def limpiar_datos_f2(df, excluir_vacias=True, normalizar_texto=True):
        - licitacion_adjudicada (bool)
        - plazo_cierre_dias (float)
     """
-    if df.empty:
-        raise ValueError("No es posible preprocesar un DataFrame vacío.")
-    
-    columnas_clave = ["NroLicitacion", "TipoLicitacion", "TamanoProveedor",
-                      "ResultadoOferta", "EstadoLicitacion"]
-    faltantes = [c for c in columnas_clave if c not in df.columns]
-    if faltantes:
-        raise KeyError(f"Faltan columnas clave para el preprocesamiento: {faltantes}")
-    
-    # Cada etapa puede reutilizarse por separado; aquí se define su orden.
-    df_limpio = df.copy()
-    if excluir_vacias:
-        df_limpio = excluir_columnas_vacias(
-            df_limpio, ["LicitacionBaseTipo", "ContratoRenovable", "UnidadTiempoRenovacion"])
-    df_limpio = convertir_fechas(df_limpio, [
-        "FechaPublicacion", "FechaInicioPreguntas", "FechaFinalPreguntas",
-        "FechaPublicacionRespuestas", "FechaActoAperturaTecnica",
-        "FechaActoAperturaEconomica", "FechaCierre", "FechaAdjudicacion",
-        "FechaActaAprobacion", "FechaEstimadaEvaluacionOfertas"
-    ], anios_excluidos={"FechaEstimadaEvaluacionOfertas": [1900]})
-    if normalizar_texto:
-        df_limpio = normalizar_categorias(df_limpio, [
-            "TipoLicitacion", "TamanoProveedor", "ResultadoOferta",
-            "EstadoLicitacion", "EstadoOferta", "Sector", "MonedaOferta"])
-    return generar_variables_derivadas(df_limpio)
+    return LimpiadorLicitaciones(
+        excluir_vacias=excluir_vacias,
+        normalizar_texto=normalizar_texto,
+    ).limpiar(df)
+
+
+class ReglaValidacion(ABC):
+    """Interfaz para reglas intercambiables del validador de calidad."""
+
+    @property
+    @abstractmethod
+    def nombre(self):
+        """Identificador legible de la regla."""
+
+    @abstractmethod
+    def validar(self, df, filas_esperadas):
+        """Lanza ``AssertionError`` cuando el DataFrame incumple la regla."""
+
+
+class ReglaColumnasVacias(ReglaValidacion):
+    nombre = "columnas_vacias_descartadas"
+
+    def validar(self, df, filas_esperadas):
+        descartadas = {
+            "LicitacionBaseTipo", "ContratoRenovable", "UnidadTiempoRenovacion"
+        }
+        presentes = {
+            c for c in descartadas.intersection(df.columns) if df[c].isna().all()
+        }
+        assert not presentes, (
+            f"Validación fallida: columnas vacías aún presentes: {presentes}"
+        )
+
+
+class ReglaIntegridadFilas(ReglaValidacion):
+    nombre = "integridad_filas"
+
+    def validar(self, df, filas_esperadas):
+        assert len(df) == filas_esperadas, (
+            "Validación fallida: cambió el número de filas."
+        )
+
+
+class ReglaColumnasObligatorias(ReglaValidacion):
+    nombre = "columnas_obligatorias"
+    columnas = (
+        "NroLicitacion", "TipoLicitacion", "TamanoProveedor",
+        "ResultadoOferta", "EstadoLicitacion",
+    )
+
+    def validar(self, df, filas_esperadas):
+        for col in self.columnas:
+            assert col in df.columns, (
+                f"Validación fallida: falta columna obligatoria '{col}'."
+            )
+            nulos = df[col].isna().sum()
+            assert nulos == 0, (
+                f"Validación fallida: '{col}' contiene {nulos} valores nulos."
+            )
+            assert df[col].astype("string").str.strip().ne("").all(), (
+                f"{col}: etiqueta vacía."
+            )
+
+
+class ReglaResultadoOferta(ReglaValidacion):
+    nombre = "resultado_oferta"
+
+    def validar(self, df, filas_esperadas):
+        valores = set(df["ResultadoOferta"].unique())
+        assert valores.issubset({"Ganadora", "Perdedora"}), (
+            f"Valores inesperados en ResultadoOferta: {valores}"
+        )
+
+
+class ReglaFechas(ReglaValidacion):
+    nombre = "fechas"
+
+    def validar(self, df, filas_esperadas):
+        if "FechaEstimadaEvaluacionOfertas" in df.columns:
+            n_1900 = (
+                df["FechaEstimadaEvaluacionOfertas"]
+                .astype(str)
+                .str.startswith("1900")
+                .sum()
+            )
+            assert n_1900 == 0, (
+                f"Validación fallida: aún quedan {n_1900} fechas de 1900."
+            )
+        for col in ("FechaPublicacion", "FechaCierre"):
+            assert col in df and pd.api.types.is_datetime64_any_dtype(df[col]), (
+                f"{col}: fecha requerida."
+            )
+            assert df[col].notna().all(), (
+                f"{col}: fechas faltantes; revisar antes de calcular plazos."
+            )
+
+
+class ReglaVariablesDerivadas(ReglaValidacion):
+    nombre = "variables_derivadas"
+
+    def validar(self, df, filas_esperadas):
+        assert "oferta_ganadora" in df.columns, (
+            "Falta columna derivada 'oferta_ganadora'."
+        )
+        assert "licitacion_adjudicada" in df.columns, (
+            "Falta columna derivada 'licitacion_adjudicada'."
+        )
+        relaciones = (
+            ("oferta_ganadora", "ResultadoOferta", "Ganadora"),
+            ("licitacion_adjudicada", "EstadoLicitacion", "Adjudicada"),
+        )
+        for derivada, fuente, valor in relaciones:
+            assert pd.api.types.is_bool_dtype(df[derivada]), (
+                f"{derivada}: tipo no booleano."
+            )
+            assert (
+                df[derivada].notna().all()
+                and df[derivada].eq(df[fuente].eq(valor)).all()
+            ), f"{derivada}: valores incoherentes."
+        assert "plazo_cierre_dias" in df.columns, "Falta plazo_cierre_dias."
+        esperado = (
+            df["FechaCierre"] - df["FechaPublicacion"]
+        ).dt.total_seconds() / 86400
+        assert pd.api.types.is_numeric_dtype(df["plazo_cierre_dias"]), (
+            "Plazo no numérico."
+        )
+        assert np.allclose(
+            df["plazo_cierre_dias"], esperado, rtol=0, atol=1e-9
+        ), "Plazo incoherente con fechas."
+        assert esperado.ge(0).all(), (
+            "Plazo negativo: revisar registros sin eliminarlos automáticamente."
+        )
+
+
+class ValidadorDatasetProcesado:
+    """Ejecuta reglas polimórficas y registra cuáles fueron superadas."""
+
+    def __init__(self, reglas=None):
+        reglas_predeterminadas = (
+            ReglaColumnasVacias(),
+            ReglaIntegridadFilas(),
+            ReglaColumnasObligatorias(),
+            ReglaResultadoOferta(),
+            ReglaFechas(),
+            ReglaVariablesDerivadas(),
+        )
+        self._reglas = tuple(reglas or reglas_predeterminadas)
+        if not self._reglas:
+            raise ValueError("El validador requiere al menos una regla.")
+        if not all(isinstance(regla, ReglaValidacion) for regla in self._reglas):
+            raise TypeError("Todas las reglas deben heredar de ReglaValidacion.")
+
+    @property
+    def reglas(self):
+        return self._reglas
+
+    def validar(self, df, filas_esperadas):
+        if df.empty:
+            raise AssertionError(
+                "Validación fallida: el DataFrame procesado está vacío."
+            )
+        superadas = []
+        for regla in self._reglas:
+            regla.validar(df, filas_esperadas)
+            superadas.append(regla.nombre)
+        return {
+            "filas_validadas": len(df),
+            "columnas_validadas": len(df.columns),
+            "reglas_superadas": len(superadas),
+            "detalle_reglas": tuple(superadas),
+            "estado": "OK",
+        }
 
 
 def validar_dataset_procesado(df, filas_esperadas):
-    """
-    Comprueba integralmente la consistencia del dataset procesado (F2).
-    Lanza AssertionError si alguna regla de calidad no se cumple.
-    """
-    if df.empty:
-        raise AssertionError("Validación fallida: el DataFrame procesado está vacío.")
-    
-    # 1. No deben existir las columnas 100% vacías descartadas
-    cols_descartadas = {"LicitacionBaseTipo", "ContratoRenovable", "UnidadTiempoRenovacion"}
-    presentes = {c for c in cols_descartadas.intersection(df.columns) if df[c].isna().all()}
-    assert not presentes, f"Validación fallida: columnas vacías aún presentes: {presentes}"
-    
-    # 2. Integridad de filas
-    assert len(df) == filas_esperadas, "Validación fallida: cambió el número de filas."
-    
-    # 3. Variables obligatorias sin nulos
-    cols_sin_nulos = ["NroLicitacion", "TipoLicitacion", "TamanoProveedor", "ResultadoOferta", "EstadoLicitacion"]
-    for col in cols_sin_nulos:
-        assert col in df.columns, f"Validación fallida: falta columna obligatoria '{col}'."
-        nulos = df[col].isna().sum()
-        assert nulos == 0, f"Validación fallida: '{col}' contiene {nulos} valores nulos."
-        assert df[col].astype("string").str.strip().ne("").all(), f"{col}: etiqueta vacía."
-    
-    # 4. Valores válidos en ResultadoOferta
-    valores_res = set(df["ResultadoOferta"].unique())
-    assert valores_res.issubset({"Ganadora", "Perdedora"}), f"Valores inesperados en ResultadoOferta: {valores_res}"
-    
-    # 5. Fechas sin fechas anómalas de 1900
-    if "FechaEstimadaEvaluacionOfertas" in df.columns:
-        n_1900 = df["FechaEstimadaEvaluacionOfertas"].astype(str).str.startswith("1900").sum()
-        assert n_1900 == 0, f"Validación fallida: aún quedan {n_1900} fechas de 1900."
-    
-    # 6. Columnas derivadas generadas correctamente
-    assert "oferta_ganadora" in df.columns, "Falta columna derivada 'oferta_ganadora'."
-    assert "licitacion_adjudicada" in df.columns, "Falta columna derivada 'licitacion_adjudicada'."
-    for derivada, fuente, valor in [("oferta_ganadora", "ResultadoOferta", "Ganadora"),
-                                    ("licitacion_adjudicada", "EstadoLicitacion", "Adjudicada")]:
-        assert pd.api.types.is_bool_dtype(df[derivada]), f"{derivada}: tipo no booleano."
-        assert df[derivada].notna().all() and df[derivada].eq(df[fuente].eq(valor)).all(), f"{derivada}: valores incoherentes."
-    for col in ["FechaPublicacion", "FechaCierre"]:
-        assert col in df and pd.api.types.is_datetime64_any_dtype(df[col]), f"{col}: fecha requerida."
-        assert df[col].notna().all(), f"{col}: fechas faltantes; revisar antes de calcular plazos."
-    assert "plazo_cierre_dias" in df, "Falta plazo_cierre_dias."
-    esperado = (df["FechaCierre"] - df["FechaPublicacion"]).dt.total_seconds() / 86400
-    assert pd.api.types.is_numeric_dtype(df["plazo_cierre_dias"]), "Plazo no numérico."
-    assert np.allclose(df["plazo_cierre_dias"], esperado, rtol=0, atol=1e-9), "Plazo incoherente con fechas."
-    assert esperado.ge(0).all(), "Plazo negativo: revisar registros sin eliminarlos automáticamente."
-    
-    return {
-        "filas_validadas": len(df),
-        "columnas_validadas": len(df.columns),
-        "reglas_superadas": 6,
-        "estado": "OK"
-    }
+    """Adaptador compatible con F2 que ejecuta el validador orientado a objetos."""
+    return ValidadorDatasetProcesado().validar(df, filas_esperadas)
 
 
 def codificar_nominales(df, columnas=("TipoLicitacion", "TamanoProveedor")):

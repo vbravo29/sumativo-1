@@ -42,6 +42,7 @@ El detalle de procedencia, lectura y trazabilidad está en [data/README.md](data
 
 - `F1/`: notebook de definición del proyecto y configuración del entorno.
 - `F2/`: notebook de exploración, limpieza, transformación y validación de datos.
+- `F3/`: pruebas y documentación del núcleo algorítmico orientado a objetos.
 - `data/raw/`: dataset original.
 - `data/processed/`: datos generados durante el preprocesamiento.
 - `docs/`: informe final, mapa conceptual, archivo editable del mapa y registro de decisiones técnicas.
@@ -102,25 +103,28 @@ F2 añade una versión con one-hot encoding de `TipoLicitacion` y `TamanoProveed
 
 El archivo adicional es `data/processed/licitaciones_salud_marzo_2026_codificado.csv` (ruta desde la raíz). El CSV procesado de 74 columnas sigue siendo la base de las proporciones. La codificación es una preparación exploratoria; un futuro modelo requerirá ajustar su codificador solo con datos de entrenamiento y definir las categorías desconocidas.
 
-## Funciones y responsabilidades
+## Componentes y responsabilidades
 
-Las celdas configuran entradas, llaman funciones y muestran resultados. Las operaciones repetibles se concentran en `src/proyecto.py`:
+Las celdas configuran entradas, llaman componentes reutilizables y muestran resultados. En F3, las funciones públicas de F1/F2 se conservaron como adaptadores compatibles y las responsabilidades principales se trasladaron a clases:
 
 | Componente | Función |
 | --- | --- |
-| Lectura y trazabilidad | `leer_datos_f1`, `sha256_archivo`, `versiones_entorno` |
+| Contrato de entrada | `ContratoEsquema` |
+| Lectura polimórfica | `LectorDatos`, `LectorCSV` |
+| Limpieza con estado encapsulado | `LimpiadorLicitaciones` |
+| Validación extensible | `ReglaValidacion`, reglas concretas y `ValidadorDatasetProcesado` |
+| Compatibilidad F1/F2 | `leer_datos_f1`, `limpiar_datos_f2`, `validar_dataset_procesado` |
+| Trazabilidad | `sha256_archivo`, `versiones_entorno` |
 | Diagnóstico y frecuencias | `resumen_exploracion`, `tablas_frecuencia` |
 | Exclusión de columnas vacías | `excluir_columnas_vacias` |
 | Fechas y años excluidos por columna | `convertir_fechas` |
 | Normalización de categorías | `normalizar_categorias` |
 | Indicadores y plazos | `generar_variables_derivadas` |
-| Coordinación de limpieza | `limpiar_datos_f2` |
-| Comprobación del resultado | `validar_dataset_procesado` |
 | Proporciones por cualquier variable de agrupación | `tabla_proporciones` |
 | Codificación y comprobación one-hot | `codificar_nominales`, `validar_codificacion` |
 | Exportación | `exportar_datos_procesados` |
 
-`src/ejecucion.py` contiene `ejecutar_notebook`, compartida por los verificadores F1 y F2. Las funciones de transformación devuelven copias; las de lectura/exportación tienen rutas explícitas. Las pruebas permanecen visibles en los notebooks. No se encapsulan instrucciones aisladas de presentación ni la configuración mínima necesaria para importar el módulo.
+`src/ejecucion.py` contiene `ejecutar_notebook`, compartida por los verificadores F1 y F2. Las transformaciones devuelven copias; las operaciones de lectura y exportación reciben rutas explícitas. Las pruebas de compatibilidad y extensibilidad del nuevo núcleo se encuentran en `F3/test_nucleo_poo.py`.
 
 ## Organización de ramas
 
