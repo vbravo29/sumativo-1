@@ -12,14 +12,14 @@
 - **Tamaño:** 68,96 MB.
 - **SHA-256:** `490D9209A10D387011D481B72B7891F26E997974EC2CF9DFC518AA4A08552232`
 
-El archivo se incluye en el repositorio para que el equipo pueda ejecutar los notebooks con los mismos datos. Los demás archivos descargados en `data/raw/` permanecen excluidos de Git.
+El archivo original está versionado para reproducir los análisis con la misma copia del dataset. Los demás archivos descargados en `data/raw/` permanecen excluidos de Git.
 
 ## Criterios aplicados
 
-- El archivo original se conservó sin modificaciones.
+- El archivo original se conserva sin modificaciones y se verifica mediante SHA-256.
 - Los resultados derivados se generan únicamente en `data/processed/`.
 - El notebook F2 documenta las conversiones de fechas, el tratamiento de valores faltantes y las columnas excluidas, junto con su justificación.
-- Antes de exportar el dataset procesado se revisan montos, monedas, fechas, estados y filas repetidas.
+- La validación comprueba la conservación de filas, las columnas obligatorias, los resultados de oferta, las fechas y la coherencia de las variables derivadas.
 
 ## Diccionario de variables
 
@@ -30,7 +30,7 @@ El [diccionario de trabajo](DICCIONARIO_VARIABLES.md) cubre las 74 columnas. Inc
 ## Dataset procesado (Fase 2)
 
 - **Archivo derivado:** `processed/licitaciones_salud_marzo_2026_procesado.csv`
-- **Generación:** Producido por la función `limpiar_datos_f2()` de `src/proyecto.py` e implementado en `F2/F2_Preprocesamiento.ipynb`.
+- **Generación:** El notebook `F2/F2_Preprocesamiento.ipynb` aplica `limpiar_datos_f2()` de `src/pipeline.py` y exporta el resultado con `exportar_datos_procesados()` de `src/datos.py`. Ambas funciones siguen disponibles desde `src/proyecto.py`.
 - **Dimensiones:** 44.226 filas y 74 columnas (exclusión de 3 columnas vacías y adición de 3 variables derivadas).
 - **Transformaciones aplicadas:**
   - Exclusión de `LicitacionBaseTipo`, `ContratoRenovable` y `UnidadTiempoRenovacion` (100% nulas).
@@ -44,6 +44,23 @@ El [diccionario de trabajo](DICCIONARIO_VARIABLES.md) cubre las 74 columnas. Inc
 
 ## Codificación de variables nominales
 
-F2 añade una versión con one-hot encoding de `TipoLicitacion` y `TamanoProveedor`, conservando las categorías originales y `NoClasificado`. Cada indicador es un entero 0/1; las categorías no reciben un orden artificial. `src/proyecto.py` contiene `codificar_nominales` y el notebook muestra ejemplos y pruebas de correspondencia, conservación de filas y lectura del archivo exportado.
+F2 añade una versión con one-hot encoding de `TipoLicitacion` y `TamanoProveedor`, conservando las categorías originales y `NoClasificado`. Cada indicador es un entero 0/1; las categorías no reciben un orden artificial. `src/preprocesamiento.py` implementa `codificar_nominales` y el notebook muestra ejemplos y pruebas de correspondencia, conservación de filas y lectura del archivo exportado.
 
 El archivo adicional es `data/processed/licitaciones_salud_marzo_2026_codificado.csv` (ruta desde la raíz). El CSV procesado de 74 columnas sigue siendo la base de las proporciones. La codificación es una preparación exploratoria; un futuro modelo requerirá ajustar su codificador solo con datos de entrenamiento y definir las categorías desconocidas.
+
+## Generación de archivos derivados
+
+Los CSV de `data/processed/` están excluidos del control de versiones. Se generan desde el original al ejecutar F2 y no están incluidos en una copia recién clonada del repositorio.
+
+Desde la raíz, con el entorno configurado según el [README principal](../README.md#preparación-del-entorno):
+
+```powershell
+.\.venv\Scripts\python.exe F2\verificar_f2.py
+```
+
+La ejecución crea o reemplaza estos archivos:
+
+- `data/processed/licitaciones_salud_marzo_2026_procesado.csv`: dataset limpio de 74 columnas.
+- `data/processed/licitaciones_salud_marzo_2026_codificado.csv`: dataset con 12 indicadores adicionales, de 86 columnas.
+
+El notebook registra las dimensiones y huellas SHA-256 de las exportaciones y comprueba los indicadores después de volver a leer el archivo codificado.

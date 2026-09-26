@@ -1,0 +1,10 @@
+{
+  "fecha_utc": "2026-09-26T04:08:58.195550+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "notebook": "F3/F3_Algoritmos.ipynb",
+  "notebook_sha256": "ed56dc68f112adc94cc60f85865ae860cef1852431c7d3c126206db6e2be590f",
+  "kernel_nuevo": true,
+  "celdas_codigo_ejecutadas": 24,
+  "errores": 0,
+  "alcance": "Aporte algorítmico: 14 pruebas, ejemplos límite, equivalencia, mediciones verificadas por hash, tablas separadas y decisiones técnicas autocontenidas."
+}

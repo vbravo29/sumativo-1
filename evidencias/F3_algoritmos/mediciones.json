@@ -1,0 +1,853 @@
+{
+  "fecha_utc": "2026-09-26T03:44:42.428446+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "sistema": "Windows-11-10.0.26200-SP0",
+  "procesador": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+  "pandas": "3.0.1",
+  "numpy": "2.3.5",
+  "raw_sha256": "490d9209a10d387011d481b72b7891f26e997974ec2cf9dfc518aa4a08552232",
+  "analisis_sha256": "1add3d7c31a25c3a61cd073dd5257806dc00d5cee61ce4f30299803d62dcb7cb",
+  "medicion_sha256": "7c8adc1fd188f6df8896e4a11dcd750e34a51cf133f239297f96862be805ab63",
+  "semilla": 2026,
+  "bloque_base": 256,
+  "repeticiones": 7,
+  "ejecuciones_por_repeticion": 3,
+  "repeticiones_memoria": 3,
+  "alcance": "Cálculo completo sobre DataFrame cargado: filtro, conversión, conteos y salida. Excluye lectura, limpieza, muestreo y validación de equivalencia.",
+  "memoria": "Pico de asignaciones rastreadas con tracemalloc; entrada preexistente excluida; no es RSS ni garantiza cubrir toda la memoria nativa.",
+  "tiempo": "timeit sin tracemalloc; GC desactivado durante cada ronda; orden alternado con semilla. Mínimo como referencia de menor interferencia, mediana y cuartiles describen la sesión.",
+  "mediciones": [
+    {
+      "filas_entrada": 100,
+      "filas_adjudicadas": 99,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "referencia_f2",
+      "min_ms": 5.584066694912811,
+      "mediana_ms": 6.164333317428827,
+      "q25_ms": 6.071683329840502,
+      "q75_ms": 6.302600008590767,
+      "pico_trazado_bytes_mediana": 210179.0,
+      "tiempos_ms": [
+        6.2836666669075685,
+        6.011966654720406,
+        6.131400004960597,
+        6.321533350273967,
+        6.985733363156517,
+        5.584066694912811,
+        6.164333317428827
+      ],
+      "picos_trazados_bytes": [
+        210086,
+        210946,
+        210179
+      ]
+    },
+    {
+      "filas_entrada": 100,
+      "filas_adjudicadas": 99,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "iterativa",
+      "min_ms": 2.6752333311984935,
+      "mediana_ms": 2.8347333427518606,
+      "q25_ms": 2.783050003927201,
+      "q75_ms": 2.864916673085342,
+      "pico_trazado_bytes_mediana": 108924.0,
+      "tiempos_ms": [
+        2.8921000193804502,
+        2.8377333267902336,
+        2.8008000226691365,
+        2.7652999851852655,
+        2.8347333427518606,
+        3.047733334824443,
+        2.6752333311984935
+      ],
+      "picos_trazados_bytes": [
+        108924,
+        108924,
+        108920
+      ]
+    },
+    {
+      "filas_entrada": 100,
+      "filas_adjudicadas": 99,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "recursiva",
+      "min_ms": 2.4969333317130804,
+      "mediana_ms": 2.5988667039200664,
+      "q25_ms": 2.557066676672548,
+      "q75_ms": 2.741233348691215,
+      "pico_trazado_bytes_mediana": 109234.0,
+      "tiempos_ms": [
+        2.8157333532969155,
+        2.6667333440855145,
+        2.532299996043245,
+        2.5818333573018513,
+        2.867333358153701,
+        2.4969333317130804,
+        2.5988667039200664
+      ],
+      "picos_trazados_bytes": [
+        109141,
+        109234,
+        109234
+      ]
+    },
+    {
+      "filas_entrada": 100,
+      "filas_adjudicadas": 99,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "agrupada",
+      "min_ms": 3.635499975644052,
+      "mediana_ms": 3.9055999756480255,
+      "q25_ms": 3.8888166697385413,
+      "q75_ms": 4.036699984377871,
+      "pico_trazado_bytes_mediana": 108878.0,
+      "tiempos_ms": [
+        4.083166636216144,
+        3.635499975644052,
+        3.874200008188685,
+        3.9055999756480255,
+        4.307899973355234,
+        3.9902333325395984,
+        3.9034333312883973
+      ],
+      "picos_trazados_bytes": [
+        108877,
+        108878,
+        108878
+      ]
+    },
+    {
+      "filas_entrada": 100,
+      "filas_adjudicadas": 99,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 4,
+      "algoritmo": "referencia_f2",
+      "min_ms": 5.586900011015435,
+      "mediana_ms": 6.136100001943608,
+      "q25_ms": 6.062216668700179,
+      "q75_ms": 6.287933327257633,
+      "pico_trazado_bytes_mediana": 210038.0,
+      "tiempos_ms": [
+        6.369066657498479,
+        6.0413666457558675,
+        6.619599997065961,
+        5.586900011015435,
+        6.136100001943608,
+        6.2067999970167875,
+        6.08306669164449
+      ],
+      "picos_trazados_bytes": [
+        210038,
+        209899,
+        210084
+      ]
+    },
+    {
+      "filas_entrada": 100,
+      "filas_adjudicadas": 99,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 4,
+      "algoritmo": "iterativa",
+      "min_ms": 2.5723333237692714,
+      "mediana_ms": 2.7023000099385777,
+      "q25_ms": 2.6526333337339265,
+      "q75_ms": 2.727016670784603,
+      "pico_trazado_bytes_mediana": 108916.0,
+      "tiempos_ms": [
+        2.7119333390146494,
+        2.6604666685064635,
+        2.7743000149105987,
+        2.5723333237692714,
+        2.742100002554556,
+        2.644799998961389,
+        2.7023000099385777
+      ],
+      "picos_trazados_bytes": [
+        108916,
+        108962,
+        108869
+      ]
+    },
+    {
+      "filas_entrada": 100,
+      "filas_adjudicadas": 99,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 4,
+      "algoritmo": "recursiva",
+      "min_ms": 2.626633310380081,
+      "mediana_ms": 2.7490333498766026,
+      "q25_ms": 2.6523833318303027,
+      "q75_ms": 2.8491166497891145,
+      "pico_trazado_bytes_mediana": 110939.0,
+      "tiempos_ms": [
+        2.626633310380081,
+        3.03833334085842,
+        2.7490333498766026,
+        2.6294333317006626,
+        2.854833301777641,
+        2.675333331959943,
+        2.8433999978005886
+      ],
+      "picos_trazados_bytes": [
+        110939,
+        109180,
+        110990
+      ]
+    },
+    {
+      "filas_entrada": 100,
+      "filas_adjudicadas": 99,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 4,
+      "algoritmo": "agrupada",
+      "min_ms": 3.6057000203679004,
+      "mediana_ms": 3.8743333037321768,
+      "q25_ms": 3.803633328061551,
+      "q75_ms": 3.9320999834065637,
+      "pico_trazado_bytes_mediana": 108869.0,
+      "tiempos_ms": [
+        3.9432333239043755,
+        3.920966642908752,
+        3.758333312968413,
+        3.848933343154689,
+        3.6057000203679004,
+        3.8743333037321768,
+        4.008866652535896
+      ],
+      "picos_trazados_bytes": [
+        108869,
+        108870,
+        108823
+      ]
+    },
+    {
+      "filas_entrada": 1000,
+      "filas_adjudicadas": 998,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "referencia_f2",
+      "min_ms": 7.073333331694205,
+      "mediana_ms": 7.523966642717521,
+      "q25_ms": 7.295433334851017,
+      "q75_ms": 7.6744166629699375,
+      "pico_trazado_bytes_mediana": 1068251.0,
+      "tiempos_ms": [
+        7.702899980358779,
+        7.073333331694205,
+        7.523966642717521,
+        7.122499984689057,
+        7.468366685012977,
+        7.645933345581095,
+        7.714233322379489
+      ],
+      "picos_trazados_bytes": [
+        1068251,
+        1069019,
+        1068063
+      ]
+    },
+    {
+      "filas_entrada": 1000,
+      "filas_adjudicadas": 998,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "iterativa",
+      "min_ms": 3.418333323982855,
+      "mediana_ms": 3.546199994161725,
+      "q25_ms": 3.48866666899994,
+      "q75_ms": 3.6127833106244602,
+      "pico_trazado_bytes_mediana": 666775.0,
+      "tiempos_ms": [
+        3.7211666737372675,
+        3.418333323982855,
+        3.440733339327077,
+        3.59626665400962,
+        3.546199994161725,
+        3.5365999986728034,
+        3.6292999672393003
+      ],
+      "picos_trazados_bytes": [
+        666775,
+        666775,
+        666636
+      ]
+    },
+    {
+      "filas_entrada": 1000,
+      "filas_adjudicadas": 998,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "recursiva",
+      "min_ms": 3.3560999824355044,
+      "mediana_ms": 3.7399999952564635,
+      "q25_ms": 3.625649997654061,
+      "q75_ms": 3.818549991895755,
+      "pico_trazado_bytes_mediana": 667039.0,
+      "tiempos_ms": [
+        3.841533325612545,
+        3.3560999824355044,
+        3.625633311457932,
+        3.9364333109309273,
+        3.625666683850189,
+        3.7399999952564635,
+        3.795566658178965
+      ],
+      "picos_trazados_bytes": [
+        667409,
+        666993,
+        667039
+      ]
+    },
+    {
+      "filas_entrada": 1000,
+      "filas_adjudicadas": 998,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "agrupada",
+      "min_ms": 4.596800000096361,
+      "mediana_ms": 4.693299997597933,
+      "q25_ms": 4.637383332010359,
+      "q75_ms": 4.73801667491595,
+      "pico_trazado_bytes_mediana": 666683.0,
+      "tiempos_ms": [
+        4.739533333728711,
+        4.990866679387788,
+        4.627166665159166,
+        4.647599998861551,
+        4.596800000096361,
+        4.7365000161031885,
+        4.693299997597933
+      ],
+      "picos_trazados_bytes": [
+        666683,
+        666637,
+        666729
+      ]
+    },
+    {
+      "filas_entrada": 1000,
+      "filas_adjudicadas": 998,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 5,
+      "algoritmo": "referencia_f2",
+      "min_ms": 7.178033352829516,
+      "mediana_ms": 7.469566655345261,
+      "q25_ms": 7.371733333760252,
+      "q75_ms": 7.661733330072215,
+      "pico_trazado_bytes_mediana": 1068205.0,
+      "tiempos_ms": [
+        7.413033318395416,
+        7.571133319288492,
+        7.330433349125087,
+        7.7523333408559365,
+        7.178033352829516,
+        8.227866686259707,
+        7.469566655345261
+      ],
+      "picos_trazados_bytes": [
+        1068204,
+        1068205,
+        1068251
+      ]
+    },
+    {
+      "filas_entrada": 1000,
+      "filas_adjudicadas": 998,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 5,
+      "algoritmo": "iterativa",
+      "min_ms": 3.4305333392694592,
+      "mediana_ms": 3.6668666871264577,
+      "q25_ms": 3.5315999800028903,
+      "q75_ms": 3.8172666681930423,
+      "pico_trazado_bytes_mediana": 666775.0,
+      "tiempos_ms": [
+        3.6668666871264577,
+        3.4674666433905563,
+        3.6860000109300017,
+        4.022599974026282,
+        3.948533325456083,
+        3.4305333392694592,
+        3.595733316615224
+      ],
+      "picos_trazados_bytes": [
+        666775,
+        666775,
+        666775
+      ]
+    },
+    {
+      "filas_entrada": 1000,
+      "filas_adjudicadas": 998,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 5,
+      "algoritmo": "recursiva",
+      "min_ms": 3.4381666919216514,
+      "mediana_ms": 3.620900019692878,
+      "q25_ms": 3.557783318683505,
+      "q75_ms": 3.7319500115700066,
+      "pico_trazado_bytes_mediana": 668848.0,
+      "tiempos_ms": [
+        3.6599000062172613,
+        3.541099994132916,
+        3.574466643234094,
+        3.844233346171677,
+        3.620900019692878,
+        3.804000016922752,
+        3.4381666919216514
+      ],
+      "picos_trazados_bytes": [
+        668848,
+        666992,
+        668895
+      ]
+    },
+    {
+      "filas_entrada": 1000,
+      "filas_adjudicadas": 998,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 5,
+      "algoritmo": "agrupada",
+      "min_ms": 4.505333335449298,
+      "mediana_ms": 4.866666664990286,
+      "q25_ms": 4.798583317703256,
+      "q75_ms": 5.05223332826669,
+      "pico_trazado_bytes_mediana": 666775.0,
+      "tiempos_ms": [
+        4.768199985846877,
+        4.505333335449298,
+        4.828966649559637,
+        4.866666664990286,
+        5.1071333000436425,
+        5.537333316169679,
+        4.9973333564897375
+      ],
+      "picos_trazados_bytes": [
+        666775,
+        666725,
+        666775
+      ]
+    },
+    {
+      "filas_entrada": 10000,
+      "filas_adjudicadas": 9953,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "referencia_f2",
+      "min_ms": 20.682366681285203,
+      "mediana_ms": 21.642366657033563,
+      "q25_ms": 21.504366653971374,
+      "q75_ms": 21.749100007582456,
+      "pico_trazado_bytes_mediana": 9635475.0,
+      "tiempos_ms": [
+        22.45336666237563,
+        21.437233313918114,
+        21.71313331928104,
+        21.78506669588387,
+        20.682366681285203,
+        21.571499994024634,
+        21.642366657033563
+      ],
+      "picos_trazados_bytes": [
+        9635379,
+        9636339,
+        9635475
+      ]
+    },
+    {
+      "filas_entrada": 10000,
+      "filas_adjudicadas": 9953,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "iterativa",
+      "min_ms": 12.434399997194609,
+      "mediana_ms": 13.084899983368814,
+      "q25_ms": 12.946249994759757,
+      "q75_ms": 13.268500003808487,
+      "pico_trazado_bytes_mediana": 6235077.0,
+      "tiempos_ms": [
+        13.202466691533724,
+        12.8195999811093,
+        13.072900008410215,
+        13.334533316083252,
+        13.084899983368814,
+        12.434399997194609,
+        13.4659333465
+      ],
+      "picos_trazados_bytes": [
+        6235077,
+        6235077,
+        6238725
+      ]
+    },
+    {
+      "filas_entrada": 10000,
+      "filas_adjudicadas": 9953,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "recursiva",
+      "min_ms": 12.77200000671049,
+      "mediana_ms": 12.96589996976157,
+      "q25_ms": 12.899466654441008,
+      "q75_ms": 13.145783353441704,
+      "pico_trazado_bytes_mediana": 6235341.0,
+      "tiempos_ms": [
+        12.9624333155031,
+        13.008966692723334,
+        12.96589996976157,
+        13.282600014160076,
+        12.836499993378917,
+        13.506799975099662,
+        12.77200000671049
+      ],
+      "picos_trazados_bytes": [
+        6235341,
+        6235341,
+        6235341
+      ]
+    },
+    {
+      "filas_entrada": 10000,
+      "filas_adjudicadas": 9953,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "agrupada",
+      "min_ms": 12.984666662911573,
+      "mediana_ms": 13.3284666420271,
+      "q25_ms": 13.23219999903813,
+      "q75_ms": 13.460466677012544,
+      "pico_trazado_bytes_mediana": 6235077.0,
+      "tiempos_ms": [
+        13.577600009739399,
+        13.310999997581044,
+        13.420666684396565,
+        12.984666662911573,
+        13.3284666420271,
+        13.153400000495216,
+        13.500266669628521
+      ],
+      "picos_trazados_bytes": [
+        6235077,
+        6235077,
+        6235077
+      ]
+    },
+    {
+      "filas_entrada": 10000,
+      "filas_adjudicadas": 9953,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 6,
+      "algoritmo": "referencia_f2",
+      "min_ms": 21.05196666282912,
+      "mediana_ms": 22.253566654399037,
+      "q25_ms": 21.941649999159075,
+      "q75_ms": 22.398233355488628,
+      "pico_trazado_bytes_mediana": 9635437.0,
+      "tiempos_ms": [
+        21.05196666282912,
+        22.320233363037307,
+        22.47623334793995,
+        22.109300014562905,
+        22.657533331463735,
+        21.77399998375525,
+        22.253566654399037
+      ],
+      "picos_trazados_bytes": [
+        9635437,
+        9635483,
+        9635433
+      ]
+    },
+    {
+      "filas_entrada": 10000,
+      "filas_adjudicadas": 9953,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 6,
+      "algoritmo": "iterativa",
+      "min_ms": 11.301166649597386,
+      "mediana_ms": 11.645900007958213,
+      "q25_ms": 11.451916691536704,
+      "q75_ms": 12.019500000557553,
+      "pico_trazado_bytes_mediana": 6235077.0,
+      "tiempos_ms": [
+        12.165166670456529,
+        11.873833330658575,
+        12.6901666711395,
+        11.403900027895967,
+        11.645900007958213,
+        11.499933355177442,
+        11.301166649597386
+      ],
+      "picos_trazados_bytes": [
+        6235076,
+        6235077,
+        6235077
+      ]
+    },
+    {
+      "filas_entrada": 10000,
+      "filas_adjudicadas": 9953,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 6,
+      "algoritmo": "recursiva",
+      "min_ms": 11.391633306629956,
+      "mediana_ms": 12.3615333577618,
+      "q25_ms": 11.589833341228466,
+      "q75_ms": 12.67171666646997,
+      "pico_trazado_bytes_mediana": 6237197.0,
+      "tiempos_ms": [
+        12.581533325525621,
+        13.311099998342494,
+        11.545166683693727,
+        11.634499998763204,
+        12.3615333577618,
+        11.391633306629956,
+        12.76190000741432
+      ],
+      "picos_trazados_bytes": [
+        6237197,
+        6235341,
+        6237197
+      ]
+    },
+    {
+      "filas_entrada": 10000,
+      "filas_adjudicadas": 9953,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 6,
+      "algoritmo": "agrupada",
+      "min_ms": 11.51013335523506,
+      "mediana_ms": 12.651099978635708,
+      "q25_ms": 12.132699989403289,
+      "q75_ms": 13.0927666517285,
+      "pico_trazado_bytes_mediana": 6235077.0,
+      "tiempos_ms": [
+        13.055299990810454,
+        13.795199998033544,
+        12.651099978635708,
+        11.51013335523506,
+        12.087233325776955,
+        13.130233312646547,
+        12.17816665302962
+      ],
+      "picos_trazados_bytes": [
+        6235077,
+        6235077,
+        6235031
+      ]
+    },
+    {
+      "filas_entrada": 44226,
+      "filas_adjudicadas": 44025,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "referencia_f2",
+      "min_ms": 65.70846665029724,
+      "mediana_ms": 66.92206669443597,
+      "q25_ms": 66.29390001762658,
+      "q75_ms": 68.09105000381047,
+      "pico_trazado_bytes_mediana": 42793378.0,
+      "tiempos_ms": [
+        71.38926667782168,
+        68.87033333381017,
+        67.31176667381078,
+        65.89323336568971,
+        66.69456666956346,
+        65.70846665029724,
+        66.92206669443597
+      ],
+      "picos_trazados_bytes": [
+        42793378,
+        42794196,
+        42793282
+      ]
+    },
+    {
+      "filas_entrada": 44226,
+      "filas_adjudicadas": 44025,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "iterativa",
+      "min_ms": 39.91989997060349,
+      "mediana_ms": 41.85730001578728,
+      "q25_ms": 40.57126668825125,
+      "q75_ms": 42.05704998457804,
+      "pico_trazado_bytes_mediana": 27334565.0,
+      "tiempos_ms": [
+        42.52540001956125,
+        41.85730001578728,
+        42.25419997237623,
+        41.85989999677986,
+        41.15563336138924,
+        39.91989997060349,
+        39.98690001511326
+      ],
+      "picos_trazados_bytes": [
+        27334519,
+        27334565,
+        27334611
+      ]
+    },
+    {
+      "filas_entrada": 44226,
+      "filas_adjudicadas": 44025,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "recursiva",
+      "min_ms": 39.69889999522517,
+      "mediana_ms": 41.69106665843477,
+      "q25_ms": 41.05978334943454,
+      "q75_ms": 41.97383332454289,
+      "pico_trazado_bytes_mediana": 27334829.0,
+      "tiempos_ms": [
+        44.26323331426829,
+        41.87463332588474,
+        42.07303332320104,
+        41.41896668200692,
+        40.700600016862154,
+        39.69889999522517,
+        41.69106665843477
+      ],
+      "picos_trazados_bytes": [
+        27334875,
+        27334829,
+        27334782
+      ]
+    },
+    {
+      "filas_entrada": 44226,
+      "filas_adjudicadas": 44025,
+      "grupo": "TamanoProveedor",
+      "grupos_observados": 5,
+      "algoritmo": "agrupada",
+      "min_ms": 36.18850000202656,
+      "mediana_ms": 38.55413334288945,
+      "q25_ms": 37.698766662894435,
+      "q75_ms": 39.9594499807184,
+      "pico_trazado_bytes_mediana": 27334564.0,
+      "tiempos_ms": [
+        40.53050000220537,
+        39.93549997297426,
+        38.55413334288945,
+        36.86506665932635,
+        39.98339998846253,
+        36.18850000202656,
+        38.53246666646252
+      ],
+      "picos_trazados_bytes": [
+        27334564,
+        27334519,
+        27337075
+      ]
+    },
+    {
+      "filas_entrada": 44226,
+      "filas_adjudicadas": 44025,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 7,
+      "algoritmo": "referencia_f2",
+      "min_ms": 64.91596666940798,
+      "mediana_ms": 68.25119998150815,
+      "q25_ms": 67.02701667866981,
+      "q75_ms": 68.72130001041417,
+      "pico_trazado_bytes_mediana": 42793615.0,
+      "tiempos_ms": [
+        69.39250001839052,
+        68.93100003556658,
+        66.29576665970187,
+        64.91596666940798,
+        68.25119998150815,
+        67.75826669763774,
+        68.51159998526175
+      ],
+      "picos_trazados_bytes": [
+        42793615,
+        42793661,
+        42793615
+      ]
+    },
+    {
+      "filas_entrada": 44226,
+      "filas_adjudicadas": 44025,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 7,
+      "algoritmo": "iterativa",
+      "min_ms": 39.41309999208897,
+      "mediana_ms": 40.71580001618713,
+      "q25_ms": 40.546733323329434,
+      "q75_ms": 41.60416665642212,
+      "pico_trazado_bytes_mediana": 27334565.0,
+      "tiempos_ms": [
+        40.5460000038147,
+        39.41309999208897,
+        41.832933318801224,
+        40.54746664284418,
+        40.71580001618713,
+        41.375399994043015,
+        42.03906666953117
+      ],
+      "picos_trazados_bytes": [
+        27334565,
+        27334565,
+        27334611
+      ]
+    },
+    {
+      "filas_entrada": 44226,
+      "filas_adjudicadas": 44025,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 7,
+      "algoritmo": "recursiva",
+      "min_ms": 40.10953335091472,
+      "mediana_ms": 40.528133317517735,
+      "q25_ms": 40.14158334272604,
+      "q75_ms": 41.656883336448416,
+      "pico_trazado_bytes_mediana": 27336638.0,
+      "tiempos_ms": [
+        41.61473332593838,
+        40.10953335091472,
+        40.12109998924037,
+        40.528133317517735,
+        43.33409996858487,
+        40.162066696211696,
+        41.69903334695846
+      ],
+      "picos_trazados_bytes": [
+        27336731,
+        27334783,
+        27336638
+      ]
+    },
+    {
+      "filas_entrada": 44226,
+      "filas_adjudicadas": 44025,
+      "grupo": "TipoLicitacion",
+      "grupos_observados": 7,
+      "algoritmo": "agrupada",
+      "min_ms": 39.10046664532274,
+      "mediana_ms": 39.75979999328653,
+      "q25_ms": 39.42600001270573,
+      "q75_ms": 40.08288332261145,
+      "pico_trazado_bytes_mediana": 27334565.0,
+      "tiempos_ms": [
+        40.69193332300832,
+        40.063333309565984,
+        39.10046664532274,
+        39.75979999328653,
+        39.58576669295629,
+        40.10243333565692,
+        39.26623333245516
+      ],
+      "picos_trazados_bytes": [
+        27334565,
+        27334611,
+        27334519
+      ]
+    }
+  ]
+}

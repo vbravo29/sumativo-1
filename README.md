@@ -1,57 +1,44 @@
 # Análisis de licitaciones públicas del sector Salud
 
-Proyecto grupal de la Sumativa 1 de Programación para la Ciencia de Datos. El trabajo cubre la definición del problema, la preparación de los datos y la validación inicial del análisis.
+Proyecto de Programación para la Ciencia de Datos sobre ofertas del sector Salud incluidas en el reporte de ChileCompra de marzo de 2026. Comprende la definición del problema (F1), el preprocesamiento de datos (F2) y la implementación y evaluación de algoritmos con programación orientada a objetos (F3).
 
 **Repositorio:** [github.com/vbravo29/sumativo-1](https://github.com/vbravo29/sumativo-1)
 
-## Propósito del proyecto
+## Objetivo y alcance
 
-El proyecto analiza las ofertas del archivo de licitaciones públicas del sector Salud de marzo de 2026. El objetivo es describir las diferencias en la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor, mediante un flujo reproducible y con validación de la calidad de los datos.
+El análisis describe cómo varía la proporción de ofertas ganadoras según el tamaño del proveedor y el tipo de licitación. Se restringe a procesos adjudicados y utiliza como denominador las ofertas con resultado válido de cada grupo. Los resultados son descriptivos y no establecen causalidad.
 
-La pregunta general es: ¿cómo varía la proporción de ofertas ganadoras según el tipo de licitación y el tamaño del proveedor en el sector Salud durante marzo de 2026? El análisis es descriptivo y no establece causalidad. F1 define el cálculo y sus restricciones; F2 incluye resultados descriptivos preliminares, restringidos a procesos adjudicados.
+Cada fila representa una **oferta asociada a un ítem de una licitación**. Una licitación puede aparecer en varias filas por sus distintos ítems y proveedores; el número de registros no equivale al número de licitaciones.
 
-## Qué representa la información
+## Datos
 
-ChileCompra es la plataforma mediante la cual organismos públicos publican necesidades de compra y reciben ofertas de proveedores. Una licitación puede incluir uno o más productos o servicios, y para cada ítem pueden participar varios proveedores.
-
-Cada fila del archivo corresponde a una **oferta asociada a un ítem de una licitación**. Por eso una misma licitación puede aparecer en varias filas: puede tener distintos ítems y varias ofertas para cada uno. No se debe interpretar cada fila como una licitación única.
-
-El archivo contiene, entre otros, estos grupos de información:
-
-- Datos de la licitación: identificador, nombre, tipo, estado, moneda y monto estimado.
-- Fechas del proceso: publicación, cierre, adjudicación y otras etapas administrativas.
-- Información del organismo comprador: institución, unidad de compra y sector.
-- Información del bien o servicio: rubro, producto, descripción, unidad de medida y cantidad.
-- Información de los proveedores y ofertas: proveedor, tamaño de empresa, monto ofertado, moneda y resultado (`Ganadora` o `Perdedora`).
-
-## Dataset
-
-El dataset principal es [`data/raw/licitaciones_salud_marzo_2026.csv`](data/raw/licitaciones_salud_marzo_2026.csv), obtenido desde [Datos Abiertos de ChileCompra](https://datos-abiertos.chilecompra.cl/descargas).
-
-| Característica | Información |
+| Característica | Valor |
 | --- | --- |
-| Cobertura | Sector Salud, reporte de licitaciones de marzo de 2026 |
-| Registros | 44.226 ofertas asociadas a licitaciones e ítems |
-| Variables | 74 columnas |
-| Formato | CSV con separador `;` y codificación `latin-1` |
+| Fuente | [Datos Abiertos de ChileCompra](https://datos-abiertos.chilecompra.cl/descargas) |
+| Reporte | Sector Salud, marzo de 2026 |
+| Archivo | [licitaciones_salud_marzo_2026.csv](data/raw/licitaciones_salud_marzo_2026.csv) |
+| Dimensiones | 44.226 filas y 74 columnas |
+| Formato | CSV, separador `;`, codificación `latin-1` |
 | Tamaño | 68,96 MB |
 
-El detalle de procedencia, lectura y trazabilidad está en [data/README.md](data/README.md).
+El archivo contiene datos del proceso de licitación, fechas, organismos compradores, productos, proveedores y resultados de las ofertas. La [documentación de datos](data/README.md) describe la cobertura observada, las huellas de integridad y los archivos derivados. El [diccionario de variables](data/DICCIONARIO_VARIABLES.md) detalla las 74 columnas.
 
 ## Estructura del repositorio
 
-- `F1/`: notebook de definición del proyecto y configuración del entorno.
-- `F2/`: notebook de exploración, limpieza, transformación y validación de datos.
-- `F3/`: pruebas y documentación del núcleo algorítmico orientado a objetos.
-- `data/raw/`: dataset original.
-- `data/processed/`: datos generados durante el preprocesamiento.
-- `docs/`: informe final, mapa conceptual, archivo editable del mapa y registro de decisiones técnicas.
-- `evidencias/`: resultados de ejecuciones verificadas.
-- `src/`: funciones reutilizables del proyecto.
+| Carpeta | Contenido |
+| --- | --- |
+| `F1/` | Definición del proyecto y verificación del entorno. |
+| `F2/` | Exploración, limpieza, transformación y validación del dataset. |
+| `F3/` | Notebook de algoritmos, pruebas, mediciones y verificación de ejecución. |
+| `src/` | Clases y funciones de procesamiento y análisis. |
+| `data/raw/` | Dataset original versionado. |
+| `data/processed/` | CSV derivados generados localmente; excluidos de Git. |
+| `docs/` | Informe F1/F2, mapa conceptual, decisiones técnicas y sección de algoritmos para el informe F3. |
+| `evidencias/` | Registros de ejecución y resultados de las mediciones. |
 
 ## Preparación del entorno
 
-El trabajo se verificó en Windows con Python 3.12.14. Para reproducir el entorno desde la raíz del repositorio, con Python 3.12 instalado:
+El proyecto se verificó en Windows con Python 3.12.14. Desde la raíz del repositorio, con Python 3.12 instalado:
 
 ```powershell
 py -3.12 -m venv .venv
@@ -59,91 +46,77 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m jupyterlab
 ```
 
-`requirements.txt` declara las dependencias principales de F1 y F2; pip instala sus dependencias internas automáticamente. Las versiones utilizadas se muestran en las salidas del notebook. Cada nueva instalación debe verificarse ejecutando F1 completo. Los gráficos adicionales quedan previstos para F3.
+[requirements.txt](requirements.txt) contiene las dependencias de F1, F2 y F3. Los notebooks muestran las versiones utilizadas. Ejecutar F1 permite comprobar la instalación y la lectura del dataset.
 
-### Ejecución de notebooks
+## Ejecución
 
-Para reproducir la ejecución completa de cada notebook y regenerar las evidencias técnicas en un kernel nuevo y aislado:
+Los siguientes comandos se ejecutan desde la raíz del repositorio:
 
 ```powershell
-# Ejecución verificada de Fase 1 (Definición y entorno)
+# Definición del proyecto y comprobación del entorno
 .\.venv\Scripts\python.exe F1\verificar_f1.py
 
-# Ejecución verificada de Fase 2 (Exploración, preprocesamiento y validación)
+# Preprocesamiento y generación de los CSV derivados
 .\.venv\Scripts\python.exe F2\verificar_f2.py
+
+# Pruebas de algoritmos y clases
+.\.venv\Scripts\python.exe -m unittest F3.test_algoritmos F3.test_nucleo_poo -v
+
+# Mediciones y ejecución del notebook F3
+.\.venv\Scripts\python.exe F3\medir_algoritmos.py
+.\.venv\Scripts\python.exe F3\verificar_algoritmos.py
 ```
 
-Cada script inicia un kernel nuevo del entorno virtual, ejecuta todas las celdas secuencialmente, preserva sus salidas en el notebook y emite un registro de trazabilidad en `evidencias/` (`F1_ejecucion.json` y `F2_ejecucion.json`).
+Los verificadores ejecutan los notebooks en kernels nuevos, guardan sus salidas y generan registros en `evidencias/`. F2 crea los CSV procesado y codificado en `data/processed/`; estos archivos no se incluyen al clonar el repositorio.
 
-## Criterios de trabajo y preprocesamiento (F2)
+Las [instrucciones de F3](F3/README.md) detallan las pruebas, los archivos de medición y la comprobación de hashes. Si cambia el código de análisis o de medición, es necesario regenerar los resultados antes de ejecutar el notebook F3.
 
-- El CSV original en `data/raw/` se conserva inmutable con verificación de hash SHA-256.
-- Se excluyeron las 3 columnas 100% vacías (`LicitacionBaseTipo`, `ContratoRenovable`, `UnidadTiempoRenovacion`).
-- Se neutralizaron las 7.613 fechas anómalas del año 1900 en `FechaEstimadaEvaluacionOfertas` convirtiéndolas a `NaT`.
-- Las columnas temporales (`FechaPublicacion`, `FechaCierre`, `FechaAdjudicacion`) se convirtieron a `datetime64[ns]`.
-- Se preservó explícitamente la categoría `NoClasificado` en `TamanoProveedor` (3.410 ofertas) sin imputaciones artificiales.
-- Se calcularon variables derivadas: `oferta_ganadora`, `licitacion_adjudicada` y `plazo_cierre_dias` (promedio 14,38 días).
-- El dataset procesado resultante (44.226 filas x 74 columnas) se almacena en `data/processed/licitaciones_salud_marzo_2026_procesado.csv`.
+## Preprocesamiento
 
-## Productos de la entrega
+El CSV original se conserva sin modificaciones y se verifica mediante SHA-256. El procesamiento aplica las siguientes operaciones:
 
-La entrega reúne los siguientes productos:
-- **Fase 1:** Contexto, problema, preguntas de investigación, objetivos F1–F4, alcance, supuestos, contrato de lectura y pruebas unitarias.
-- **Fase 2:** Diagnóstico exploratorio, pipeline modular en `src/proyecto.py`, limpieza justificada, validación con casos normales, límites y excepciones, y exportación trazable.
-- **Informe técnico:** [documento editable](docs/informe_f1_f2_grupo_5.docx) y [PDF de entrega](docs/f1_s01_grupo5.pdf), con índice, tablas de resultados y referencias en formato APA 7.ª edición.
-- **Mapa conceptual F1:** [PDF de entrega](docs/mcdi500_s1_grupo5.pdf) y [editable en draw.io](docs/mcdi500_s1_grupo5.drawio). Incluye portada y mapa en dos páginas carta; organiza el entorno, la documentación y la colaboración de F1, con continuidad hacia F2–F4.
-- **Diccionario de Datos:** [data/DICCIONARIO_VARIABLES.md](data/DICCIONARIO_VARIABLES.md) con las 74 variables agrupadas temáticamente y con observaciones técnicas.
-- **Decisiones técnicas:** [docs/DECISIONES_TECNICAS.md](docs/DECISIONES_TECNICAS.md), con las alternativas evaluadas y descartadas en F1 y F2.
+- Exclusión de tres columnas completamente vacías: `LicitacionBaseTipo`, `ContratoRenovable` y `UnidadTiempoRenovacion`.
+- Conversión a `NaT` de 7.613 fechas del año 1900 en `FechaEstimadaEvaluacionOfertas`.
+- Conversión de las columnas temporales a `datetime64[ns]`.
+- Eliminación de espacios en categorías y conservación de `NoClasificado`.
+- Cálculo de `oferta_ganadora`, `licitacion_adjudicada` y `plazo_cierre_dias`.
 
-Las instrucciones de la Evaluación Formativa 1 y la pauta de la Evaluación Sumativa 1 se citan como fuentes docentes en el informe. La limpieza y sus pruebas comprueban el procesamiento realizado; no constituyen una validación estadística ni normativa. Los plazos se resumen por registro de oferta.
+El dataset procesado conserva 44.226 filas y 74 columnas. Una segunda versión incorpora indicadores one-hot de `TipoLicitacion` y `TamanoProveedor`, sin eliminar las categorías originales. Esta codificación es exploratoria; su uso en un modelo requeriría ajustar el codificador con datos de entrenamiento y definir el tratamiento de categorías desconocidas.
 
-## Codificación de variables nominales
+Las reglas y sus justificaciones se encuentran en el notebook F2 y en [DECISIONES_TECNICAS.md](docs/DECISIONES_TECNICAS.md). La validación comprueba la consistencia del procesamiento; los plazos se resumen por registro de oferta.
 
-F2 añade una versión con one-hot encoding de `TipoLicitacion` y `TamanoProveedor`, conservando las categorías originales y `NoClasificado`. Cada indicador es un entero 0/1; las categorías no reciben un orden artificial. `src/proyecto.py` contiene `codificar_nominales` y el notebook muestra ejemplos y pruebas de correspondencia, conservación de filas y lectura del archivo exportado.
-
-El archivo adicional es `data/processed/licitaciones_salud_marzo_2026_codificado.csv` (ruta desde la raíz). El CSV procesado de 74 columnas sigue siendo la base de las proporciones. La codificación es una preparación exploratoria; un futuro modelo requerirá ajustar su codificador solo con datos de entrenamiento y definir las categorías desconocidas.
-
-## Componentes y responsabilidades
-
-Las celdas configuran entradas, llaman componentes reutilizables y muestran resultados. En F3, las funciones públicas de F1/F2 se conservaron como adaptadores compatibles y las responsabilidades principales se trasladaron a clases:
-
-| Componente | Función |
-| --- | --- |
-| Contrato de entrada | `ContratoEsquema` |
-| Lectura polimórfica | `LectorDatos`, `LectorCSV` |
-| Limpieza con estado encapsulado | `LimpiadorLicitaciones` |
-| Validación extensible | `ReglaValidacion`, reglas concretas y `ValidadorDatasetProcesado` |
-| Compatibilidad F1/F2 | `leer_datos_f1`, `limpiar_datos_f2`, `validar_dataset_procesado` |
-| Trazabilidad | `sha256_archivo`, `versiones_entorno` |
-| Diagnóstico y frecuencias | `resumen_exploracion`, `tablas_frecuencia` |
-| Exclusión de columnas vacías | `excluir_columnas_vacias` |
-| Fechas y años excluidos por columna | `convertir_fechas` |
-| Normalización de categorías | `normalizar_categorias` |
-| Indicadores y plazos | `generar_variables_derivadas` |
-| Proporciones por cualquier variable de agrupación | `tabla_proporciones` |
-| Codificación y comprobación one-hot | `codificar_nominales`, `validar_codificacion` |
-| Exportación | `exportar_datos_procesados` |
-
-`src/ejecucion.py` contiene `ejecutar_notebook`, compartida por los verificadores F1 y F2. Las transformaciones devuelven copias; las operaciones de lectura y exportación reciben rutas explícitas. Las pruebas de compatibilidad y extensibilidad del nuevo núcleo se encuentran en `F3/test_nucleo_poo.py`.
-
-## Distribución del código por módulos
-
-El núcleo POO y las funciones existentes se distribuyen por responsabilidad:
+## Organización del código
 
 | Módulo | Responsabilidad |
 | --- | --- |
-| `src/datos.py` | `ContratoEsquema`, `LectorDatos`, `LectorCSV`, lectura compatible, exportación y SHA-256 |
-| `src/preprocesamiento.py` | Transformaciones de columnas, fechas, categorías, indicadores y codificación |
-| `src/pipeline.py` | `LimpiadorLicitaciones` y el adaptador `limpiar_datos_f2` |
-| `src/validacion.py` | `ReglaValidacion`, seis reglas concretas, `ValidadorDatasetProcesado` y validaciones compatibles |
-| `src/analisis.py` | Diagnóstico, frecuencias y proporciones |
-| `src/entorno.py` | Versiones de dependencias |
-| `src/ejecucion.py` | Ejecución reproducible de notebooks |
+| `src/datos.py` | Contrato de esquema, lectores, exportación y huellas SHA-256. |
+| `src/preprocesamiento.py` | Transformaciones de fechas, categorías, variables derivadas y codificación. |
+| `src/pipeline.py` | Coordinación de la limpieza mediante `LimpiadorLicitaciones`. |
+| `src/validacion.py` | Validación del dataset mediante reglas y comprobación de indicadores. |
+| `src/analisis.py` | Exploración, frecuencias y algoritmos de cálculo de proporciones. |
+| `src/entorno.py` | Consulta de versiones de dependencias. |
+| `src/ejecucion.py` | Ejecución de notebooks y registro de evidencias. |
 
-`src/proyecto.py` reexporta las 15 funciones y 12 clases para conservar los imports de F1, F2 y las pruebas F3. `pipeline.py` depende de las transformaciones de `preprocesamiento.py`; los módulos de implementación no dependen de `proyecto.py`. La separación conserva los métodos y el comportamiento del aporte POO.
+`src/proyecto.py` mantiene las importaciones utilizadas por F1 y F2. Las alternativas de cálculo de F3 se importan directamente desde `src/analisis.py`.
 
-## Organización de ramas
+## Algoritmos de F3
 
-Cada integrante trabaja en una rama propia para evitar interferir con los cambios de los demás. Coordinamos la integración de esos avances en `desarrollo`, que reúne el proceso de trabajo del equipo. La rama `main` contendrá la versión final integrada del proyecto.
+El [notebook F3](F3/F3_Algoritmos.ipynb) compara la referencia de F2 con versiones iterativa, recursiva y agrupada del cálculo de proporciones. Presenta ejemplos, pruebas de equivalencia, complejidad temporal y espacial, mediciones y conclusiones.
 
-`main` está protegida y solo recibe cambios mediante pull requests (PR). Tanto `desarrollo` como `main` tienen políticas que impiden su eliminación. El flujo del equipo es: rama individual → `desarrollo` → `main`.
+La variante agrupada obtuvo la menor mediana de tiempo para el conjunto completo en las mediciones guardadas. La comparación incluye la preparación interna y la salida del cálculo; excluye la lectura y limpieza del dataset. Los resultados y sus límites se explican en el notebook y en la [sección técnica de algoritmos](docs/F3_APORTE_ALGORITMOS.md).
+
+## Documentación
+
+- **Informe F1/F2:** [editable](docs/informe_f1_f2_grupo_5.docx) y [PDF](docs/f1_s01_grupo5.pdf).
+- **Mapa conceptual F1:** [PDF](docs/mcdi500_s1_grupo5.pdf) y [archivo draw.io](docs/mcdi500_s1_grupo5.drawio).
+- **Datos:** [procedencia y generación](data/README.md) y [diccionario de variables](data/DICCIONARIO_VARIABLES.md).
+- **Arquitectura y métodos:** [decisiones técnicas](docs/DECISIONES_TECNICAS.md).
+- **F3:** [instrucciones de ejecución](F3/README.md) y [análisis de algoritmos](docs/F3_APORTE_ALGORITMOS.md).
+
+El informe grupal de F3 y la integración de las mediciones de lectura y actualizaciones de validación están pendientes.
+
+## Trabajo con ramas
+
+Los cambios se integran en `desarrollo`. Cada integrante puede crear una rama desde una versión actualizada de `desarrollo` y proponer su integración mediante un pull request.
+
+La versión revisada se incorpora a `main` mediante un pull request, después de ejecutar las pruebas y verificar los notebooks. El flujo de trabajo es: rama individual → `desarrollo` → `main`.
