@@ -3,7 +3,7 @@
 **Curso:** MCDIA500 — Programación para la Ciencia de Datos
 **Proyecto:** Análisis de ofertas en licitaciones públicas del sector Salud (marzo de 2026)
 **Grupo:** 5 — Víctor Bravo Barrera, Nayadeth Garrido Ibáñez, Mauricio Cid
-**Fases cubiertas:** F1, F2 y primer incremento de F3 · **Última actualización:** 24 de septiembre de 2026
+**Fases cubiertas:** F1, F2 y primer incremento de F3 · **Última actualización:** 26 de septiembre de 2026
 
 ## Propósito
 
@@ -92,3 +92,25 @@ La revisión detectó un caso pendiente del aporte POO: `ValidadorDatasetProcesa
 Repositorio: <https://github.com/vbravo29/sumativo-1> · Las decisiones aquí registradas se
 implementan en los módulos de `src/`, con acceso compatible desde `src/proyecto.py`.
 El informe de F1/F2 describe la arquitectura anterior; esta sección registra su evolución en F3.
+
+## 7. Aporte algorítmico — 26 de septiembre de 2026
+
+| ID | Decisión adoptada | Alternativas descartadas | Motivo |
+| --- | --- | --- | --- |
+| D-28 | Comparar el cálculo de proporciones por oferta, manteniendo la unidad analítica y el denominador de F2 | Agregar a licitación única en este aporte | Cambiar la unidad requeriría nuevas reglas de negocio y excedería el alcance asignado |
+| D-29 | Implementar conteo iterativo, recursivo por rangos y agrupado; conservar F2 como referencia | Sustituir F2 antes de validar · promediar porcentajes parciales | Se necesitan resultados equivalentes y totales correctos; los porcentajes se calculan después de combinar conteos |
+| D-30 | Medir funciones completas sobre datos cargados, con orden alternado, siete rondas y tres ejecuciones por ronda | Incluir lectura en los tiempos · una sola ejecución · medir solo el conteo omitiendo conversiones | La comparación evalúa el aporte algorítmico y considera la preparación necesaria de cada alternativa |
+| D-31 | Separar tiempo, memoria y resumen en funciones; reutilizar Timer y calcular metadatos una vez por muestra | Un bloque profundamente anidado · eliminar repeticiones para reducir bucles | Se elimina trabajo redundante y mejora legibilidad sin debilitar el diseño experimental |
+| D-32 | Seleccionar agrupación pandas para F3 en el dataset completo, manteniendo F2 intacto | Elegir recursividad por requisito académico · afirmar superioridad universal | La agrupada obtuvo menor mediana en ambas variables; la recursiva demuestra descomposición correcta pero no una mejora sostenida |
+
+Se añadieron ocho pruebas algorítmicas y se ejecutaron junto con las seis pruebas POO existentes. Las tres alternativas conservan resultados del dataset real, por tamaño y tipo, además de casos manuales y límite. El notebook `F3/F3_Algoritmos.ipynb` integra esas pruebas y los resultados; `docs/F3_APORTE_ALGORITMOS.md` desarrolla la sección técnica para el informe. Los datos crudos del experimento, versiones y hashes están en `evidencias/F3_algoritmos/`.
+
+El pico trazado se mide separado del tiempo y no representa RSS. Las mediciones no incluyen lectura ni limpieza. La función recursiva usa bloque base 256 como parámetro declarado, sin afirmar optimalidad. Las diferencias pequeñas se interpretan con cautela. Los módulos de Naya y Mauricio permanecen sin modificaciones. Este avance resuelve los pendientes de algoritmos, recursividad y notebook del aporte de Víctor; el informe institucional y la integración grupal siguen pendientes.
+
+### Organización del notebook y trazabilidad de las explicaciones
+
+Se revisó el notebook frente al documento técnico. Aunque contenía evidencia de resultados, parte de la interpretación y de la elección final solo se desarrollaba en el informe. También se identificaron celdas que combinaban ejecución de pruebas, varias tablas e interpretación.
+
+Se reorganizó `F3/F3_Algoritmos.ipynb` en 24 celdas de código con objetivos diferenciados: entorno, presentación, lectura, limpieza, calidad, ejemplo manual, recursividad, pruebas, casos límite, equivalencia, resultados por variable, evidencia de medición, tiempos, memoria y decisión final. Cada celda de salida contiene como máximo una tabla; esto se comprobó sobre el notebook ejecutado. Es una convención de legibilidad y separación de responsabilidades, no un requisito de convertir cada instrucción en una celda.
+
+Las decisiones, el efecto del bloque base, los costos de preparación, las diferencias pequeñas de tiempos, la interpretación de memoria y las limitaciones quedaron explicados junto a sus resultados. El informe resume estos antecedentes. Se ejecutaron las 24 celdas sin errores y las 14 pruebas continuaron aprobadas. No se modificaron los algoritmos, las mediciones guardadas ni los módulos de otros integrantes.

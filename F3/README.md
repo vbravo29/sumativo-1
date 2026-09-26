@@ -1,41 +1,82 @@
-# Fase 3: núcleo algorítmico y POO
+# Fase 3 — Algoritmos y programación orientada a objetos
 
-## Primer incremento: reorganización del pipeline F2
+Esta fase compara algoritmos para calcular la proporción de ofertas ganadoras por tamaño de proveedor y tipo de licitación. Utiliza el dataset de F2 y una estructura de clases para la lectura, limpieza y validación de los datos.
 
-La retroalimentación docente propuso trasladar las funciones extensas de
-`src/proyecto.py` a objetos con responsabilidades delimitadas. El primer incremento
-implementa esa mejora sin romper los notebooks de F1 y F2:
+El análisis considera ofertas de procesos adjudicados. Cada fila representa una oferta por ítem; los porcentajes se calculan sobre las ofertas con resultado válido de cada grupo.
 
-- `ContratoEsquema`: contrato inmutable para las columnas mínimas de una fuente.
-- `LectorDatos`: interfaz abstracta de lectura.
-- `LectorCSV`: implementación concreta que lee y valida el contrato.
-- `LimpiadorLicitaciones`: coordina el pipeline y encapsula un resumen de su última
-  ejecución; no modifica el DataFrame recibido.
-- `ReglaValidacion`: interfaz abstracta para reglas de calidad intercambiables.
-- `ValidadorDatasetProcesado`: aplica una colección de reglas polimórficas.
+## Archivos
 
-Las funciones `leer_datos_f1`, `limpiar_datos_f2` y
-`validar_dataset_procesado` permanecen como adaptadores compatibles. Por ello, este
-incremento mejora cohesión, encapsulamiento y extensibilidad, pero conserva la interfaz
-utilizada por los entregables anteriores.
+| Archivo | Contenido |
+| --- | --- |
+| [F3_Algoritmos.ipynb](F3_Algoritmos.ipynb) | Desarrollo del análisis, ejemplos, pruebas, mediciones y conclusiones. |
+| [test_algoritmos.py](test_algoritmos.py) | Pruebas de equivalencia entre algoritmos y casos límite. |
+| [test_nucleo_poo.py](test_nucleo_poo.py) | Pruebas de lectura, limpieza y validación mediante clases. |
+| [medir_algoritmos.py](medir_algoritmos.py) | Comparación de tiempos de ejecución y memoria. |
+| [verificar_algoritmos.py](verificar_algoritmos.py) | Ejecución del notebook en un kernel nuevo y registro del resultado. |
+| `fixtures/` | Archivos de ejemplo utilizados en las pruebas de lectura. |
 
-## Verificación
+## Organización del código
 
-Desde la raíz del repositorio:
+La implementación se encuentra en `src/`:
+
+| Módulo | Responsabilidad |
+| --- | --- |
+| [datos.py](../src/datos.py) | Contrato de esquema, lector abstracto, lector CSV, exportación y huellas SHA-256. |
+| [preprocesamiento.py](../src/preprocesamiento.py) | Transformación de fechas, categorías y variables derivadas. |
+| [pipeline.py](../src/pipeline.py) | Coordinación de la limpieza y registro de su última ejecución. |
+| [validacion.py](../src/validacion.py) | Reglas de calidad y validación del dataset. |
+| [analisis.py](../src/analisis.py) | Exploración, frecuencias y cálculo de proporciones. |
+
+`LectorCSV` implementa la interfaz de `LectorDatos`. `LimpiadorLicitaciones` conserva un resumen de la limpieza sin modificar el DataFrame de entrada. `ValidadorDatasetProcesado` aplica reglas que comparten la interfaz `ReglaValidacion`.
+
+Los notebooks de F1 y F2 mantienen sus importaciones desde `src/proyecto.py`. Las nuevas alternativas de cálculo se importan desde `src/analisis.py`.
+
+## Ejecución
+
+Se requiere el entorno Python del proyecto, las dependencias de [requirements.txt](../requirements.txt) y el archivo `data/raw/licitaciones_salud_marzo_2026.csv`. La configuración del entorno está descrita en el [README principal](../README.md#preparación-del-entorno).
+
+Ejecutar los siguientes comandos desde la raíz del repositorio, en este orden:
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest F3.test_nucleo_poo -v
+# Pruebas de algoritmos y clases
+.\.venv\Scripts\python.exe -m unittest F3.test_algoritmos F3.test_nucleo_poo -v
+
+# Mediciones de tiempo y memoria
+.\.venv\Scripts\python.exe F3\medir_algoritmos.py
+
+# Ejecución y guardado del notebook
+.\.venv\Scripts\python.exe F3\verificar_algoritmos.py
 ```
 
-Las pruebas cubren lectura normal, esquema incompleto, inmutabilidad de la entrada,
-estado del limpiador, compatibilidad de los adaptadores, extensión polimórfica del
-validador y detección de un plazo incoherente.
+Las mediciones se guardan en `evidencias/F3_algoritmos/`: `resumen.csv` contiene las estadísticas y `mediciones.json` incluye las observaciones individuales, los parámetros, las versiones y las huellas de los archivos utilizados.
 
+El verificador guarda las salidas del notebook y genera `evidencias/F3_algoritmos_ejecucion.json`. El notebook comprueba que las mediciones correspondan al dataset y al código actuales. Si cambia `src/analisis.py` o `F3/medir_algoritmos.py`, es necesario repetir las mediciones. También pueden regenerarse desde el notebook con `REGENERAR_MEDICIONES = True`.
 
-## Organización por archivos
+## Comparación de algoritmos
 
-Las clases de lectura y el contrato están en `src/datos.py`; el limpiador y su adaptador, en `src/pipeline.py`; las reglas y el validador, en `src/validacion.py`. Las transformaciones auxiliares residen en `src/preprocesamiento.py`. `src/proyecto.py` conserva el acceso compatible a todas las clases y funciones.
+Se comparan cuatro implementaciones:
 
-El 24 de septiembre se verificó la separación: seis pruebas POO aprobadas, ejecución completa de F1 y F2 en kernels nuevos y coincidencia SHA-256 de los dos CSV generados en una carpeta temporal con los existentes. Los notebooks y sus evidencias JSON anteriores no se reescribieron.
+- **Referencia F2:** cálculo original mediante filtros y agrupaciones.
+- **Iterativa:** acumulación de conteos por grupo en un diccionario.
+- **Recursiva:** división de registros en bloques y combinación de conteos parciales.
+- **Agrupada:** cálculo mediante una agrupación por categoría y resultado.
 
-Este incremento todavía no incluye un notebook F3, benchmarks de tiempo y memoria ni una implementación recursiva. En la revisión se detectó además que `ValidadorDatasetProcesado([])` utiliza las reglas predeterminadas en vez de rechazar la lista vacía; se conserva el comportamiento del aporte original y queda pendiente su corrección con una prueba específica.
+Las pruebas comprueban que las alternativas producen los mismos resultados. La comparación de rendimiento utiliza distintos tamaños de entrada e incluye el filtrado, las conversiones, el conteo y la construcción de la tabla. La lectura del CSV y la limpieza se realizan antes de medir.
+
+En las mediciones guardadas, la variante agrupada obtuvo la menor mediana de tiempo para el dataset completo en ambas variables. Se utiliza en el análisis de F3; la función de F2 conserva su implementación. La interpretación de los tiempos, la complejidad y los límites de la comparación se desarrolla en el notebook.
+
+La memoria se mide por separado con `tracemalloc`. El pico registrado corresponde a las asignaciones rastreadas durante el cálculo, no a la memoria total del proceso.
+
+## Validación y documentación
+
+La ejecución registrada comprende 14 pruebas aprobadas y 24 celdas de código ejecutadas sin errores. El notebook presenta por separado la preparación de datos, los casos de prueba, las proporciones, los tiempos y la memoria, con las explicaciones correspondientes a cada resultado.
+
+- [Decisiones técnicas](../docs/DECISIONES_TECNICAS.md): criterios de implementación y alternativas evaluadas.
+- [Análisis de algoritmos](../docs/F3_APORTE_ALGORITMOS.md): sección técnica preparada para el informe.
+- [Evidencias de rendimiento](../evidencias/F3_algoritmos/): resultados reproducibles del experimento.
+
+## Pendientes
+
+- Corregir el tratamiento de una lista de reglas vacía en `ValidadorDatasetProcesado`: actualmente activa las reglas predeterminadas.
+- Integrar las mediciones de lectura y las actualizaciones de validación.
+- Completar el informe grupal y su bibliografía.
